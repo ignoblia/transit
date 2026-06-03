@@ -2,7 +2,10 @@
 module.exports = {
   content: [
     './.vitepress/**/*.{js,ts,vue}',
-    './**/*.md',
+    './index.md',
+    './europe/**/*.md',
+    './global-index.md',
+    './moving-checklists.md',
   ],
   theme: {
     extend: {

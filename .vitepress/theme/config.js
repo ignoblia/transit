@@ -21,13 +21,31 @@ export const sidebar = {
       text: 'Europe',
       collapsed: false,
       items: [
-        { text: 'Iceland', link: '/europe/iceland' },
-        { text: 'Spain', link: '/europe/spain' },
-        { text: 'EU Trans-Friendly Countries', link: '/europe/eu-trans-friendly' }
+        {
+          text: '🇮🇸 Iceland',
+          collapsed: true,
+          items: [
+            { text: 'Overview', link: '/europe/iceland/' },
+            { text: 'Legal Rights', link: '/europe/iceland/legal-rights' },
+            { text: 'Healthcare & HRT', link: '/europe/iceland/healthcare' },
+            { text: 'Moving There', link: '/europe/iceland/moving-there' }
+          ]
+        },
+        {
+          text: '🇪🇸 Spain',
+          collapsed: true,
+          items: [
+            { text: 'Overview', link: '/europe/spain/' },
+            { text: 'Legal Rights', link: '/europe/spain/legal-rights' },
+            { text: 'Healthcare & HRT', link: '/europe/spain/healthcare' },
+            { text: 'Moving There', link: '/europe/spain/moving-there' }
+          ]
+        },
+        { text: '🇪🇺 EU Trans-Friendly Countries', link: '/europe/eu-trans-friendly' },
+        { text: '🗺️ ILGA Resources', link: '/europe/ilga-resources' }
       ]
     }
   ],
-  // We can add more regions as needed, but for now we focus on Europe
   '/global-index/': [
     {
       text: 'Global Index',

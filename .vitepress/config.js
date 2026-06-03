@@ -25,6 +25,7 @@ export default {
     lastUpdated: 'Last Updated',
     // Custom theme colors (using Tailwind classes via theme)
   },
+  cleanUrls: false, // GitHub Pages needs .html extensions
   markdown: {
     // You can configure markdown-it here if needed
   }

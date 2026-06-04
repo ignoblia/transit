@@ -1,0 +1,44 @@
+# Weekly rebuild to refresh Equaldex Equality Index data
+# Runs every Monday at 06:00 UTC, also manually triggerable
+
+name: Weekly Rebuild
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'   # Every Monday at 06:00 UTC
+  workflow_dispatch:        # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: transit-site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: transit-site
+
+      - name: Build site (fetches fresh Equaldex data)
+        run: npm run build
+        working-directory: transit-site
+
+      - name: Commit and push updated site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          git diff --quiet && git diff --staged --quiet || git commit -m "chore: weekly rebuild with fresh equality data"
+          git push

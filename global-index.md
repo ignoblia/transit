@@ -8,6 +8,10 @@ description: Compare countries on trans rights, healthcare, immigration, and qua
 
 Use this matrix to compare countries based on key factors for transgender individuals considering relocation.
 
+## Live Equality Index (Equaldex)
+
+This data is fetched from the [Equaldex Equality Index](https://www.equaldex.com/equality-index) — a global ranking of LGBTQ+ equality by country. Scores are out of 100 and are **automatically updated** when the site is rebuilt.
+
 ## Comparison Matrix
 
 | Country | Legal Gender Recognition | Healthcare Access | Safety & Legal Protections | Digital Nomad Feasibility | Overall Trans-Friendliness (1-5) |
@@ -43,4 +47,4 @@ Use this matrix to compare countries based on key factors for transgender indivi
 - [Nomad List](https://nomadlist.com): Remote work and cost of living data (filter for LGBTQ+ friendliness)
 
 ---
-*Data compiled from ILGA, TGEU, government sources, and community reports. Last updated: 2026.*
+*Data compiled from ILGA, TGEU, government sources, community reports, and the Equaldex Equality Index. Last updated: June 2026.*

@@ -1,24 +1,25 @@
 ---
 layout: home
 hero:
-  name: TransTransit
+  name: TransIT
   text: A guide for transgender individuals to research and plan moves to safer countries
   tagline: Find your safe haven
   actions:
     - theme: brand
-      text: Find a Safe Country
-      link: /europe/iceland
+      text: Explore Countries
+      link: /explorer/
     - theme: alt
-      text: Learn More
-      link: /global-index/
-  image:
-    src: /logo.png
-    alt: TransTransit
+      text: Top Recommendations
+      link: /recommendations/
 features:
-  - title: Country Guides
-    details: Detailed guides for trans-friendly countries around the world
-    icon: 🌍
-    link: /europe/
+  - title: Country Explorer
+    details: Search any country for live Equality Index scores, trans rights info, healthcare access, and migration guidance from your location
+    icon: 🔍
+    link: /explorer/
+  - title: Top Recommendations
+    details: Browse top 10 trans-friendly countries per continent, ranked by the Equaldex Equality Index
+    icon: 🏆
+    link: /recommendations/
   - title: Global Index
     details: Compare countries on legal protections, healthcare access, and more
     icon: 📊

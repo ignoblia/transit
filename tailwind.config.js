@@ -3,7 +3,8 @@ module.exports = {
   content: [
     './.vitepress/**/*.{js,ts,vue}',
     './index.md',
-    './europe/**/*.md',
+    './explorer.md',
+    './recommendations.md',
     './global-index.md',
     './moving-checklists.md',
   ],

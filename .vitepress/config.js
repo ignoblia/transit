@@ -1,7 +1,7 @@
 import { navbar, sidebar } from './theme/config.js'
 
 export default {
-  title: 'TransTransit',
+  title: 'TransIT',
   description: 'A guide for transgender individuals to research and plan moves to safer countries',
   base: '/transit/', // Important for GitHub Pages: <username>.github.io/<repo>/
   outDir: 'docs', // Build output to /docs for GitHub Pages

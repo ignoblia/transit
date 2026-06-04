@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
-    "build": "vitepress build && powershell -Command \"New-Item -ItemType File -Path docs\\.nojekyll -Force\"",
+    "fetch-data": "node scripts/fetch-all-data.js && node scripts/generate-curated-data.js",
+    "build": "npm run fetch-data && vitepress build && powershell -Command \"New-Item -ItemType File -Path docs\\.nojekyll -Force\"",
     "preview": "vitepress preview",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

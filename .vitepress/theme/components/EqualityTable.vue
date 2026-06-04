@@ -44,9 +44,6 @@
         </tr>
       </tbody>
     </table>
-    <p class="text-xs text-gray-400 mt-2">
-      Data from <a href="https://www.equaldex.com/equality-index" target="_blank" class="underline hover:text-blue-500">Equaldex Equality Index</a>
-    </p>
   </div>
 </template>
 

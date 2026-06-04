@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto">
+  <div class="max-w-4xl mx-auto pt-6 pb-8">
     <!-- Search bar -->
     <div class="relative mb-8">
       <div class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1">
@@ -97,8 +97,9 @@
               · Population: {{ formatNumber(selectedCountry.population) }}
             </span>
           </p>
-          <p v-if="selectedCountry.languages?.length" class="text-xs text-gray-400 mt-1">
-            Languages: {{ selectedCountry.languages.join(', ') }}
+          <p class="text-xs text-gray-400 mt-1">
+            <span v-if="selectedCountry.languages?.length">Languages: {{ selectedCountry.languages.join(', ') }}</span>
+            <span v-if="curatedInfo?.languageNote"> · {{ curatedInfo.languageNote.split('.')[0] }}.</span>
           </p>
         </div>
       </div>
@@ -123,8 +124,7 @@
           </div>
         </div>
         <p v-if="selectedCountry.rank" class="text-xs text-gray-400 mt-3 text-center">
-          Rank: #{{ selectedCountry.rank }} of 197 · 
-          <a href="https://www.equaldex.com/equality-index" target="_blank" class="underline hover:text-blue-500">Equaldex</a>
+          Rank: #{{ selectedCountry.rank }} of 197
         </p>
       </div>
 
@@ -186,6 +186,63 @@
         <p v-if="curatedInfo.notes" class="mt-4 text-sm text-gray-600 dark:text-gray-400 italic">
           {{ curatedInfo.notes }}
         </p>
+      </div>
+
+      <!-- WhereNext: Relocation Index card -->
+      <div v-if="relocInfo && !wnLoading" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+          <span class="mr-2">📊</span> Relocation Index
+        </h3>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ relocInfo.composite_score }}</div>
+          <div class="text-sm text-gray-500">
+            <div>Overall Score</div>
+            <div class="text-xs">Rank #{{ relocInfo.rank }} of 95</div>
+          </div>
+          <div v-if="costInfo" class="ml-auto text-right">
+            <div class="text-sm font-semibold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}/mo</div>
+            <div class="text-xs text-gray-500">Est. cost of living</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-4 sm:grid-cols-7 gap-2">
+          <div v-for="dim in dimensions" :key="dim.key"
+               class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+            <div class="text-lg font-bold" :class="dimScoreClass(relocInfo[dim.key], dim.key)">{{ dimDisplayVal(relocInfo[dim.key], dim.key) }}</div>
+            <div class="text-[10px] text-gray-500 mt-0.5 leading-tight">{{ dim.label }}</div>
+            <div class="mt-1 h-1.5 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+              <div class="h-full rounded-full transition-all" :class="dimBarClass(relocInfo[dim.key], dim.key)"
+                   :style="{ width: dimDisplayVal(relocInfo[dim.key], dim.key) + '%' }"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- WhereNext: Cost of Living card -->
+      <div v-if="costInfo && !wnLoading" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
+        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+          <span class="mr-2">💰</span> Cost of Living
+        </h3>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+            <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
+            <div class="text-xs text-gray-500 mt-1">Monthly Estimate</div>
+          </div>
+          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+            <div class="text-2xl font-bold text-green-600 dark:text-green-400">{{ costInfo.rank }}</div>
+            <div class="text-xs text-gray-500 mt-1">Rank (1=cheapest)</div>
+          </div>
+          <div v-if="salaryInfo" class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center sm:col-span-2">
+            <div class="text-lg font-bold text-purple-600 dark:text-purple-400">${{ formatNumber(salaryInfo.medianNetUSD) }}/yr</div>
+            <div class="text-xs text-gray-500 mt-1">Median Net Salary (take-home)</div>
+            <div v-if="salaryInfo.medianNetUSDPPP" class="text-xs text-gray-400">
+              ~${{ formatNumber(salaryInfo.medianNetUSDPPP) }}/yr PPP-adjusted
+            </div>
+          </div>
+        </div>
+        <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 text-xs text-gray-500">
+          <span class="font-medium">Affordability:</span>
+          A median salary covers ~{{ Math.round(salaryInfo.medianNetUSD / costInfo.monthly_estimate_usd) }} months of living expenses.
+        </div>
       </div>
 
       <!-- Migration card -->
@@ -254,6 +311,12 @@
                   {{ visaDifficulty }}
                 </span>
               </div>
+              <div v-if="curatedInfo?.resourceLinks?.immigration" class="mt-2">
+                <a :href="curatedInfo.resourceLinks.immigration" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  🛂 Immigration portal →
+                </a>
+              </div>
             </div>
 
             <!-- Healthcare System -->
@@ -267,16 +330,31 @@
                   {{ coverageLabel(curatedInfo?.rights?.healthcareCoverage) }}
                 </Badge>
               </div>
+              <div v-if="curatedInfo?.resourceLinks?.transHealthcare" class="mt-2">
+                <a :href="curatedInfo.resourceLinks.transHealthcare" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  🏥 Healthcare system →
+                </a>
+              </div>
             </div>
 
             <!-- Language -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Languages</div>
-              <div class="font-medium text-gray-900 dark:text-gray-100">
-                {{ languageInfo }}
+            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 sm:col-span-2">
+              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Language Note</div>
+              <div v-if="curatedInfo?.languageNote" class="font-medium text-gray-900 dark:text-gray-100 text-sm leading-relaxed">
+                {{ curatedInfo.languageNote }}
               </div>
-              <div v-if="selectedCountry.languages?.length" class="text-xs text-gray-500 mt-1">
-                {{ selectedCountry.languages.length > 1 ? 'Multiple official languages' : 'Official language' }}
+              <div v-else class="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                {{ languageInfo }}
+                <span v-if="selectedCountry.languages?.length" class="text-xs text-gray-500 ml-2">
+                  ({{ selectedCountry.languages.length > 1 ? 'Multiple official languages' : 'Official language' }})
+                </span>
+              </div>
+              <div v-if="curatedInfo?.resourceLinks?.languageLearning" class="mt-2">
+                <a :href="curatedInfo.resourceLinks.languageLearning" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  📚 Learn the language →
+                </a>
               </div>
             </div>
 
@@ -289,11 +367,59 @@
               <div v-if="curatedInfo?.notes" class="text-xs text-gray-500 mt-1">
                 {{ curatedInfo.notes }}
               </div>
+              <div v-if="curatedInfo?.resourceLinks?.community" class="mt-2">
+                <a :href="curatedInfo.resourceLinks.community" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  🏳️‍🌈 LGBTQ+ organisation →
+                </a>
+              </div>
+            </div>
+
+            <!-- Housing -->
+            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
+              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Housing</div>
+              <div v-if="curatedInfo?.resourceLinks?.housing" class="mt-1">
+                <a :href="curatedInfo.resourceLinks.housing" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  🏠 Find housing →
+                </a>
+              </div>
+              <div v-else class="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                Check local real estate sites
+              </div>
             </div>
           </div>
 
-          <!-- Passport tip banner -->
-          <div v-if="passportSuggestion" class="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50">
+          <!-- Visa info from WhereNext API -->
+          <div v-if="visaLoading" class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center text-sm text-gray-500">
+            <span class="inline-block animate-pulse">Loading visa information...</span>
+          </div>
+          <div v-else-if="visaApiData" class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-blue-600 dark:text-blue-400 font-medium text-sm">🛂 Visa Pathways</span>
+              <span v-if="visaApiData.confidence === 'high'" class="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Verified</span>
+            </div>
+            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+              {{ visaApiData.answer }}
+            </p>
+            <div v-if="visaApiData.facts?.length" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+              <div v-for="fact in visaApiData.facts" :key="fact.label"
+                   class="flex items-start gap-2 text-xs p-2 rounded bg-white/50 dark:bg-gray-800/50">
+                <span class="text-blue-500 mt-0.5">•</span>
+                <div>
+                  <span class="font-medium text-gray-900 dark:text-gray-100">{{ fact.label }}:</span>
+                  <span class="text-gray-600 dark:text-gray-400"> {{ fact.value }}{{ fact.unit ? ' ' + fact.unit : '' }}</span>
+                </div>
+              </div>
+            </div>
+            <div v-if="visaApiData.citations?.length" class="mt-2 text-[10px] text-gray-400">
+              <span>Sources: </span>
+              <a v-for="(citation, ci) in visaApiData.citations" :key="ci"
+                 :href="citation.url" target="_blank" rel="noopener"
+                 class="underline hover:text-blue-500 mr-2">{{ citation.label }}</a>
+            </div>
+          </div>
+          <div v-else-if="visaError" class="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50">
             <p class="text-amber-800 dark:text-amber-200 text-sm">
               <span class="font-medium">💡 Passport Tip:</span>
               {{ passportSuggestion }}
@@ -306,16 +432,6 @@
         </div>
       </div>
 
-      <!-- All data sources -->
-      <div class="text-xs text-gray-400 border-t border-gray-200 dark:border-gray-700 pt-4 mt-8">
-        <p class="mb-1">Data sources:</p>
-        <ul class="list-disc list-inside space-y-0.5">
-          <li><a href="https://www.equaldex.com/equality-index" target="_blank" class="underline hover:text-blue-500">Equaldex Equality Index</a> — LGBTQ+ rights scores</li>
-          <li><a href="https://restcountries.com/" target="_blank" class="underline hover:text-blue-500">REST Countries</a> — flags, capitals, populations</li>
-          <li>Curated data — legal recognition, healthcare, safety, visa info</li>
-        </ul>
-        <p class="mt-2">Last updated: {{ lastUpdated }}</p>
-      </div>
     </div>
 
     <!-- Empty state -->
@@ -330,9 +446,44 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import dataset from '../generated/country-dataset.json'
 import curatedInfoMap from '../generated/curated-country-info.json'
+
+// ====== WHERENEXT API DATA ======
+const WHERENEXT_BASE = 'https://getwherenext.com'
+const whereNextCostIndex = ref([])
+const whereNextRelocIndex = ref([])
+const whereNextSalaries = ref([])
+const wnLoading = ref(true)
+const wnError = ref('')
+
+async function fetchWhereNextData() {
+  try {
+    const [costRes, relocRes, salRes] = await Promise.all([
+      fetch(`${WHERENEXT_BASE}/api/data/cost-of-living`),
+      fetch(`${WHERENEXT_BASE}/api/data/relocation-index`),
+      fetch(`${WHERENEXT_BASE}/api/data/median-salaries`).then(r => r.ok ? r.json() : { countries: [] }),
+    ])
+    const costData = await costRes.json()
+    const relocData = await relocRes.json()
+    whereNextCostIndex.value = costData.data || []
+    whereNextRelocIndex.value = relocData.data || []
+    whereNextSalaries.value = (salRes.countries || [])
+  } catch (e) {
+    wnError.value = 'Could not load relocation data'
+    console.warn('[WhereNext]', e)
+  } finally {
+    wnLoading.value = false
+  }
+}
+
+onMounted(fetchWhereNextData)
+
+// ====== VISA API STATE ======
+const visaApiData = ref(null)
+const visaLoading = ref(false)
+const visaError = ref('')
 
 // ====== SEARCH STATE ======
 const query = ref('')
@@ -348,6 +499,26 @@ const showFromDropdown = ref(false)
 const fromHighlightIndex = ref(-1)
 const selectedFromCountry = ref(null)
 
+// Watch both from-country and selected-country to fetch visa data from WhereNext
+watch([selectedFromCountry, selectedCountry], async ([from, to]) => {
+  visaApiData.value = null
+  visaError.value = ''
+  if (!from || !to || from.code === to.code) return
+  visaLoading.value = true
+  try {
+    const res = await fetch(
+      `${WHERENEXT_BASE}/api/answers/visa?passport=${from.code}&destination=${to.code}`
+    )
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    visaApiData.value = await res.json()
+  } catch (e) {
+    visaError.value = 'Could not fetch visa details'
+    console.warn('[Visa API]', e)
+  } finally {
+    visaLoading.value = false
+  }
+})
+
 const filteredCountries = computed(() => {
   if (!query.value) return []
   const q = query.value.toLowerCase()
@@ -359,6 +530,65 @@ const filteredCountries = computed(() => {
 const curatedInfo = computed(() => {
   if (!selectedCountry.value) return null
   return curatedInfoMap[selectedCountry.value.code] || null
+})
+
+// ====== WHERENEXT COMPUTED ======
+const dimensions = [
+  { key: 'cost', label: 'Cost' },
+  { key: 'safety', label: 'Safety' },
+  { key: 'healthcare', label: 'Health' },
+  { key: 'education', label: 'Education' },
+  { key: 'career', label: 'Career' },
+  { key: 'lifestyle', label: 'Lifestyle' },
+  { key: 'infrastructure', label: 'Infrastructure' },
+]
+
+function dimScoreClass(val, key) {
+  // Cost: low displayed score (cheap) = green, high displayed score (expensive) = red
+  if (key === 'cost') {
+    if (val <= 30) return 'text-green-600 dark:text-green-400'
+    if (val <= 60) return 'text-yellow-600 dark:text-yellow-400'
+    return 'text-red-600 dark:text-red-400'
+  }
+  if (val >= 70) return 'text-green-600 dark:text-green-400'
+  if (val >= 40) return 'text-yellow-600 dark:text-yellow-400'
+  return 'text-red-600 dark:text-red-400'
+}
+
+function dimBarClass(val, key) {
+  // Cost: low displayed score (cheap) = green, high displayed score (expensive) = red
+  if (key === 'cost') {
+    if (val <= 30) return 'bg-green-500'
+    if (val <= 60) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
+  if (val >= 70) return 'bg-green-500'
+  if (val >= 40) return 'bg-yellow-500'
+  return 'bg-red-500'
+}
+
+/** Display value for a dimension (invert cost so higher = more expensive) */
+function dimDisplayVal(val, key) {
+  if (key === 'cost') return Math.round(100 - val)
+  return val
+}
+
+const costInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code.toLowerCase()
+  return whereNextCostIndex.value.find(c => c.country_code === code) || null
+})
+
+const relocInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code.toLowerCase()
+  return whereNextRelocIndex.value.find(c => c.country_code === code) || null
+})
+
+const salaryInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code
+  return whereNextSalaries.value.find(s => s.code === code) || null
 })
 
 // Build a list of { key, label, value } for the rights checklist
@@ -451,8 +681,10 @@ function coverageLabel(val) {
 }
 
 function formatNumber(n) {
-  if (!n) return ''
-  return n.toLocaleString()
+  if (n === null || n === undefined || n === '') return ''
+  const num = typeof n === 'string' ? parseFloat(n) : n
+  if (isNaN(num)) return ''
+  return num.toLocaleString('en-US', { maximumFractionDigits: 0 })
 }
 
 function scoreClass(score) {

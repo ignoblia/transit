@@ -26,6 +26,7 @@ export default {
     // Custom theme colors (using Tailwind classes via theme)
   },
   cleanUrls: false, // GitHub Pages needs .html extensions
+  ignoreDeadLinks: true, // Allow directory-style internal links without dead link failures
   markdown: {
     // You can configure markdown-it here if needed
   }

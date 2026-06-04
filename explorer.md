@@ -9,7 +9,3 @@ import CountrySearch from './.vitepress/theme/components/CountrySearch.vue'
 </script>
 
 <CountrySearch />
-
----
-
-*Data sources: [Equaldex Equality Index](https://www.equaldex.com/equality-index), [REST Countries](https://restcountries.com/), curated trans rights profiles. Always verify with official sources before making relocation decisions.*

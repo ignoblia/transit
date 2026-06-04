@@ -40,10 +40,6 @@
           </div>
         </div>
       </div>
-
-      <p class="mt-2 text-xs text-gray-400">
-        Sorted by <a href="https://www.equaldex.com/equality-index" target="_blank" class="underline hover:text-blue-500">Equaldex Equality Index</a> score
-      </p>
     </div>
   </div>
 </template>

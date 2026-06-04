@@ -11,21 +11,44 @@ hero:
     - theme: alt
       text: Top Recommendations
       link: /recommendations/
+    - theme: alt
+      text: I Need to Leave Now
+      link: /emergency/
 features:
   - title: Country Explorer
-    details: Search any country for live Equality Index scores, trans rights info, healthcare access, and migration guidance from your location
+    details: Search any country for live Equality Index scores, trans rights info, healthcare access, and migration guidance
     icon: 🔍
     link: /explorer/
   - title: Top Recommendations
-    details: Browse top 10 trans-friendly countries per continent, ranked by the Equaldex Equality Index
+    details: Browse top trans-friendly countries per continent, ranked by the Equaldex Equality Index
     icon: 🏆
     link: /recommendations/
   - title: Global Index
-    details: Compare countries on legal protections, healthcare access, and more
+    details: Compare 25 countries on legal protections, healthcare, safety, cost, and visa access
     icon: 📊
     link: /global-index/
+  - title: I Need to Leave Now
+    details: Emergency contacts, document priorities, and transit safety for people in immediate crisis
+    icon: 🆘
+    link: /emergency/
+  - title: Asylum Pathway
+    details: Complete guide to LGBTQ+ asylum — grant rates, evidence requirements, legal aid, and evacuation support
+    icon: ⚖️
+    link: /asylum/
   - title: Moving Checklists
-    details: Step-by-step guides for international relocation
+    details: Trans-specific relocation checklists including document strategy, transit risk, and stealth relocation options
     icon: ✅
     link: /moving-checklists/
+  - title: The 12–24 Month Countdown
+    details: Month-by-month preparation guide covering digital security, savings, documents, and visa planning
+    icon: 📅
+    link: /prepare/
+  - title: Your First Year
+    details: Healthcare transfer, legal name change, community building, and emotional realities of trans migration
+    icon: 🏠
+    link: /after/
+  - title: Country Profiles
+    details: Detailed guides for 15 countries including Iceland, Germany, Canada, Argentina, and more
+    icon: 🌍
+    link: /countries/
 ---

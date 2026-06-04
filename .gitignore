@@ -4,3 +4,4 @@ node_modules
 .vitepress/theme/generated
 .DS_Store
 *.local
+.opencode

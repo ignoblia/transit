@@ -58,6 +58,7 @@ const curatedData = {
     digitalNomadVisa: 'Remote work visa (up to 18 months)',
     euFreeMovement: true,
     notes: 'Pioneer in trans rights; small population but strong community.',
+    languageNote: 'Icelandic is the official language, but English is spoken fluently by the vast majority of Icelanders — you can live and work comfortably in English while learning Icelandic.',
   },
   NO: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -66,6 +67,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa, but can stay up to 6 months as tourist',
     euFreeMovement: false,
     notes: 'Very progressive; part of EEA/Schengen.',
+    languageNote: 'Norwegian (Bokmål/Nynorsk) and Sami are official. English proficiency is very high — nearly all Norwegians speak fluent English, making daily life without Norwegian entirely feasible.',
+    resourceLinks: {
+      immigration: 'https://www.udi.no/en/',
+      transHealthcare: 'https://www.helsenorge.no/en/',
+      housing: 'https://www.finn.no/realestate/homes/search.html',
+      community: 'https://www.foreningenfri.no/english/',
+      languageLearning: 'https://www.ntnu.edu/now/',
+    },
   },
   ES: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -74,6 +83,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year, renewable)',
     euFreeMovement: true,
     notes: 'Excellent legal protections; large LGBTQ+ community.',
+    languageNote: 'Spanish (Castellano) is official; Catalan, Basque, Galician co-official. English is moderately spoken in cities and tourist areas, less so in rural regions. Learning Spanish is highly recommended for integration.',
+    resourceLinks: {
+      immigration: 'https://extranjeros.inclusion.gob.es/',
+      transHealthcare: 'https://www.sanidad.gob.es/',
+      housing: 'https://www.idealista.com/',
+      community: 'https://www.felgtb.com/',
+      languageLearning: 'https://www.cervantes.es/',
+    },
   },
   DK: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -82,6 +99,14 @@ const curatedData = {
     digitalNomadVisa: 'Start-up visa available',
     euFreeMovement: true,
     notes: 'Very progressive; strong social support.',
+    languageNote: 'Danish is the official language. English is very widely spoken, especially in Copenhagen and among younger generations. Most Danes are fluent, and you can get by entirely in English.',
+    resourceLinks: {
+      immigration: 'https://www.nyidanmark.dk/en/',
+      transHealthcare: 'https://www.sundhed.dk/',
+      housing: 'https://www.boligportal.dk/',
+      community: 'https://lgbt.dk/english/',
+      languageLearning: 'https://www.duolingo.com/course/da/',
+    },
   },
   MT: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -90,14 +115,30 @@ const curatedData = {
     digitalNomadVisa: 'Nomad Residence Permit (1 year)',
     euFreeMovement: true,
     notes: 'Consistently ranked #1 in ILGA Europe.',
+    languageNote: 'Maltese and English are both official. English is widely spoken and used in government and business — making Malta one of the easiest places for English speakers to relocate.',
+    resourceLinks: {
+      immigration: 'https://residencymalta.gov.mt/',
+      transHealthcare: 'https://deputyprimeminister.gov.mt/en/health/Pages/health.aspx',
+      housing: 'https://www.maltaproperty.com/',
+      community: 'https://www.maltagayrights.org/',
+      languageLearning: 'https://www.um.edu.mt/arts/maltese/',
+    },
   },
   DE: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
-      'Self-ID (2025)', 'Informed consent (varies by state)', 'Comprehensive'),
+      'Self-ID (SBGG, 1 Nov 2024)', 'Informed consent (varies by state)', 'Comprehensive'),
     safety: 4,
     digitalNomadVisa: 'Freelancer visa (6 months, renewable)',
     euFreeMovement: true,
-    notes: 'New self-ID law passed in 2025.',
+    notes: 'Self-ID law (SBGG) in force since 1 November 2024. Healthcare access varies significantly by region.',
+    languageNote: 'German is the official language. English proficiency is high in cities and among younger people, especially in tech/startup hubs like Berlin. Learning German is important for bureaucracy and integration.',
+    resourceLinks: {
+      immigration: 'https://www.make-it-in-germany.com/',
+      transHealthcare: 'https://www.bundesgesundheitsministerium.de/',
+      housing: 'https://www.immobilienscout24.de/',
+      community: 'https://www.lsvd.de/',
+      languageLearning: 'https://www.goethe.de/',
+    },
   },
   BE: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -106,6 +147,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; work as freelancer',
     euFreeMovement: true,
     notes: 'Good healthcare system; strong anti-discrimination laws.',
+    languageNote: 'Belgium has three official languages: Dutch (Flemish), French, and German. English is widely spoken in Brussels and Flanders. You can manage in English initially but learning the local language is valued.',
+    resourceLinks: {
+      immigration: 'https://www.ibz.be/',
+      transHealthcare: 'https://www.health.belgium.be/',
+      housing: 'https://www.immoweb.be/',
+      community: 'https://www.hetregenbooghuis.be/',
+      languageLearning: 'https://www.babbel.com/',
+    },
   },
   PT: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -114,6 +163,14 @@ const curatedData = {
     digitalNomadVisa: 'D7 Passive Income Visa & Digital Nomad Visa',
     euFreeMovement: true,
     notes: 'Popular destination; affordable with good healthcare.',
+    languageNote: 'Portuguese is the official language. English is spoken in tourist areas and by younger generations, but less common in rural areas. Learning basic Portuguese greatly enhances daily life.',
+    resourceLinks: {
+      immigration: 'https://www.sef.pt/en/',
+      transHealthcare: 'https://www.sns.gov.pt/',
+      housing: 'https://www.idealista.pt/',
+      community: 'https://www.ilga-portugal.pt/',
+      languageLearning: 'https://www.instituto-camoes.pt/',
+    },
   },
   FI: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -122,6 +179,14 @@ const curatedData = {
     digitalNomadVisa: 'Startup visa; self-employment possible',
     euFreeMovement: true,
     notes: 'Very safe; strong social support.',
+    languageNote: 'Finnish and Swedish are official. English proficiency is very high, especially among younger Finns and in Helsinki. You can live comfortably in English, but learning Finnish helps with integration.',
+    resourceLinks: {
+      immigration: 'https://migri.fi/en/',
+      transHealthcare: 'https://www.thl.fi/en/',
+      housing: 'https://www.oikotie.fi/',
+      community: 'https://www.seta.fi/en/',
+      languageLearning: 'https://www.kotus.fi/en',
+    },
   },
   NL: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -130,6 +195,14 @@ const curatedData = {
     digitalNomadVisa: 'Freelancer visa (DAFT treaty for US citizens)',
     euFreeMovement: true,
     notes: 'Very progressive; large expat community.',
+    languageNote: 'Dutch is the official language. English is very widely spoken — the Netherlands consistently ranks #1 in English proficiency globally. You can live and work entirely in English, though learning Dutch is appreciated.',
+    resourceLinks: {
+      immigration: 'https://ind.nl/en/',
+      transHealthcare: 'https://www.transvisie.nl/english/',
+      housing: 'https://www.funda.nl/',
+      community: 'https://www.coc.nl/',
+      languageLearning: 'https://www.learndutch.org/',
+    },
   },
   SE: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -138,14 +211,30 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; self-employment possible',
     euFreeMovement: true,
     notes: 'Pioneer in trans rights; long wait times for HRT in some regions.',
+    languageNote: 'Swedish is the official language. English proficiency is very high — Swedes are among the most fluent non-native English speakers in the world. You can manage entirely in English.',
+    resourceLinks: {
+      immigration: 'https://www.migrationsverket.se/English.html',
+      transHealthcare: 'https://www.1177.se/en/',
+      housing: 'https://www.hemnet.se/',
+      community: 'https://www.rfsl.se/',
+      languageLearning: 'https://www.si.se/',
+    },
   },
   FR: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
-      'Self-ID (2022)', 'Informed consent (with some requirements)', 'Comprehensive'),
+      'Self-ID (2016 law simplified procedure)', 'Informed consent (with some requirements)', 'Comprehensive'),
     safety: 3,
     digitalNomadVisa: 'No specific visa; freelance visa possible',
     euFreeMovement: true,
-    notes: 'Good legal protections; safety varies by area.',
+    notes: 'Gender recognition simplified in 2016 (no longer requires surgery/sterilization). Safety varies significantly by area.',
+    languageNote: 'French is the sole official language. English proficiency is lower than in Nordic countries, especially outside Paris. Learning French is strongly recommended for bureaucracy, healthcare, and social integration.',
+    resourceLinks: {
+      immigration: 'https://france-visas.gouv.fr/',
+      transHealthcare: 'https://www.ameli.fr/',
+      housing: 'https://www.leboncoin.fr/',
+      community: 'https://www.sos-homophobie.org/',
+      languageLearning: 'https://www.france-education-international.fr/',
+    },
   },
   AT: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
@@ -154,6 +243,14 @@ const curatedData = {
     digitalNomadVisa: 'Red-White-Red Card for freelancers',
     euFreeMovement: true,
     notes: 'Good healthcare system; strong legal protections.',
+    languageNote: 'German (Austrian variety) is the official language. English is reasonably widely spoken in Vienna and tourist areas, but less so in rural regions. Learning basic German is important for daily life.',
+    resourceLinks: {
+      immigration: 'https://www.migration.gv.at/',
+      transHealthcare: 'https://www.sozialministerium.at/',
+      housing: 'https://www.willhaben.at/',
+      community: 'https://www.hosi.or.at/',
+      languageLearning: 'https://www.goethe.de/',
+    },
   },
   CZ: {
     rights: expandRights([1,1,1,0,1,1,1,1,1,0,1],
@@ -162,6 +259,14 @@ const curatedData = {
     digitalNomadVisa: 'Zivno (freelancer visa)',
     euFreeMovement: true,
     notes: 'Moderate trans rights; affordable cost of living.',
+    languageNote: 'Czech is the official language. English is spoken by younger generations in Prague and larger cities, but limited in rural areas. Learning Czech is important for daily life and bureaucracy.',
+    resourceLinks: {
+      immigration: 'https://www.mvcr.cz/mvcren/',
+      transHealthcare: 'https://transkomunikace.webnode.cz/',
+      housing: 'https://www.sreality.cz/',
+      community: 'https://platforma-transparentu.cz/',
+      languageLearning: 'https://www.czechstepbystep.cz/',
+    },
   },
   CH: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,1],
@@ -170,6 +275,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; high cost of living',
     euFreeMovement: false,
     notes: 'Good healthcare; private insurance system.',
+    languageNote: 'Switzerland has four official languages: German (most widely spoken), French, Italian, and Romansh. English is widely spoken especially in Zurich, Geneva, and Basel. Which language to learn depends on your canton.',
+    resourceLinks: {
+      immigration: 'https://www.sem.admin.ch/sem/en/home.html',
+      transHealthcare: 'https://www.bag.admin.ch/',
+      housing: 'https://www.homegate.ch/',
+      community: 'https://www.pinkcross.ch/',
+      languageLearning: 'https://www.goethe.de/',
+    },
   },
   IE: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
@@ -178,6 +291,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; work visa required',
     euFreeMovement: true,
     notes: 'Very progressive; housing crisis affects newcomers.',
+    languageNote: 'Irish (Gaeilge) and English are both official, but English is the primary day-to-day language. Ireland is entirely English-speaking, making it one of the easiest destinations for English speakers.',
+    resourceLinks: {
+      immigration: 'https://www.irishimmigration.ie/',
+      transHealthcare: 'https://www.hse.ie/',
+      housing: 'https://www.daft.ie/',
+      community: 'https://www.teni.ie/',
+      languageLearning: 'https://www.gaelchultur.com/',
+    },
   },
   GB: {
     rights: expandRights([1,1,1,0,1,1,1,1,1,0,1],
@@ -186,6 +307,14 @@ const curatedData = {
     digitalNomadVisa: 'Global Talent visa; Youth Mobility (under 35)',
     euFreeMovement: false,
     notes: 'Post-Brexit; NHS has very long waiting lists for gender clinics.',
+    languageNote: 'English — no language barrier for English speakers. For non-native speakers, the UK offers extensive ESL programs and the NHS provides interpreter services.',
+    resourceLinks: {
+      immigration: 'https://www.gov.uk/browse/visas-immigration',
+      transHealthcare: 'https://www.nhs.uk/conditions/gender-dysphoria/',
+      housing: 'https://www.rightmove.co.uk/',
+      community: 'https://www.stonewall.org.uk/',
+      languageLearning: 'https://www.britishcouncil.org/',
+    },
   },
   LU: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -194,6 +323,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; EU freedom of movement',
     euFreeMovement: true,
     notes: 'Very wealthy; strong protections.',
+    languageNote: 'Luxembourgish, French, and German are official. French dominates government and administration. English is widely spoken especially in the international business sector.',
+    resourceLinks: {
+      immigration: 'https://guichet.public.lu/en/',
+      transHealthcare: 'https://sante.public.lu/',
+      housing: 'https://www.athome.lu/',
+      community: 'https://www.lgbt.lu/',
+      languageLearning: 'https://www.learnluxembourgish.com/',
+    },
   },
   IT: {
     rights: expandRights([1,1,1,0,1,1,1,1,1,0,1],
@@ -202,6 +339,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (2024, new)',
     euFreeMovement: true,
     notes: 'Conservative influence rising; safety varies by region.',
+    languageNote: 'Italian is the official language. English is moderately spoken in tourist areas and among younger Italians, but proficiency is lower than in Northern Europe. Learning Italian is important for integration.',
+    resourceLinks: {
+      immigration: 'https://www.interno.gov.it/en',
+      transHealthcare: 'https://www.salute.gov.it/',
+      housing: 'https://www.immobiliare.it/',
+      community: 'https://www.arcigay.it/',
+      languageLearning: 'https://www.babbel.com/',
+    },
   },
   GR: {
     rights: expandRights([1,1,1,0,1,1,0,1,1,0,1],
@@ -210,6 +355,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (up to 2 years)',
     euFreeMovement: true,
     notes: 'Improving but conservative attitudes prevalent.',
+    languageNote: 'Greek is the official language. English is spoken in tourist areas and by younger generations, but limited elsewhere. Learning basic Greek is helpful for daily life.',
+    resourceLinks: {
+      immigration: 'https://migration.gov.gr/en/',
+      transHealthcare: 'https://www.moh.gov.gr/',
+      housing: 'https://www.spitogatos.gr/',
+      community: 'https://www.sympraxis.gr/',
+      languageLearning: 'https://www.greek-language.gr/',
+    },
   },
   SI: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
@@ -218,6 +371,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; EU freedom of movement',
     euFreeMovement: true,
     notes: 'Very progressive for the region.',
+    languageNote: 'Slovene is the official language. English is reasonably spoken by younger generations in Ljubljana and Maribor. Knowing basic Slovene phrases helps with daily interactions.',
+    resourceLinks: {
+      immigration: 'https://www.gov.si/en/',
+      transHealthcare: 'https://www.nijz.si/',
+      housing: 'https://www.nepremicnine.net/',
+      community: 'https://www.drustvokv.si/',
+      languageLearning: 'https://www.slonline.si/',
+    },
   },
   EE: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,0,2],
@@ -226,6 +387,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year)',
     euFreeMovement: true,
     notes: 'Progressive; excellent digital infrastructure.',
+    languageNote: 'Estonian is the official language. English is widely spoken in Tallinn and Tartu, especially among younger people. Russian is also commonly spoken. Estonia has excellent digital services.',
+    resourceLinks: {
+      immigration: 'https://www.politsei.ee/en/',
+      transHealthcare: 'https://www.terviseamet.ee/',
+      housing: 'https://www.kv.ee/',
+      community: 'https://www.lgbt.ee/',
+      languageLearning: 'https://www.duolingo.com/course/et/',
+    },
   },
   CY: {
     rights: expandRights([1,1,1,0,1,1,1,1,1,0,1],
@@ -234,6 +403,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year)',
     euFreeMovement: true,
     notes: 'Mixed attitudes; improving slowly.',
+    languageNote: 'Greek and Turkish are official. English is widely spoken — Cyprus was a British colony and English is used extensively in business and daily life.',
+    resourceLinks: {
+      immigration: 'https://www.moi.gov.cy/',
+      transHealthcare: 'https://www.moh.gov.cy/',
+      housing: 'https://www.bazaraki.com/',
+      community: 'https://www.accept.lgbt/',
+      languageLearning: 'https://www.cypriotlanguages.com/',
+    },
   },
   HR: {
     rights: expandRights([2,1,1,0,1,1,1,1,1,0,1],
@@ -242,6 +419,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year)',
     euFreeMovement: true,
     notes: 'Improving; popular tourist destination.',
+    languageNote: 'Croatian is the official language. English is moderately spoken in tourist areas and by younger generations, especially along the coast. Learning basic Croatian helps with daily life.',
+    resourceLinks: {
+      immigration: 'https://mup.gov.hr/',
+      transHealthcare: 'https://www.hzjz.hr/',
+      housing: 'https://www.njuskalo.hr/',
+      community: 'https://www.kontra.hr/',
+      languageLearning: 'https://www.easy-croatian.com/',
+    },
   },
   PL: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -250,6 +435,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Rising conservative sentiment.',
+    languageNote: 'Polish is the official language. English is moderately spoken by younger generations in cities like Warsaw and Kraków. Learning Polish is strongly recommended for daily life and bureaucracy.',
+    resourceLinks: {
+      immigration: 'https://www.gov.pl/web/udsc-en/',
+      transHealthcare: 'https://www.nfz.gov.pl/',
+      housing: 'https://www.otodom.pl/',
+      community: 'https://lambdawarszawa.org/',
+      languageLearning: 'https://www.polskikrokpokroku.pl/',
+    },
   },
   SK: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -258,6 +451,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Conservative attitudes; limited protections.',
+    languageNote: 'Slovak is the official language. English is spoken by younger people in Bratislava and Košice, but limited elsewhere. Hungarian is also spoken in southern regions.',
+    resourceLinks: {
+      immigration: 'https://www.minv.sk/',
+      transHealthcare: 'https://www.health.gov.sk/',
+      housing: 'https://www.nehnutelnosti.sk/',
+      community: 'https://www.iniciativainak.sk/',
+      languageLearning: 'https://www.slovake.eu/',
+    },
   },
   HU: {
     rights: expandRights([0,0,0,0,0,0,0,1,1,0,0],
@@ -266,6 +467,14 @@ const curatedData = {
     digitalNomadVisa: 'White Card (2 years, freelance)',
     euFreeMovement: true,
     notes: 'Government hostile to LGBTQ+ rights.',
+    languageNote: 'Hungarian is the official language. English is spoken in Budapest and by younger generations, but very limited elsewhere. Hungarian is considered one of the most difficult languages for English speakers to learn.',
+    resourceLinks: {
+      immigration: 'https://www.oif.gov.hu/',
+      transHealthcare: 'https://www.antsz.hu/',
+      housing: 'https://ingatlan.com/',
+      community: 'https://www.hatters.hu/',
+      languageLearning: 'https://www.magyarora.com/',
+    },
   },
   LT: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -274,6 +483,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Conservative; protections limited.',
+    languageNote: 'Lithuanian is the official language. English is reasonably spoken by younger people in Vilnius and Kaunas. Russian is also commonly understood.',
+    resourceLinks: {
+      immigration: 'https://www.migracija.lt/',
+      transHealthcare: 'https://www.sam.lt/',
+      housing: 'https://www.aruodas.lt/',
+      community: 'https://www.lgl.lt/',
+      languageLearning: 'https://www.lietuviu.com/',
+    },
   },
   RO: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -282,6 +499,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Very conservative; discrimination common.',
+    languageNote: 'Romanian is the official language. English is moderately spoken by younger generations in cities like Bucharest and Cluj. French is also historically common as a second language.',
+    resourceLinks: {
+      immigration: 'https://www.igi.mai.gov.ro/',
+      transHealthcare: 'https://www.ms.ro/',
+      housing: 'https://www.imobiliare.ro/',
+      community: 'https://www.acceptromania.ro/',
+      languageLearning: 'https://www.romanianlesson.com/',
+    },
   },
   LV: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -290,6 +515,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Conservative attitudes; limited protections.',
+    languageNote: 'Latvian is the official language. Russian is widely spoken as a second language. English proficiency is growing but still limited outside Riga.',
+    resourceLinks: {
+      immigration: 'https://www.pmlp.gov.lv/',
+      transHealthcare: 'https://www.vm.gov.lv/',
+      housing: 'https://www.ss.com/',
+      community: 'https://www.mozaika.lv/',
+      languageLearning: 'https://www.duolingo.com/course/lv/',
+    },
   },
   BG: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,0],
@@ -298,6 +531,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: true,
     notes: 'Very conservative; discrimination prevalent.',
+    languageNote: 'Bulgarian is the official language. English is spoken in Sofia and tourist areas by younger people. Russian and Turkish are also spoken by minority communities.',
+    resourceLinks: {
+      immigration: 'https://www.mvr.bg/',
+      transHealthcare: 'https://www.ncpha.government.bg/',
+      housing: 'https://www.imot.bg/',
+      community: 'https://www.bghelpline.org/',
+      languageLearning: 'https://www.duolingo.com/course/bg/',
+    },
   },
   // ===== NON-EUROPE =====
   CA: {
@@ -307,6 +548,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; Express Entry or work permit',
     euFreeMovement: false,
     notes: 'Very progressive; publicly funded healthcare covers gender-affirming care.',
+    languageNote: 'English and French are both federal official languages. English is the majority language in most provinces; French is dominant in Quebec. Most major cities are bilingual and welcoming to English speakers.',
+    resourceLinks: {
+      immigration: 'https://www.canada.ca/en/immigration-refugees-citizenship.html',
+      transHealthcare: 'https://www.canada.ca/en/health-canada.html',
+      housing: 'https://www.realtor.ca/',
+      community: 'https://www.rainbowrailroad.ca/',
+      languageLearning: 'https://www.clb-osa.ca/',
+    },
   },
   US: {
     rights: expandRights([2,1,1,0,1,1,1,0,1,1,1],
@@ -315,6 +564,14 @@ const curatedData = {
     digitalNomadVisa: 'Domestic: varies; International: ESTA/B-1',
     euFreeMovement: false,
     notes: 'Very polarized; some states have sanctuary laws, others have bans.',
+    languageNote: 'No official language at federal level; English is the de facto national language. Spanish is widely spoken as a second language. Major cities are multilingual and very diverse.',
+    resourceLinks: {
+      immigration: 'https://www.uscis.gov/',
+      transHealthcare: 'https://www.healthcare.gov/',
+      housing: 'https://www.zillow.com/',
+      community: 'https://www.hrc.org/',
+      languageLearning: 'https://www.usalearns.org/',
+    },
   },
   AU: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -323,6 +580,14 @@ const curatedData = {
     digitalNomadVisa: 'Working Holiday Visa (under 35)',
     euFreeMovement: false,
     notes: 'Strong protections; healthcare varies by state.',
+    languageNote: 'English is the de facto national language. Australia is predominantly English-speaking. There are also over 250 Indigenous Australian languages.',
+    resourceLinks: {
+      immigration: 'https://immi.homeaffairs.gov.au/',
+      transHealthcare: 'https://www.health.gov.au/',
+      housing: 'https://www.realestate.com.au/',
+      community: 'https://www.transcend.org.au/',
+      languageLearning: 'https://www.victoria.edu.au/',
+    },
   },
   NZ: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -331,6 +596,14 @@ const curatedData = {
     digitalNomadVisa: 'Working Holiday Visa or Green List work visa',
     euFreeMovement: false,
     notes: 'Very progressive; strong community.',
+    languageNote: 'English, Māori, and NZ Sign Language are official. English is the primary day-to-day language. Māori language revitalisation means many place names and cultural terms use te reo Māori.',
+    resourceLinks: {
+      immigration: 'https://www.immigration.govt.nz/',
+      transHealthcare: 'https://www.health.govt.nz/',
+      housing: 'https://www.trademe.co.nz/',
+      community: 'https://www.rainbowyouth.org.nz/',
+      languageLearning: 'https://www.kupu.co.nz/',
+    },
   },
   AR: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -339,6 +612,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (2022, 6 months)',
     euFreeMovement: false,
     notes: 'Very progressive laws; economic instability a concern.',
+    languageNote: 'Spanish is the official language. English is spoken in Buenos Aires and tourist areas but proficiency is limited elsewhere. Learning Spanish is essential for daily life.',
+    resourceLinks: {
+      immigration: 'https://www.migraciones.gov.ar/',
+      transHealthcare: 'https://www.argentina.gob.ar/salud',
+      housing: 'https://www.zonaprop.com.ar/',
+      community: 'https://www.falgbt.org/',
+      languageLearning: 'https://www.spanishpod101.com/',
+    },
   },
   UY: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -347,6 +628,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; Mercosur freedom of movement',
     euFreeMovement: false,
     notes: 'Most progressive in Latin America; small population.',
+    languageNote: 'Spanish is the official language. English proficiency is growing in Montevideo but generally limited. Portuñol (Spanish-Portuguese mix) is spoken near the Brazilian border.',
+    resourceLinks: {
+      immigration: 'https://www.migracion.gub.uy/',
+      transHealthcare: 'https://www.gub.uy/ministerio-salud-publica/',
+      housing: 'https://www.mercadolibre.com.uy/',
+      community: 'https://www.colectivaovejasnegras.org/',
+      languageLearning: 'https://www.duolingo.com/course/es/',
+    },
   },
   BR: {
     rights: expandRights([2,1,1,1,1,1,1,1,1,1,2],
@@ -355,6 +644,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year, renewable)',
     euFreeMovement: false,
     notes: 'Strongest trans rights in LatAm; but high violence rates.',
+    languageNote: 'Portuguese is the official language. English is not widely spoken outside tourist areas and business districts. Spanish is understood to some degree. Learning Portuguese is essential.',
+    resourceLinks: {
+      immigration: 'https://www.gov.br/mj/pt-br/',
+      transHealthcare: 'https://www.gov.br/saude/',
+      housing: 'https://www.quintoandar.com.br/',
+      community: 'https://www.antra.org.br/',
+      languageLearning: 'https://www.duolingo.com/course/pt/',
+    },
   },
   JP: {
     rights: expandRights([1,0,0,0,0,1,0,1,1,0,1],
@@ -363,6 +660,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (2024, new)',
     euFreeMovement: false,
     notes: 'Slow progress; 2023 Supreme Court ruled sterilization requirement unconstitutional.',
+    languageNote: 'Japanese is the official language. English is taught in schools but spoken fluency is limited. Major cities have more English signage. Learning Japanese is essential for daily life and bureaucracy.',
+    resourceLinks: {
+      immigration: 'https://www.moj.go.jp/isa/',
+      transHealthcare: 'https://www.mhlw.go.jp/',
+      housing: 'https://www.suumo.jp/',
+      community: 'https://www.real-j-rock.net/',
+      languageLearning: 'https://www.jlpt.jp/',
+    },
   },
   TW: {
     rights: expandRights([1,1,1,0,1,1,1,1,1,0,1],
@@ -371,6 +676,14 @@ const curatedData = {
     digitalNomadVisa: 'Gold Card visa for professionals',
     euFreeMovement: false,
     notes: 'Most progressive in Asia; first Asian country to legalize same-sex marriage.',
+    languageNote: 'Mandarin Chinese is the official language. Taiwanese Hokkien (Min Nan) is widely spoken. English is moderately spoken in Taipei and among younger generations but limited elsewhere.',
+    resourceLinks: {
+      immigration: 'https://www.immigration.gov.tw/',
+      transHealthcare: 'https://www.mohw.gov.tw/',
+      housing: 'https://www.591.com.tw/',
+      community: 'https://hotline.org.tw/',
+      languageLearning: 'https://www.taiwanlesson.com/',
+    },
   },
   KR: {
     rights: expandRights([1,0,0,0,0,0,0,1,1,0,0],
@@ -379,6 +692,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (2024)',
     euFreeMovement: false,
     notes: 'Strong conservative influence; limited protections.',
+    languageNote: 'Korean is the official language. English proficiency is increasing but still limited outside Seoul. Learning Korean is essential for daily life and social integration.',
+    resourceLinks: {
+      immigration: 'https://www.hikorea.go.kr/',
+      transHealthcare: 'https://www.mohw.go.kr/',
+      housing: 'https://www.dabangapp.com/',
+      community: 'https://www.lgbtpride.or.kr/',
+      languageLearning: 'https://www.sejonghakdang.org/',
+    },
   },
   TH: {
     rights: expandRights([1,1,0,0,1,1,1,1,1,0,1],
@@ -387,6 +708,14 @@ const curatedData = {
     digitalNomadVisa: 'Long-term visa for remote workers',
     euFreeMovement: false,
     notes: 'Large trans community; affordable healthcare.',
+    languageNote: 'Thai is the official language. English is spoken in tourist areas and business districts but limited elsewhere. Learning basic Thai is very helpful for daily life and is appreciated by locals.',
+    resourceLinks: {
+      immigration: 'https://www.immigration.go.th/',
+      transHealthcare: 'https://www.anamai.moph.go.th/',
+      housing: 'https://www.ddproperty.com/',
+      community: 'https://www.transgenderthai.org/',
+      languageLearning: 'https://www.thailanguage.com/',
+    },
   },
   ZA: {
     rights: expandRights([1,1,1,0,1,1,1,0,1,0,1],
@@ -395,6 +724,14 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (2024)',
     euFreeMovement: false,
     notes: 'Constitutional protections but high violence; safety major concern.',
+    languageNote: 'South Africa has 11 official languages including Zulu, Xhosa, Afrikaans, and English. English is the dominant language in business, government, and media. Most urban South Africans speak English fluently.',
+    resourceLinks: {
+      immigration: 'https://www.dha.gov.za/',
+      transHealthcare: 'https://www.health.gov.za/',
+      housing: 'https://www.property24.com/',
+      community: 'https://www.genderdynamic.org.za/',
+      languageLearning: 'https://www.translate.org.za/',
+    },
   },
   IL: {
     rights: expandRights([1,0,0,0,1,1,1,1,1,0,2],
@@ -403,6 +740,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; work visa required',
     euFreeMovement: false,
     notes: 'Mixed attitudes; strong LGBTQ+ community in Tel Aviv.',
+    languageNote: 'Hebrew is the official language; Arabic has a special status. English is widely spoken in Tel Aviv and the high-tech sector. Russian is also widely spoken due to a large immigrant community.',
+    resourceLinks: {
+      immigration: 'https://www.gov.il/en/service/aliyah',
+      transHealthcare: 'https://www.health.gov.il/',
+      housing: 'https://www.yad2.co.il/',
+      community: 'https://www.lgbt.org.il/',
+      languageLearning: 'https://www.hebrewpod101.com/',
+    },
   },
   TR: {
     rights: expandRights([1,0,0,0,0,0,0,1,1,0,0],
@@ -411,6 +756,14 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa',
     euFreeMovement: false,
     notes: 'Increasingly hostile government; Pride events banned in many cities.',
+    languageNote: 'Turkish is the official language. English is spoken in tourist areas and by younger generations in Istanbul and Ankara, but proficiency is limited elsewhere. Learning Turkish is essential for daily life.',
+    resourceLinks: {
+      immigration: 'https://www.goc.gov.tr/',
+      transHealthcare: 'https://www.saglik.gov.tr/',
+      housing: 'https://www.sahibinden.com/',
+      community: 'https://www.spod.org.tr/',
+      languageLearning: 'https://www.turkishclass101.com/',
+    },
   },
 }
 

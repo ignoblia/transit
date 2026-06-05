@@ -285,7 +285,201 @@ html.dark ::-webkit-scrollbar-track {
   background: var(--ctp-base);
 }
 
-/* Custom block title colors */
+/* ============================================================
+   Catppuccin Mocha — Tailwind Utility Overrides (Dark Mode)
+   All explorer components benefit without template changes.
+   ============================================================ */
+
+/* ---- Backgrounds ---- */
+html.dark .dark\:bg-gray-800 {
+  background-color: rgb(30 30 46); /* ctp-base */
+}
+html.dark .dark\:bg-gray-800\/50 {
+  background-color: rgb(30 30 46 / 0.5);
+}
+html.dark .dark\:bg-gray-700 {
+  background-color: rgb(49 50 68); /* ctp-surface0 */
+}
+html.dark .dark\:bg-gray-700\/50 {
+  background-color: rgb(49 50 68 / 0.5);
+}
+html.dark .dark\:bg-gray-700\/30 {
+  background-color: rgb(49 50 68 / 0.3);
+}
+html.dark .dark\:bg-gray-600 {
+  background-color: rgb(69 71 90); /* ctp-surface1 */
+}
+html.dark .dark\:bg-gray-900 {
+  background-color: rgb(24 24 37); /* ctp-mantle */
+}
+
+/* Branded bg overlays */
+html.dark .dark\:bg-blue-900\/20 {
+  background-color: rgb(137 180 250 / 0.12); /* ctp-blue @12% */
+}
+html.dark .dark\:bg-blue-900\/30 {
+  background-color: rgb(137 180 250 / 0.18); /* ctp-blue @18% */
+}
+html.dark .dark\:bg-amber-900\/30 {
+  background-color: rgb(249 226 175 / 0.12); /* ctp-yellow @12% */
+}
+html.dark .dark\:bg-green-900 {
+  background-color: rgb(166 227 161 / 0.2); /* ctp-green @20% */
+}
+html.dark .dark\:bg-red-900 {
+  background-color: rgb(243 139 168 / 0.2); /* ctp-red @20% */
+}
+html.dark .dark\:bg-yellow-900 {
+  background-color: rgb(249 226 175 / 0.2); /* ctp-yellow @20% */
+}
+html.dark .dark\:bg-orange-900 {
+  background-color: rgb(250 179 135 / 0.2); /* ctp-peach @20% */
+}
+
+/* Hover backgrounds */
+html.dark .dark\:hover\:bg-blue-900\/30:hover {
+  background-color: rgb(137 180 250 / 0.18);
+}
+
+/* ---- Text ---- */
+html.dark .dark\:text-gray-100 {
+  color: rgb(205 214 244); /* ctp-text */
+}
+html.dark .dark\:text-gray-200 {
+  color: rgb(186 194 222); /* ctp-subtext1 */
+}
+html.dark .dark\:text-gray-300 {
+  color: rgb(186 194 222); /* ctp-subtext1 */
+}
+html.dark .dark\:text-gray-400 {
+  color: rgb(108 112 134); /* ctp-overlay0 */
+}
+html.dark .dark\:text-gray-500 {
+  color: rgb(127 132 156); /* ctp-overlay1 */
+}
+html.dark .dark\:text-gray-600 {
+  color: rgb(147 153 178); /* ctp-overlay2 */
+}
+html.dark .dark\:text-gray-700 {
+  color: rgb(147 153 178); /* ctp-overlay2 */
+}
+html.dark .dark\:text-gray-900 {
+  color: rgb(205 214 244); /* ctp-text */
+}
+
+/* Non-dark-prefixed text classes used in dark mode without variants */
+html.dark .text-gray-400 {
+  color: rgb(108 112 134);
+}
+html.dark .text-gray-500 {
+  color: rgb(127 132 156);
+}
+html.dark .text-gray-600 {
+  color: rgb(147 153 178);
+}
+html.dark .placeholder-gray-400::-moz-placeholder {
+  color: rgb(108 112 134);
+}
+html.dark .placeholder-gray-400::placeholder {
+  color: rgb(108 112 134);
+}
+
+/* ---- Accent text colors ---- */
+html.dark .dark\:text-blue-400,
+html.dark .dark\:text-blue-500,
+html.dark .dark\:text-blue-600 {
+  color: rgb(137 180 250); /* ctp-blue */
+}
+html.dark .dark\:text-purple-400,
+html.dark .dark\:text-purple-600 {
+  color: rgb(203 166 247); /* ctp-mauve */
+}
+html.dark .dark\:text-green-300,
+html.dark .dark\:text-green-400,
+html.dark .dark\:text-green-600,
+html.dark .dark\:text-green-700 {
+  color: rgb(166 227 161); /* ctp-green */
+}
+html.dark .dark\:text-yellow-300,
+html.dark .dark\:text-yellow-400,
+html.dark .dark\:text-yellow-600,
+html.dark .dark\:text-yellow-700 {
+  color: rgb(249 226 175); /* ctp-yellow */
+}
+html.dark .dark\:text-red-300,
+html.dark .dark\:text-red-400,
+html.dark .dark\:text-red-600,
+html.dark .dark\:text-red-700 {
+  color: rgb(243 139 168); /* ctp-red */
+}
+html.dark .dark\:text-amber-200,
+html.dark .dark\:text-amber-800 {
+  color: rgb(249 226 175); /* ctp-yellow */
+}
+html.dark .dark\:text-yellow-200 {
+  color: rgb(249 226 175); /* ctp-yellow */
+}
+html.dark .dark\:text-orange-300 {
+  color: rgb(250 179 135); /* ctp-peach */
+}
+
+/* ---- Dividers ---- */
+html.dark .dark\:divide-gray-700 > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgb(49 50 68); /* ctp-surface0 */
+}
+
+/* ---- Borders ---- */
+html.dark .dark\:border-gray-200 {
+  border-color: rgb(49 50 68); /* ctp-surface0 */
+}
+html.dark .dark\:border-gray-600 {
+  border-color: rgb(69 71 90); /* ctp-surface1 */
+}
+html.dark .dark\:border-gray-700 {
+  border-color: rgb(49 50 68); /* ctp-surface0 */
+}
+html.dark .dark\:border-gray-700\/50 {
+  border-color: rgb(49 50 68 / 0.5);
+}
+html.dark .dark\:border-blue-800\/50 {
+  border-color: rgb(137 180 250 / 0.35); /* ctp-blue @35% */
+}
+html.dark .dark\:border-amber-700\/50 {
+  border-color: rgb(249 226 175 / 0.35); /* ctp-yellow @35% */
+}
+
+/* ---- Focus rings ---- */
+html.dark .dark\:focus-within\:border-blue-500:focus-within {
+  border-color: rgb(137 180 250); /* ctp-blue */
+}
+html.dark .dark\:focus\:border-blue-500:focus {
+  border-color: rgb(137 180 250);
+}
+
+/* ---- Hover links ---- */
+html.dark .dark\:hover\:text-blue-500:hover,
+html.dark .dark\:hover\:text-blue-600:hover {
+  color: rgb(180 190 254); /* ctp-lavender */
+}
+html.dark .dark\:hover\:text-gray-200:hover {
+  color: rgb(186 194 222); /* ctp-subtext1 */
+}
+
+/* ---- Progress bars ---- */
+html.dark .bg-green-500 {
+  background-color: rgb(166 227 161); /* ctp-green */
+}
+html.dark .bg-yellow-500 {
+  background-color: rgb(249 226 175); /* ctp-yellow */
+}
+html.dark .bg-red-500 {
+  background-color: rgb(243 139 168); /* ctp-red */
+}
+
+/* ---- Tables ---- */
+html.dark table {
+  --vp-c-divider: var(--ctp-surface1);
+}
 html.dark .custom-block.tip .custom-block-title {
   color: var(--ctp-green);
 }

@@ -1,4 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-  <!-- Paper plane icon using Catppuccin Mauve -->
-  <path d="M3.4 20.4l17.45-7.48c.81-.35.81-1.49 0-1.84L3.4 3.6c-.87-.38-1.78.34-1.43 1.27L4.76 12l-2.8 7.13c-.35.93.56 1.65 1.44 1.27z" fill="#cba6f7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Chevron icon with Trans Pride colors -->
+  <defs>
+    <linearGradient id="transGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5BCFFA"/>
+      <stop offset="25%" stop-color="#F5A9B8"/>
+      <stop offset="50%" stop-color="#FFFFFF"/>
+      <stop offset="75%" stop-color="#F5A9B8"/>
+      <stop offset="100%" stop-color="#5BCFFA"/>
+    </linearGradient>
+  </defs>
+  <!-- Stylized right chevron -->
+  <path d="M6 4l12 12L6 28" fill="none" stroke="url(#transGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 4l12 12-12 12" fill="none" stroke="url(#transGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
 </svg>

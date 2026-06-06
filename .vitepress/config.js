@@ -10,7 +10,7 @@ export default {
   ],
   themeConfig: {
     // Site logo (optional)
-    logo: '/logo.png',
+    logo: '/logo.svg',
     // Navigation bar
     navbar: navbar,
     // Sidebar

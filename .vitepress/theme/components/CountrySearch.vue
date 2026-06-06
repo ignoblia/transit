@@ -288,25 +288,25 @@
           </template>
 
           <template v-else>
-            <div class="text-center py-4">
-              <p class="text-sm text-gray-500 dark:text-gray-400">
+            <div class="text-center">
+              <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
                 Cost of living data is not available for this country.
               </p>
-              <p class="text-xs text-gray-400 dark:text-gray-500 mt-2 mb-3">
-                Try these resources to estimate living costs:
+              <p class="text-xs text-gray-400 dark:text-gray-500 mb-4">
+                Check these sites for cost estimates:
               </p>
-              <div class="flex flex-wrap justify-center gap-2">
+              <div class="flex flex-col gap-2.5">
                 <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
-                  🌐 Numbeo
+                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
+                  🌐  Numbeo — Compare city living costs
                 </a>
                 <a href="https://www.expatistan.com/cost-of-living" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
-                  📊 Expatistan
+                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
+                  📊  Expatistan — User-reported prices
                 </a>
                 <a href="https://livingcost.org/" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
-                  💰 LivingCost
+                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
+                  💰  LivingCost — Monthly budget breakdown
                 </a>
               </div>
             </div>

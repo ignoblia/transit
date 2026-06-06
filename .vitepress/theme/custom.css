@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* ============================================================
-   TransIT — FMHY-style blue theme (regular VitePress)
+   TransIT — FMHY-style blue theme
    ============================================================ */
 
 /* FMHY brand blue */
@@ -19,4 +19,37 @@
   --vp-c-brand-soft: var(--fmhy-blue-soft);
 }
 
-/* Keep VitePress defaults for everything else */
+/* ---------- Custom blocks (warning, tip, danger) themed with FMHY blue ---------- */
+:root {
+  --vp-custom-block-tip-bg: color-mix(in srgb, var(--fmhy-blue-soft) 25%, transparent);
+  --vp-custom-block-tip-text: var(--fmhy-blue-dark);
+  --vp-custom-block-tip-border: var(--fmhy-blue);
+
+  --vp-custom-block-warning-bg: color-mix(in srgb, #f59e0b 15%, transparent);
+  --vp-custom-block-warning-text: #d97706;
+  --vp-custom-block-warning-border: #f59e0b;
+
+  --vp-custom-block-danger-bg: color-mix(in srgb, #ef4444 12%, transparent);
+  --vp-custom-block-danger-text: #dc2626;
+  --vp-custom-block-danger-border: #ef4444;
+}
+
+html.dark {
+  --vp-custom-block-tip-bg: color-mix(in srgb, var(--fmhy-blue-soft) 12%, transparent);
+  --vp-custom-block-tip-text: var(--fmhy-blue-soft);
+  --vp-custom-block-tip-border: var(--fmhy-blue);
+
+  --vp-custom-block-warning-bg: color-mix(in srgb, #f59e0b 12%, transparent);
+  --vp-custom-block-warning-text: #fbbf24;
+  --vp-custom-block-warning-border: #f59e0b;
+
+  --vp-custom-block-danger-bg: color-mix(in srgb, #ef4444 10%, transparent);
+  --vp-custom-block-danger-text: #f87171;
+  --vp-custom-block-danger-border: #ef4444;
+}
+
+/* ---------- Logo centering in nav ---------- */
+.VPNavBarTitle .logo {
+  vertical-align: middle;
+  display: inline-block;
+}

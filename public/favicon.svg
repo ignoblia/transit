@@ -1,22 +1,17 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
-    <!-- Blue aura/glow filter -->
-    <filter id="aura" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="2" result="blur"/>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
       <feFlood flood-color="#78B3E2" flood-opacity="0.6" result="color"/>
       <feComposite in="color" in2="blur" operator="in" result="glow"/>
       <feMerge>
-        <feMergeNode in="glow"/>
         <feMergeNode in="glow"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  <!-- Dark rounded background -->
-  <rect x="1" y="1" width="30" height="30" rx="7" ry="7" fill="#1a1a2e"/>
-  <!-- White double-chevron with blue aura glow -->
-  <g filter="url(#aura)">
-    <path d="M8 12l8 8-8 8" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-    <path d="M16 12l8 8-8 8" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+  <g filter="url(#glow)">
+    <path d="M7 12l9 8-9 8" fill="none" stroke="#78B3E2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 12l9 8-9 8" fill="none" stroke="#78B3E2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
   </g>
 </svg>

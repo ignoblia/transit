@@ -1,24 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
   <defs>
-    <!-- Blue aura/glow filter -->
-    <filter id="aura" x="-30%" y="-30%" width="160%" height="160%">
-      <feGaussianBlur stdDeviation="5" result="blur"/>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
       <feFlood flood-color="#78B3E2" flood-opacity="0.6" result="color"/>
       <feComposite in="color" in2="blur" operator="in" result="glow"/>
       <feMerge>
-        <feMergeNode in="glow"/>
         <feMergeNode in="glow"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  <!-- Dark rounded background -->
-  <rect x="4" y="4" width="112" height="112" rx="24" ry="24" fill="#1a1a2e"/>
-  <!-- Inner subtle border -->
-  <rect x="4" y="4" width="112" height="112" rx="24" ry="24" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
-  <!-- White double-chevron with blue aura glow -->
-  <g filter="url(#aura)">
-    <path d="M30 40l30 30-30 30" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-    <path d="M60 40l30 30-30 30" fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+  <!-- FMHY-blue double-chevron with subtle glow, no background -->
+  <g filter="url(#glow)">
+    <path d="M25 40l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60 40l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
   </g>
 </svg>

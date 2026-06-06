@@ -288,13 +288,27 @@
           </template>
 
           <template v-else>
-            <div class="text-center py-6">
+            <div class="text-center py-4">
               <p class="text-sm text-gray-500 dark:text-gray-400">
                 Cost of living data is not available for this country.
               </p>
-              <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
-                Research living costs on Numbeo or Expatistan.
+              <p class="text-xs text-gray-400 dark:text-gray-500 mt-2 mb-3">
+                Try these resources to estimate living costs:
               </p>
+              <div class="flex flex-wrap justify-center gap-2">
+                <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                  🌐 Numbeo
+                </a>
+                <a href="https://www.expatistan.com/cost-of-living" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                  📊 Expatistan
+                </a>
+                <a href="https://livingcost.org/" target="_blank" rel="noopener"
+                   class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+                  💰 LivingCost
+                </a>
+              </div>
             </div>
           </template>
         </div>
@@ -319,7 +333,26 @@
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Currency</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.currencies || 'N/A' }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right text-xs leading-tight">
+                {{ toCurrencyCode ? formatCurrencyFull(toCurrencyCode) : (selectedCountry.currencies || 'N/A') }}
+              </span>
+            </div>
+            <div v-if="exchangeRate && fromCurrencyCode && toCurrencyCode && fromCurrencyCode !== toCurrencyCode"
+                 class="flex justify-between items-center p-2 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30">
+              <span class="text-xs text-gray-500 dark:text-gray-400">1 {{ fromCurrencyCode }} =</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-xs">
+                {{ exchangeRate.toFixed(4) }} {{ toCurrencyCode }}
+                <span v-if="currencyInfo[toCurrencyCode]" class="text-gray-500"> ({{ currencyInfo[toCurrencyCode].symbol }})</span>
+              </span>
+            </div>
+            <div v-else-if="exchangeLoading && fromCurrencyCode && toCurrencyCode"
+                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-xs text-gray-400 animate-pulse">Loading exchange rate...</span>
+            </div>
+            <div v-else-if="fromCurrencyCode && toCurrencyCode && fromCurrencyCode === toCurrencyCode"
+                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-xs text-gray-500 dark:text-gray-400">Same currency</span>
+              <span class="text-xs text-gray-700 dark:text-gray-300 font-medium">1:1</span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Region</span>
@@ -560,6 +593,91 @@ const fromQuery = ref('')
 const showFromDropdown = ref(false)
 const fromHighlightIndex = ref(-1)
 const selectedFromCountry = ref(null)
+
+// ====== CURRENCY DATA ======
+const currencyInfo = {
+  USD: { name: 'US Dollar', symbol: '$' },
+  EUR: { name: 'Euro', symbol: '€' },
+  GBP: { name: 'British Pound Sterling', symbol: '£' },
+  JPY: { name: 'Japanese Yen', symbol: '¥' },
+  AUD: { name: 'Australian Dollar', symbol: 'A$' },
+  CAD: { name: 'Canadian Dollar', symbol: 'C$' },
+  CHF: { name: 'Swiss Franc', symbol: 'Fr' },
+  CNY: { name: 'Chinese Yuan', symbol: '¥' },
+  SEK: { name: 'Swedish Krona', symbol: 'kr' },
+  NOK: { name: 'Norwegian Krone', symbol: 'kr' },
+  DKK: { name: 'Danish Krone', symbol: 'kr' },
+  ISK: { name: 'Icelandic Króna', symbol: 'kr' },
+  NZD: { name: 'New Zealand Dollar', symbol: 'NZ$' },
+  BRL: { name: 'Brazilian Real', symbol: 'R$' },
+  ARS: { name: 'Argentine Peso', symbol: '$' },
+  THB: { name: 'Thai Baht', symbol: '฿' },
+  TWD: { name: 'New Taiwan Dollar', symbol: 'NT$' },
+  KRW: { name: 'South Korean Won', symbol: '₩' },
+  ILS: { name: 'Israeli New Shekel', symbol: '₪' },
+  ZAR: { name: 'South African Rand', symbol: 'R' },
+  MXN: { name: 'Mexican Peso', symbol: 'Mex$' },
+  INR: { name: 'Indian Rupee', symbol: '₹' },
+  SGD: { name: 'Singapore Dollar', symbol: 'S$' },
+  HKD: { name: 'Hong Kong Dollar', symbol: 'HK$' },
+  TRY: { name: 'Turkish Lira', symbol: '₺' },
+  PLN: { name: 'Polish Złoty', symbol: 'zł' },
+  CZK: { name: 'Czech Koruna', symbol: 'Kč' },
+  HUF: { name: 'Hungarian Forint', symbol: 'Ft' },
+  RON: { name: 'Romanian Leu', symbol: 'lei' },
+  BGN: { name: 'Bulgarian Lev', symbol: 'лв' },
+  HRK: { name: 'Croatian Kuna', symbol: 'kn' },
+  UYU: { name: 'Uruguayan Peso', symbol: '$U' },
+  CLP: { name: 'Chilean Peso', symbol: '$' },
+  COP: { name: 'Colombian Peso', symbol: '$' },
+  PEN: { name: 'Peruvian Sol', symbol: 'S/.' },
+  PHP: { name: 'Philippine Peso', symbol: '₱' },
+  MYR: { name: 'Malaysian Ringgit', symbol: 'RM' },
+  IDR: { name: 'Indonesian Rupiah', symbol: 'Rp' },
+  VND: { name: 'Vietnamese Đồng', symbol: '₫' },
+  NGN: { name: 'Nigerian Naira', symbol: '₦' },
+  KES: { name: 'Kenyan Shilling', symbol: 'KSh' },
+  EGP: { name: 'Egyptian Pound', symbol: 'E£' },
+  AED: { name: 'UAE Dirham', symbol: 'د.إ' },
+  SAR: { name: 'Saudi Riyal', symbol: '﷼' },
+}
+
+const exchangeRate = ref(null)
+const exchangeLoading = ref(false)
+const exchangeError = ref('')
+
+function getCurrencyCode(country) {
+  if (!country?.currencies) return null
+  return country.currencies.split(',')[0].trim()
+}
+
+function formatCurrencyFull(code) {
+  if (!code) return ''
+  const info = currencyInfo[code]
+  return info ? `${info.name} (${info.symbol})` : code
+}
+
+const fromCurrencyCode = computed(() => getCurrencyCode(selectedFromCountry.value))
+const toCurrencyCode = computed(() => getCurrencyCode(selectedCountry.value))
+
+// Fetch exchange rate when both from/to currencies are known
+watch([fromCurrencyCode, toCurrencyCode], async ([fromCur, toCur]) => {
+  exchangeRate.value = null
+  exchangeError.value = ''
+  if (!fromCur || !toCur || fromCur === toCur) return
+  exchangeLoading.value = true
+  try {
+    const res = await fetch(`https://api.frankfurter.app/latest?from=${fromCur}&to=${toCur}`)
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    exchangeRate.value = data.rates?.[toCur] || null
+  } catch (e) {
+    exchangeError.value = 'Could not fetch exchange rate'
+    console.warn('[Exchange Rate]', e)
+  } finally {
+    exchangeLoading.value = false
+  }
+})
 
 // Watch both from-country and selected-country to fetch visa data from WhereNext
 watch([selectedFromCountry, selectedCountry], async ([from, to]) => {

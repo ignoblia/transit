@@ -299,6 +299,39 @@
           </template>
         </div>
 
+        <!-- Quick Facts (fills gap next to Cost of Living) -->
+        <div class="bento-card">
+          <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">📋</span> Quick Facts
+          </h3>
+          <div class="space-y-2.5 text-sm">
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Capital</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.capital || 'N/A' }}</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Population</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ formatNumber(selectedCountry.population) || 'N/A' }}</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Languages</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.languages?.join(', ') || 'N/A' }}</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Currency</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.currencies || 'N/A' }}</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Region</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.subregion || selectedCountry.region || selectedCountry.continent }}</span>
+            </div>
+            <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-gray-500 dark:text-gray-400">Continent</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.continent }}</span>
+            </div>
+          </div>
+        </div>
+
         <!-- Migration & Living (spans full width) -->
         <div class="bento-card bento-span-2">
           <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">

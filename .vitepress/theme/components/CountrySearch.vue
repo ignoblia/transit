@@ -349,10 +349,18 @@
                  class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-xs text-gray-400 animate-pulse">Loading exchange rate...</span>
             </div>
+            <div v-else-if="detectingCountry && !fromCurrencyCode"
+                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-xs text-gray-400 animate-pulse">Detecting your location...</span>
+            </div>
             <div v-else-if="fromCurrencyCode && toCurrencyCode && fromCurrencyCode === toCurrencyCode"
                  class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-xs text-gray-500 dark:text-gray-400">Same currency</span>
               <span class="text-xs text-gray-700 dark:text-gray-300 font-medium">1:1</span>
+            </div>
+            <div v-else-if="!fromCurrencyCode && !detectingCountry"
+                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+              <span class="text-xs text-gray-400">Type a from-country above for exchange rate</span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Region</span>
@@ -573,7 +581,34 @@ async function fetchWhereNextData() {
   }
 }
 
-onMounted(fetchWhereNextData)
+onMounted(async () => {
+  fetchWhereNextData()
+  await autoDetectUserCountry()
+})
+
+// ====== AUTO-DETECT USER COUNTRY ======
+const detectingCountry = ref(true)
+
+async function autoDetectUserCountry() {
+  try {
+    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    const countryCode = data.country_code
+    if (!countryCode) return
+    // Find the country in the dataset by ISO code
+    const match = dataset.find(c => c.code === countryCode)
+    if (match && !selectedFromCountry.value) {
+      selectedFromCountry.value = match
+      fromQuery.value = match.name
+    }
+  } catch (e) {
+    // Silently fail — user can still type their country manually
+    console.info('[Auto-detect] Could not detect country:', e.message)
+  } finally {
+    detectingCountry.value = false
+  }
+}
 
 // ====== VISA API STATE ======
 const visaApiData = ref(null)

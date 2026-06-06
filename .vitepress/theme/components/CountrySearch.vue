@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-4xl mx-auto pt-6 pb-8">
+  <div class="max-w-5xl mx-auto pt-6 pb-8 px-4 sm:px-0">
     <!-- Search bar -->
     <div class="relative mb-8">
       <div class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1">
@@ -51,9 +51,7 @@
             :alt="country.flagAlt || `Flag of ${country.name}`"
             class="w-6 h-4 object-cover rounded shadow-sm"
           />
-          <span class="w-6 h-4 bg-gray-200 rounded flex items-center justify-center text-xs" v-else>
-            ?
-          </span>
+          <span class="w-6 h-4 bg-gray-200 rounded flex items-center justify-center text-xs" v-else>?</span>
           <div class="flex-1">
             <span class="font-medium text-gray-900 dark:text-gray-100">{{ country.name }}</span>
             <span class="text-xs text-gray-500 ml-2">{{ country.continent || '' }}</span>
@@ -75,363 +73,394 @@
       </div>
     </div>
 
-    <!-- Country detail panel -->
-    <div v-if="selectedCountry" class="space-y-8 animate-fade-in">
-      <!-- Header -->
-      <div class="flex items-start gap-4 flex-wrap">
-        <img
-          v-if="selectedCountry.flag"
-          :src="selectedCountry.flag"
-          :alt="`Flag of ${selectedCountry.name}`"
-          class="w-16 h-10 object-cover rounded-lg shadow-md"
-        />
-        <div class="flex-1">
-          <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
-            {{ selectedCountry.name }}
-          </h2>
-          <p class="text-sm text-gray-500 mt-1">
-            {{ selectedCountry.continent }}
-            <span v-if="selectedCountry.region"> · {{ selectedCountry.region }}</span>
-            <span v-if="selectedCountry.capital"> · Capital: {{ selectedCountry.capital }}</span>
-            <span v-if="selectedCountry.population">
-              · Population: {{ formatNumber(selectedCountry.population) }}
-            </span>
+    <!-- Country detail — Bento Box Grid -->
+    <div v-if="selectedCountry" class="animate-fade-in">
+      
+      <!-- Row: Country header (full width) -->
+      <div class="bento-card bento-full mb-4">
+        <div class="flex items-start gap-4 flex-wrap">
+          <img
+            v-if="selectedCountry.flag"
+            :src="selectedCountry.flag"
+            :alt="`Flag of ${selectedCountry.name}`"
+            class="w-16 h-10 object-cover rounded-lg shadow-md"
+          />
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {{ selectedCountry.name }}
+            </h2>
+            <p class="text-sm text-gray-500 mt-1">
+              {{ selectedCountry.continent }}
+              <span v-if="selectedCountry.region"> · {{ selectedCountry.region }}</span>
+              <span v-if="selectedCountry.capital"> · Capital: {{ selectedCountry.capital }}</span>
+              <span v-if="selectedCountry.population"> · Pop: {{ formatNumber(selectedCountry.population) }}</span>
+            </p>
+            <p class="text-xs text-gray-400 mt-1">
+              <span v-if="selectedCountry.languages?.length">Languages: {{ selectedCountry.languages.join(', ') }}</span>
+              <span v-if="curatedInfo?.languageNote"> · {{ curatedInfo.languageNote.split('.')[0] }}.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento grid: 2 columns on desktop -->
+      <div class="bento-grid">
+        
+        <!-- Equality Index card (spans full width) -->
+        <div v-if="selectedCountry.ei !== undefined" class="bento-card bento-span-2">
+          <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">🏳️‍⚧️</span> Equality Index
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+              <div class="text-4xl font-bold" :class="scoreClass(selectedCountry.ei)">{{ selectedCountry.ei }}</div>
+              <div class="text-xs text-gray-500 mt-1">Overall Score</div>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">{{ selectedCountry.ei_legal ?? '-' }}</div>
+              <div class="text-xs text-gray-500 mt-1">Legal Score</div>
+            </div>
+            <div class="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+              <div class="text-4xl font-bold text-purple-600 dark:text-purple-400">{{ selectedCountry.ei_po ?? '-' }}</div>
+              <div class="text-xs text-gray-500 mt-1">Public Opinion</div>
+            </div>
+          </div>
+          <p v-if="selectedCountry.rank" class="text-xs text-gray-400 mt-3 text-center">
+            Rank: #{{ selectedCountry.rank }} of 197
           </p>
-          <p class="text-xs text-gray-400 mt-1">
-            <span v-if="selectedCountry.languages?.length">Languages: {{ selectedCountry.languages.join(', ') }}</span>
-            <span v-if="curatedInfo?.languageNote"> · {{ curatedInfo.languageNote.split('.')[0] }}.</span>
-          </p>
-        </div>
-      </div>
-
-      <!-- Equality Index card -->
-      <div v-if="selectedCountry.ei !== undefined" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-        <h3 class="text-lg font-semibold mb-6 pt-2 text-gray-900 dark:text-gray-100">
-          <span class="mr-2">🏳️‍⚧️</span> Equality Index
-        </h3>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="text-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-3xl font-bold" :class="scoreClass(selectedCountry.ei)">{{ selectedCountry.ei }}</div>
-            <div class="text-xs text-gray-500 mt-1">Overall Score</div>
-          </div>
-          <div class="text-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ selectedCountry.ei_legal ?? '-' }}</div>
-            <div class="text-xs text-gray-500 mt-1">Legal Score</div>
-          </div>
-          <div class="text-center p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-3xl font-bold text-purple-600 dark:text-purple-400">{{ selectedCountry.ei_po ?? '-' }}</div>
-            <div class="text-xs text-gray-500 mt-1">Public Opinion</div>
-          </div>
-        </div>
-        <p v-if="selectedCountry.rank" class="text-xs text-gray-400 mt-3 text-center">
-          Rank: #{{ selectedCountry.rank }} of 197
-        </p>
-      </div>
-
-      <!-- Trans Rights card -->
-      <div v-if="curatedInfo" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          <span class="mr-2">🏳️‍⚧️</span> Rights Checklist
-        </h3>
-
-        <!-- Recognition + Healthcare + Anti-Discrimination summary -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-5">
-          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Gender Recognition</div>
-            <Badge :variant="recognitionVariant(curatedInfo.rights.legalRecognition)">
-              {{ curatedInfo.rights.legalRecognitionLabel }}
-            </Badge>
-          </div>
-          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Healthcare Access</div>
-            <Badge :variant="healthcareVariant(curatedInfo.rights.healthcareLabel)">
-              {{ curatedInfo.rights.healthcareLabel }}
-            </Badge>
-          </div>
-          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-            <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Anti-Discrimination</div>
-            <Badge :variant="discriminationVariant(curatedInfo.rights.antiDiscriminationLabel)">
-              {{ curatedInfo.rights.antiDiscriminationLabel }}
-            </Badge>
-          </div>
         </div>
 
-        <!-- Detailed rights checklist -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5">
-          <div v-for="item in rightsList" :key="item.key" class="flex items-center gap-2.5">
-            <span class="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs"
-                  :class="item.value ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'">
-              {{ item.value ? '✓' : '✗' }}
-            </span>
-            <span class="text-sm text-gray-700 dark:text-gray-300">{{ item.label }}</span>
-          </div>
-        </div>
+        <!-- Rights Checklist (always shown; uses curated data if available) -->
+        <div class="bento-card">
+          <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">🏳️‍⚧️</span> Rights Checklist
+          </h3>
 
-        <!-- Healthcare coverage -->
-        <div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700 flex items-center gap-2">
-          <span class="text-xs uppercase tracking-wider text-gray-500">Gender-affirming healthcare:</span>
-          <Badge :variant="coverageVariant(curatedInfo.rights.healthcareCoverage)">
-            {{ coverageLabel(curatedInfo.rights.healthcareCoverage) }}
-          </Badge>
-        </div>
-
-        <!-- Safety rating -->
-        <div class="mt-3 flex items-center gap-2">
-          <span class="text-xs uppercase tracking-wider text-gray-500">Safety:</span>
-          <span v-for="i in 5" :key="i" class="text-lg leading-none">
-            {{ i <= (curatedInfo.safety || 0) ? '⭐' : '☆' }}
-          </span>
-        </div>
-
-        <p v-if="curatedInfo.notes" class="mt-4 text-sm text-gray-600 dark:text-gray-400 italic">
-          {{ curatedInfo.notes }}
-        </p>
-      </div>
-
-      <!-- WhereNext: Relocation Index card -->
-      <div v-if="relocInfo && !wnLoading" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          <span class="mr-2">📊</span> Relocation Index
-        </h3>
-        <div class="flex items-center gap-3 mb-4">
-          <div class="text-3xl font-bold text-blue-600 dark:text-blue-400">{{ relocInfo.composite_score }}</div>
-          <div class="text-sm text-gray-500">
-            <div>Overall Score</div>
-            <div class="text-xs">Rank #{{ relocInfo.rank }} of 95</div>
-          </div>
-          <div v-if="costInfo" class="ml-auto text-right">
-            <div class="text-sm font-semibold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}/mo</div>
-            <div class="text-xs text-gray-500">Est. cost of living</div>
-          </div>
-        </div>
-        <div class="grid grid-cols-4 sm:grid-cols-7 gap-2">
-          <div v-for="dim in dimensions" :key="dim.key"
-               class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
-            <div class="text-lg font-bold" :class="dimScoreClass(relocInfo[dim.key], dim.key)">{{ dimDisplayVal(relocInfo[dim.key], dim.key) }}</div>
-            <div class="text-[10px] text-gray-500 mt-0.5 leading-tight">{{ dim.label }}</div>
-            <div class="mt-1 h-1.5 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-              <div class="h-full rounded-full transition-all" :class="dimBarClass(relocInfo[dim.key], dim.key)"
-                   :style="{ width: dimDisplayVal(relocInfo[dim.key], dim.key) + '%' }"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- WhereNext: Cost of Living card -->
-      <div v-if="costInfo && !wnLoading" class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          <span class="mr-2">💰</span> Cost of Living
-        </h3>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-            <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
-            <div class="text-xs text-gray-500 mt-1">Monthly Estimate</div>
-          </div>
-          <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-            <div class="text-2xl font-bold text-green-600 dark:text-green-400">{{ costInfo.rank }}</div>
-            <div class="text-xs text-gray-500 mt-1">Rank (1=cheapest)</div>
-          </div>
-          <div v-if="salaryInfo" class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center sm:col-span-2">
-            <div class="text-lg font-bold text-purple-600 dark:text-purple-400">${{ formatNumber(salaryInfo.medianNetUSD) }}/yr</div>
-            <div class="text-xs text-gray-500 mt-1">Median Net Salary (take-home)</div>
-            <div v-if="salaryInfo.medianNetUSDPPP" class="text-xs text-gray-400">
-              ~${{ formatNumber(salaryInfo.medianNetUSDPPP) }}/yr PPP-adjusted
-            </div>
-          </div>
-        </div>
-        <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 text-xs text-gray-500">
-          <span class="font-medium">Affordability:</span>
-          A median salary covers ~{{ Math.round(salaryInfo.medianNetUSD / costInfo.monthly_estimate_usd) }} months of living expenses.
-        </div>
-      </div>
-
-      <!-- Migration card -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 p-6">
-        <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
-          <span class="mr-2">✈️</span> Migration &amp; Living
-        </h3>
-
-        <!-- Your location input -->
-        <div class="mb-5">
-          <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Where are you moving from?
-          </label>
-          <div class="relative">
-            <input
-              v-model="fromQuery"
-              type="text"
-              placeholder="Type your current country..."
-              class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
-              @input="onFromInput"
-              @keydown.down="fromHighlightNext"
-              @keydown.up="fromHighlightPrev"
-              @keydown.enter="selectFromHighlighted"
-              @blur="onFromBlur"
-            />
-            <div
-              v-if="showFromDropdown && fromFiltered.length"
-              class="absolute z-50 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl max-h-48 overflow-y-auto"
-            >
-              <button
-                v-for="(country, idx) in fromFiltered"
-                :key="country.code"
-                @click="selectFromCountry(country)"
-                @mousedown.prevent
-                class="w-full text-left px-4 py-2 flex items-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-sm transition-colors"
-                :class="{ 'bg-blue-50 dark:bg-blue-900/30': idx === fromHighlightIndex }"
-              >
-                <img v-if="country.flag" :src="country.flag" class="w-5 h-3 object-cover rounded" />
-                <span>{{ country.name }}</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Migration details grid -->
-        <div v-if="selectedCountry.code" class="space-y-4 text-sm">
-          <!-- Destination header -->
-          <div class="flex items-center gap-2 p-3 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
-            <span class="text-blue-600 dark:text-blue-400 font-medium">📍 Moving to {{ selectedCountry.name }}</span>
-            <span v-if="curatedInfo?.euFreeMovement" class="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-              EU Free Movement
-            </span>
-          </div>
-
-          <!-- 2-column info grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Visa & Residency -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Visa & Residency</div>
-              <div class="font-medium text-gray-900 dark:text-gray-100">
-                {{ curatedInfo?.digitalNomadVisa || 'Standard visa/residency pathways' }}
-              </div>
-              <div v-if="visaDifficulty" class="mt-1">
-                <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium"
-                      :class="visaDifficultyBadgeClass">
-                  {{ visaDifficulty }}
-                </span>
-              </div>
-              <div v-if="curatedInfo?.resourceLinks?.immigration" class="mt-2">
-                <a :href="curatedInfo.resourceLinks.immigration" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
-                  🛂 Immigration portal →
-                </a>
-              </div>
-            </div>
-
-            <!-- Healthcare System -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Healthcare Access</div>
-              <div class="font-medium text-gray-900 dark:text-gray-100">
-                {{ curatedInfo?.rights?.healthcareLabel || 'See Rights Checklist' }}
-              </div>
-              <div class="text-xs text-gray-500 mt-1">
-                Coverage: <Badge :variant="coverageVariant(curatedInfo?.rights?.healthcareCoverage)" class="text-[11px]">
-                  {{ coverageLabel(curatedInfo?.rights?.healthcareCoverage) }}
+          <template v-if="curatedInfo">
+            <!-- Summary badges -->
+            <div class="grid grid-cols-1 gap-2 mb-4">
+              <div class="p-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 flex items-center justify-between">
+                <span class="text-xs uppercase tracking-wider text-gray-500">Recognition</span>
+                <Badge :variant="recognitionVariant(curatedInfo.rights.legalRecognition)">
+                  {{ curatedInfo.rights.legalRecognitionLabel }}
                 </Badge>
               </div>
-              <div v-if="curatedInfo?.resourceLinks?.transHealthcare" class="mt-2">
-                <a :href="curatedInfo.resourceLinks.transHealthcare" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
-                  🏥 Healthcare system →
-                </a>
+              <div class="p-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 flex items-center justify-between">
+                <span class="text-xs uppercase tracking-wider text-gray-500">Healthcare</span>
+                <Badge :variant="healthcareVariant(curatedInfo.rights.healthcareLabel)">
+                  {{ curatedInfo.rights.healthcareLabel }}
+                </Badge>
+              </div>
+              <div class="p-2.5 rounded-lg bg-gray-50 dark:bg-gray-700/50 flex items-center justify-between">
+                <span class="text-xs uppercase tracking-wider text-gray-500">Anti-Discrimination</span>
+                <Badge :variant="discriminationVariant(curatedInfo.rights.antiDiscriminationLabel)">
+                  {{ curatedInfo.rights.antiDiscriminationLabel }}
+                </Badge>
               </div>
             </div>
 
-            <!-- Language -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 sm:col-span-2">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Language Note</div>
-              <div v-if="curatedInfo?.languageNote" class="font-medium text-gray-900 dark:text-gray-100 text-sm leading-relaxed">
-                {{ curatedInfo.languageNote }}
+            <!-- Checklist items in compact 2-col -->
+            <div class="grid grid-cols-2 gap-x-4 gap-y-2">
+              <div v-for="item in rightsList" :key="item.key" class="flex items-center gap-2">
+                <span class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[10px]"
+                      :class="item.value ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'">
+                  {{ item.value ? '✓' : '✗' }}
+                </span>
+                <span class="text-xs text-gray-700 dark:text-gray-300 leading-tight">{{ item.label }}</span>
               </div>
-              <div v-else class="font-medium text-gray-900 dark:text-gray-100 text-sm">
-                {{ languageInfo }}
-                <span v-if="selectedCountry.languages?.length" class="text-xs text-gray-500 ml-2">
-                  ({{ selectedCountry.languages.length > 1 ? 'Multiple official languages' : 'Official language' }})
+            </div>
+
+            <!-- Healthcare coverage & Safety -->
+            <div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2">
+              <div class="flex items-center gap-2 text-xs">
+                <span class="uppercase tracking-wider text-gray-500">Healthcare:</span>
+                <Badge :variant="coverageVariant(curatedInfo.rights.healthcareCoverage)">
+                  {{ coverageLabel(curatedInfo.rights.healthcareCoverage) }}
+                </Badge>
+              </div>
+              <div class="flex items-center gap-2 text-xs">
+                <span class="uppercase tracking-wider text-gray-500">Safety:</span>
+                <span v-for="i in 5" :key="i" class="text-sm leading-none">
+                  {{ i <= (curatedInfo.safety || 0) ? '⭐' : '☆' }}
                 </span>
               </div>
-              <div v-if="curatedInfo?.resourceLinks?.languageLearning" class="mt-2">
-                <a :href="curatedInfo.resourceLinks.languageLearning" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
-                  📚 Learn the language →
-                </a>
-              </div>
             </div>
 
-            <!-- Community & Integration -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Community & Integration</div>
-              <div class="font-medium text-gray-900 dark:text-gray-100">
-                {{ communityInfo }}
-              </div>
-              <div v-if="curatedInfo?.notes" class="text-xs text-gray-500 mt-1">
-                {{ curatedInfo.notes }}
-              </div>
-              <div v-if="curatedInfo?.resourceLinks?.community" class="mt-2">
-                <a :href="curatedInfo.resourceLinks.community" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
-                  🏳️‍🌈 LGBTQ+ organisation →
-                </a>
-              </div>
-            </div>
-
-            <!-- Housing -->
-            <div class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Housing</div>
-              <div v-if="curatedInfo?.resourceLinks?.housing" class="mt-1">
-                <a :href="curatedInfo.resourceLinks.housing" target="_blank" rel="noopener"
-                   class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
-                  🏠 Find housing →
-                </a>
-              </div>
-              <div v-else class="font-medium text-gray-900 dark:text-gray-100 text-sm">
-                Check local real estate sites
-              </div>
-            </div>
-          </div>
-
-          <!-- Visa info from WhereNext API -->
-          <div v-if="visaLoading" class="p-3 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center text-sm text-gray-500">
-            <span class="inline-block animate-pulse">Loading visa information...</span>
-          </div>
-          <div v-else-if="visaApiData" class="p-4 rounded-lg bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 space-y-2">
-            <div class="flex items-center gap-2">
-              <span class="text-blue-600 dark:text-blue-400 font-medium text-sm">🛂 Visa Pathways</span>
-              <span v-if="visaApiData.confidence === 'high'" class="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Verified</span>
-            </div>
-            <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-              {{ visaApiData.answer }}
+            <p v-if="curatedInfo.notes" class="mt-3 text-xs text-gray-600 dark:text-gray-400 italic">
+              {{ curatedInfo.notes }}
             </p>
-            <div v-if="visaApiData.facts?.length" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-              <div v-for="fact in visaApiData.facts" :key="fact.label"
-                   class="flex items-start gap-2 text-xs p-2 rounded bg-white/50 dark:bg-gray-800/50">
-                <span class="text-blue-500 mt-0.5">•</span>
-                <div>
-                  <span class="font-medium text-gray-900 dark:text-gray-100">{{ fact.label }}:</span>
-                  <span class="text-gray-600 dark:text-gray-400"> {{ fact.value }}{{ fact.unit ? ' ' + fact.unit : '' }}</span>
+          </template>
+
+          <!-- Fallback when no curated data -->
+          <template v-else>
+            <div class="text-center py-6">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Detailed trans rights data is not yet curated for this country.
+              </p>
+              <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                Check the <strong>Equality Index</strong> score above and the
+                <strong>Relocation Index</strong> to the right for a general quality-of-life overview.
+              </p>
+              <div class="mt-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/30 inline-block">
+                <span class="text-xs text-gray-500 dark:text-gray-400">
+                  Equaldex Rank: <strong class="text-gray-700 dark:text-gray-200">#{{ selectedCountry.rank || 'N/A' }}</strong> of 197
+                </span>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <!-- Relocation Index (always shown) -->
+        <div class="bento-card">
+          <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">📊</span> Relocation Index
+          </h3>
+
+          <template v-if="relocInfo && !wnLoading">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">{{ relocInfo.composite_score }}</div>
+              <div class="text-xs text-gray-500">
+                <div>Overall Score</div>
+                <div>Rank #{{ relocInfo.rank }} of 95</div>
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div v-for="dim in dimensions" :key="dim.key"
+                   class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+                <div class="text-base font-bold" :class="dimScoreClass(relocInfo[dim.key], dim.key)">{{ dimDisplayVal(relocInfo[dim.key], dim.key) }}</div>
+                <div class="text-[10px] text-gray-500 mt-0.5">{{ dim.label }}</div>
+                <div class="mt-1 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div class="h-full rounded-full transition-all" :class="dimBarClass(relocInfo[dim.key], dim.key)"
+                       :style="{ width: dimDisplayVal(relocInfo[dim.key], dim.key) + '%' }"></div>
                 </div>
               </div>
             </div>
-            <div v-if="visaApiData.citations?.length" class="mt-2 text-[10px] text-gray-400">
-              <span>Sources: </span>
-              <a v-for="(citation, ci) in visaApiData.citations" :key="ci"
-                 :href="citation.url" target="_blank" rel="noopener"
-                 class="underline hover:text-blue-500 mr-2">{{ citation.label }}</a>
+          </template>
+
+          <template v-else-if="wnLoading">
+            <div class="flex items-center justify-center py-8">
+              <span class="text-sm text-gray-400 animate-pulse">Loading relocation data...</span>
+            </div>
+          </template>
+
+          <template v-else>
+            <div class="text-center py-6">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Relocation quality-of-life data is not available for this country.
+              </p>
+              <p class="text-xs text-gray-400 dark:text-gray-500 mt-2">
+                Use the <strong>Equality Index</strong> as a proxy for trans-specific quality of life.
+              </p>
+            </div>
+          </template>
+        </div>
+
+        <!-- Cost of Living (always shown) -->
+        <div class="bento-card">
+          <h3 class="text-lg font-semibold mb-3 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">💰</span> Cost of Living
+          </h3>
+
+          <template v-if="costInfo && !wnLoading">
+            <div class="text-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 mb-3">
+              <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
+              <div class="text-xs text-gray-500 mt-1">Monthly Estimate</div>
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <div class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-lg font-bold text-green-600 dark:text-green-400">{{ costInfo.rank }}</div>
+                <div class="text-[10px] text-gray-500">Rank (1=cheapest)</div>
+              </div>
+              <div v-if="salaryInfo" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-lg font-bold text-purple-600 dark:text-purple-400">${{ formatNumber(salaryInfo.medianNetUSD) }}</div>
+                <div class="text-[10px] text-gray-500">Median Salary/yr</div>
+              </div>
+            </div>
+            <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 text-[11px] text-gray-500 text-center">
+              Salary covers ~{{ Math.round(salaryInfo.medianNetUSD / costInfo.monthly_estimate_usd) }} months of expenses
+            </div>
+          </template>
+
+          <template v-else-if="wnLoading">
+            <div class="flex items-center justify-center py-8">
+              <span class="text-sm text-gray-400 animate-pulse">Loading cost data...</span>
+            </div>
+          </template>
+
+          <template v-else>
+            <div class="text-center py-6">
+              <p class="text-sm text-gray-500 dark:text-gray-400">
+                Cost of living data is not available for this country.
+              </p>
+              <p class="text-xs text-gray-400 dark:text-gray-500 mt-1">
+                Research living costs on Numbeo or Expatistan.
+              </p>
+            </div>
+          </template>
+        </div>
+
+        <!-- Migration & Living (spans full width) -->
+        <div class="bento-card bento-span-2">
+          <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
+            <span class="mr-2">✈️</span> Migration &amp; Living
+          </h3>
+
+          <!-- Your location input -->
+          <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">
+              Where are you moving from?
+            </label>
+            <div class="relative">
+              <input
+                v-model="fromQuery"
+                type="text"
+                placeholder="Type your current country..."
+                class="w-full px-4 py-2.5 bg-gray-50 dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg text-sm outline-none focus:border-blue-400 dark:focus:border-blue-500 transition-colors"
+                @input="onFromInput"
+                @keydown.down="fromHighlightNext"
+                @keydown.up="fromHighlightPrev"
+                @keydown.enter="selectFromHighlighted"
+                @blur="onFromBlur"
+              />
+              <div
+                v-if="showFromDropdown && fromFiltered.length"
+                class="absolute z-50 mt-1 w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-xl max-h-48 overflow-y-auto"
+              >
+                <button
+                  v-for="(country, idx) in fromFiltered"
+                  :key="country.code"
+                  @click="selectFromCountry(country)"
+                  @mousedown.prevent
+                  class="w-full text-left px-4 py-2 flex items-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-900/30 text-sm transition-colors"
+                  :class="{ 'bg-blue-50 dark:bg-blue-900/30': idx === fromHighlightIndex }"
+                >
+                  <img v-if="country.flag" :src="country.flag" class="w-5 h-3 object-cover rounded" />
+                  <span>{{ country.name }}</span>
+                </button>
+              </div>
             </div>
           </div>
-          <div v-else-if="visaError" class="p-3 rounded-lg bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50">
-            <p class="text-amber-800 dark:text-amber-200 text-sm">
-              <span class="font-medium">💡 Passport Tip:</span>
-              {{ passportSuggestion }}
+
+          <!-- Migration details grid -->
+          <div v-if="selectedCountry.code" class="space-y-3 text-sm">
+
+            <!-- Destination header -->
+            <div class="flex items-center gap-2 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
+              <span class="text-blue-600 dark:text-blue-400 font-medium">📍 Moving to {{ selectedCountry.name }}</span>
+              <span v-if="curatedInfo?.euFreeMovement" class="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                EU Free Movement
+              </span>
+            </div>
+
+            <!-- 2x2 info grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+                <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Visa & Residency</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                  {{ curatedInfo?.digitalNomadVisa || 'Standard visa/residency pathways' }}
+                </div>
+                <div v-if="visaDifficulty" class="mt-1">
+                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium"
+                        :class="visaDifficultyBadgeClass">{{ visaDifficulty }}</span>
+                </div>
+                <div v-if="curatedInfo?.resourceLinks?.immigration" class="mt-1.5">
+                  <a :href="curatedInfo.resourceLinks.immigration" target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    🛂 Immigration portal →
+                  </a>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+                <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Healthcare Access</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                  {{ curatedInfo?.rights?.healthcareLabel || 'See Rights Checklist' }}
+                </div>
+                <div class="text-xs text-gray-500 mt-1">
+                  Coverage: <Badge :variant="coverageVariant(curatedInfo?.rights?.healthcareCoverage)" class="text-[11px]">
+                    {{ coverageLabel(curatedInfo?.rights?.healthcareCoverage) }}
+                  </Badge>
+                </div>
+                <div v-if="curatedInfo?.resourceLinks?.transHealthcare" class="mt-1.5">
+                  <a :href="curatedInfo.resourceLinks.transHealthcare" target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    🏥 Healthcare system →
+                  </a>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+                <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Language</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 text-sm">
+                  {{ curatedInfo?.languageNote || languageInfo }}
+                </div>
+                <div v-if="curatedInfo?.resourceLinks?.languageLearning" class="mt-1.5">
+                  <a :href="curatedInfo.resourceLinks.languageLearning" target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    📚 Learn the language →
+                  </a>
+                </div>
+              </div>
+
+              <div class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50">
+                <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Community</div>
+                <div class="font-medium text-gray-900 dark:text-gray-100 text-sm">{{ communityInfo }}</div>
+                <div v-if="curatedInfo?.resourceLinks?.community" class="mt-1.5">
+                  <a :href="curatedInfo.resourceLinks.community" target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    🏳️‍🌈 LGBTQ+ organisation →
+                  </a>
+                </div>
+                <div v-if="curatedInfo?.resourceLinks?.housing" class="mt-1">
+                  <a :href="curatedInfo.resourceLinks.housing" target="_blank" rel="noopener"
+                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                    🏠 Housing →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Visa info from WhereNext API -->
+            <div v-if="visaLoading" class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 text-center text-sm text-gray-500">
+              <span class="inline-block animate-pulse">Loading visa information...</span>
+            </div>
+            <div v-else-if="visaApiData" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="text-blue-600 dark:text-blue-400 font-medium text-sm">🛂 Visa Pathways</span>
+                <span v-if="visaApiData.confidence === 'high'" class="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Verified</span>
+              </div>
+              <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{{ visaApiData.answer }}</p>
+              <div v-if="visaApiData.facts?.length" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+                <div v-for="fact in visaApiData.facts" :key="fact.label"
+                     class="flex items-start gap-2 text-xs p-2 rounded bg-white/50 dark:bg-gray-800/50">
+                  <span class="text-blue-500 mt-0.5">•</span>
+                  <div>
+                    <span class="font-medium text-gray-900 dark:text-gray-100">{{ fact.label }}:</span>
+                    <span class="text-gray-600 dark:text-gray-400"> {{ fact.value }}{{ fact.unit ? ' ' + fact.unit : '' }}</span>
+                  </div>
+                </div>
+              </div>
+              <div v-if="visaApiData.citations?.length" class="mt-2 text-[10px] text-gray-400">
+                <span>Sources: </span>
+                <a v-for="(citation, ci) in visaApiData.citations" :key="ci"
+                   :href="citation.url" target="_blank" rel="noopener"
+                   class="underline hover:text-blue-500 mr-2">{{ citation.label }}</a>
+              </div>
+            </div>
+            <div v-else-if="visaError" class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50">
+              <p class="text-amber-800 dark:text-amber-200 text-sm">
+                <span class="font-medium">💡 Passport Tip:</span>
+                {{ passportSuggestion }}
+              </p>
+            </div>
+
+            <p class="text-xs text-gray-400">
+              Migration info is a general guide. Always verify with official government sources.
             </p>
           </div>
-
-          <p class="text-xs text-gray-400">
-            Migration info is a general guide. Always verify with official government sources.
-          </p>
         </div>
-      </div>
-
+        
+      </div><!-- /bento-grid -->
     </div>
 
     <!-- Empty state -->
@@ -544,7 +573,6 @@ const dimensions = [
 ]
 
 function dimScoreClass(val, key) {
-  // Cost: low displayed score (cheap) = green, high displayed score (expensive) = red
   if (key === 'cost') {
     if (val <= 30) return 'text-green-600 dark:text-green-400'
     if (val <= 60) return 'text-yellow-600 dark:text-yellow-400'
@@ -556,7 +584,6 @@ function dimScoreClass(val, key) {
 }
 
 function dimBarClass(val, key) {
-  // Cost: low displayed score (cheap) = green, high displayed score (expensive) = red
   if (key === 'cost') {
     if (val <= 30) return 'bg-green-500'
     if (val <= 60) return 'bg-yellow-500'
@@ -567,7 +594,6 @@ function dimBarClass(val, key) {
   return 'bg-red-500'
 }
 
-/** Display value for a dimension (invert cost so higher = more expensive) */
 function dimDisplayVal(val, key) {
   if (key === 'cost') return Math.round(100 - val)
   return val
@@ -700,7 +726,6 @@ function onInput() {
 }
 
 function onBlur() {
-  // Delay to let click events fire
   setTimeout(() => { showDropdown.value = false }, 200)
 }
 
@@ -727,7 +752,6 @@ function selectCountry(country) {
   query.value = country.name
   showDropdown.value = false
   highlightIndex.value = -1
-  // Scroll to top of results
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
@@ -787,12 +811,10 @@ const passportSuggestion = computed(() => {
   const from = selectedFromCountry.value
   const to = selectedCountry.value
   if (from.code === to.code) return "That's your current country!"
-  // Simple heuristics based on continents
   const sameContinent = from.continent === to.continent
   const fromEU = from.continent === 'Europe'
   const toEU = to.continent === 'Europe'
   if (fromEU && toEU) return 'As an EU/Schengen area resident, you can move freely between most European countries.'
-  // General tips
   const tips = []
   if (from.code === 'US') tips.push('US citizens can visit many countries visa-free for 90 days.')
   if (from.code === 'GB') tips.push('UK citizens can visit many countries visa-free for 90 days (post-Brexit).')
@@ -804,12 +826,52 @@ const passportSuggestion = computed(() => {
   return `Check visa requirements for ${from.name} passport holders traveling to ${to.name}.`
 })
 
-// Set last updated
 const now = new Date()
 lastUpdated.value = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
 </script>
 
 <style scoped>
+/* ---- Bento grid layout ---- */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .bento-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Bento card base */
+.bento-card {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  transition: box-shadow 0.2s ease;
+}
+
+.bento-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+html.dark .bento-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Span helpers */
+.bento-span-2 {
+  grid-column: 1 / -1;
+}
+
+/* Full-width utility */
+.bento-full {
+  grid-column: 1 / -1;
+}
+
+/* ---- Fade-in animation ---- */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

@@ -13,8 +13,8 @@ export default {
     logo: '/logo.svg',
     // Navigation bar
     navbar: navbar,
-    // Sidebar
-    sidebar: sidebar,
+    // Sidebar (disabled)
+    sidebar: false,
     // Social links (optional)
     socialLinks: [
       { icon: 'github', link: 'https://github.com/ignoblia/transit' }

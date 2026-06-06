@@ -1,17 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <!-- Rounded icon favicon with trans pride gradient -->
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#5BCFFA"/>
-      <stop offset="30%" stop-color="#F5A9B8"/>
-      <stop offset="50%" stop-color="#FFFFFF"/>
-      <stop offset="70%" stop-color="#F5A9B8"/>
-      <stop offset="100%" stop-color="#5BCFFA"/>
-    </linearGradient>
+    <!-- Blue aura/glow filter -->
+    <filter id="aura" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-color="#78B3E2" flood-opacity="0.6" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
-  <!-- Icon background: rounded square -->
-  <rect x="1" y="1" width="30" height="30" rx="7" ry="7" fill="url(#bgGrad)"/>
-  <!-- Stylized white double chevron -->
-  <path d="M8 12l8 8-8 8" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-  <path d="M16 12l8 8-8 8" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+  <!-- Dark rounded background -->
+  <rect x="1" y="1" width="30" height="30" rx="7" ry="7" fill="#1a1a2e"/>
+  <!-- White double-chevron with blue aura glow -->
+  <g filter="url(#aura)">
+    <path d="M8 12l8 8-8 8" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <path d="M16 12l8 8-8 8" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.65"/>
+  </g>
 </svg>

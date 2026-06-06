@@ -12,13 +12,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Trans Pride flag palette
-        'trans': {
-          'blue': '#5BCFFA',
-          'pink': '#F5A9B8',
-          'white': '#FFFFFF',
-          'blue-dark': '#3BA8D4',
-          'pink-dark': '#D48696',
+        'fmhy': {
+          'blue': 'hsl(211, 63%, 61%)',
+          'blue-dark': 'hsl(215, 57%, 53%)',
+          'blue-darker': 'hsl(220, 48%, 40%)',
+          'blue-soft': 'hsl(207, 65%, 68%)',
         },
       },
     },

@@ -12,7 +12,7 @@
   </defs>
   <!-- FMHY-blue double-chevron with subtle glow, no background -->
   <g filter="url(#glow)">
-    <path d="M25 40l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M60 40l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+    <path d="M25 30l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M60 30l35 30-35 30" fill="none" stroke="#78B3E2" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
   </g>
 </svg>

@@ -53,3 +53,18 @@ html.dark {
   vertical-align: middle;
   display: inline-block;
 }
+
+/* ---------- Mobile: center hero content ---------- */
+@media (max-width: 640px) {
+  .VPHero .container {
+    text-align: center;
+  }
+  .VPHero .name,
+  .VPHero .text,
+  .VPHero .tagline {
+    text-align: center;
+  }
+  .VPHero .actions {
+    justify-content: center;
+  }
+}

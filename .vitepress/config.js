@@ -24,9 +24,20 @@ export default {
       pattern: 'https://github.com/ignoblia/transit/edit/main/:path',
       text: 'Edit this page on GitHub'
     },
+    // Local search (like FMHY)
+    search: {
+      provider: 'local',
+      options: {
+        translations: {
+          button: {
+            buttonText: 'Search',
+            buttonAriaLabel: 'Search'
+          }
+        }
+      }
+    },
     // Last updated text
     lastUpdated: 'Last Updated',
-    // Custom theme colors (using Tailwind classes via theme)
   },
   cleanUrls: false, // GitHub Pages needs .html extensions
   ignoreDeadLinks: true, // Allow directory-style internal links without dead link failures

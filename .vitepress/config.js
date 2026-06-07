@@ -6,7 +6,7 @@ export default {
   base: '/transit/', // Important for GitHub Pages: <username>.github.io/<repo>/
   outDir: 'docs', // Build output to /docs for GitHub Pages
   head: [
-    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/transit/favicon.svg' }],
+    ['link', { rel: 'icon', type: 'image/svg+xml', href: '/transit/favicon.svg?v=2' }],
   ],
   themeConfig: {
     // Site logo (optional)

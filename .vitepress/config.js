@@ -12,7 +12,7 @@ export default {
     // Site logo (optional)
     logo: '/logo.svg',
     // Navigation bar
-    navbar: navbar,
+    nav: navbar,
     // Sidebar (disabled)
     sidebar: false,
     // Social links (optional)

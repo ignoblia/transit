@@ -12,6 +12,6 @@
   </defs>
   <g filter="url(#glow)">
     <path d="M7 8l9 8-9 8" fill="none" stroke="#78B3E2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M16 8l9 8-9 8" fill="none" stroke="#78B3E2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.55"/>
+    <path d="M16 8l9 8-9 8" fill="none" stroke="#78B3E2" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 </svg>

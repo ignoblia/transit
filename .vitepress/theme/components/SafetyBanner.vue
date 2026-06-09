@@ -91,11 +91,15 @@ onMounted(() => {
 
 <style scoped>
 .safety-banner {
-  position: relative;
-  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
   width: 100%;
   background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
   border-bottom: 2px solid #f87171;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dark .safety-banner {

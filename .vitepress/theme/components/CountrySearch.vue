@@ -741,24 +741,29 @@ onMounted(async () => {
 const detectingCountry = ref(true)
 
 async function autoDetectUserCountry() {
-  try {
-    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
-    const countryCode = data.country_code
-    if (!countryCode) return
-    // Find the country in the dataset by ISO code
-    const match = dataset.find(c => c.code === countryCode)
-    if (match && !selectedFromCountry.value) {
-      selectedFromCountry.value = match
-      fromQuery.value = match.name
+  // Try multiple geo-IP services
+  const geoProviders = [
+    { url: 'https://ip-api.com/json/', codeField: 'countryCode' },
+    { url: 'https://ipapi.co/json/', codeField: 'country_code' },
+  ]
+  for (const provider of geoProviders) {
+    try {
+      const res = await fetch(provider.url, { signal: AbortSignal.timeout(4000) })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      const countryCode = data[provider.codeField]
+      if (!countryCode) continue
+      const match = dataset.find(c => c.code === countryCode)
+      if (match && !selectedFromCountry.value) {
+        selectedFromCountry.value = match
+        fromQuery.value = match.name
+      }
+      break
+    } catch (e) {
+      console.info(`[Auto-detect] ${provider.url} failed:`, e.message)
     }
-  } catch (e) {
-    // Silently fail — user can still type their country manually
-    console.info('[Auto-detect] Could not detect country:', e.message)
-  } finally {
-    detectingCountry.value = false
   }
+  detectingCountry.value = false
 }
 
 // ====== VISA API STATE ======

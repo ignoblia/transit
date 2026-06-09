@@ -62,25 +62,39 @@ async function checkLocation() {
     if (dismissed === 'true') return
   } catch (_) {}
 
-  try {
-    const res = await fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) })
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
-    const countryCode = data.country_code
-    if (!countryCode) return
+  let countryCode = null
 
-    // Dynamically import the dataset to check the country's EI score
-    const dataset = await import('../generated/country-dataset.json')
-    const match = dataset.default.find(c => c.code === countryCode)
-    if (match && match.ei !== undefined && match.ei !== null && match.ei < 25) {
-      detectedCountryName.value = match.name
-      // Small delay so page renders first
-      setTimeout(() => {
-        showBanner.value = true
-      }, 500)
+  // Try multiple geo-IP services as fallbacks
+  const geoProviders = [
+    { url: 'https://ip-api.com/json/', codeField: 'countryCode', timeout: 4000 },
+    { url: 'https://ipapi.co/json/', codeField: 'country_code', timeout: 4000 },
+  ]
+
+  for (const provider of geoProviders) {
+    try {
+      const res = await fetch(provider.url, { signal: AbortSignal.timeout(provider.timeout) })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      if (data[provider.codeField]) {
+        countryCode = data[provider.codeField]
+        break
+      }
+    } catch (e) {
+      console.info(`[SafetyBanner] ${provider.url} failed:`, e.message)
     }
-  } catch (e) {
-    console.info('[SafetyBanner] Could not detect country:', e.message)
+  }
+
+  if (!countryCode) return
+
+  // Dynamically import the dataset to check the country's EI score
+  const dataset = await import('../generated/country-dataset.json')
+  const match = dataset.default.find(c => c.code === countryCode)
+  if (match && match.ei !== undefined && match.ei !== null && match.ei < 25) {
+    detectedCountryName.value = match.name
+    // Small delay so page renders first
+    setTimeout(() => {
+      showBanner.value = true
+    }, 500)
   }
 }
 

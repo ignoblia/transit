@@ -42,10 +42,6 @@ const STORAGE_KEY = 'transit-safety-banner-dismissed'
 
 const showBanner = ref(false)
 const detectedCountryName = ref('')
-const loaded = ref(false)
-
-// Allow testing via ?testBanner=1 URL parameter (client-side only)
-const testMode = ref(false)
 
 function dismiss() {
   showBanner.value = false
@@ -55,9 +51,6 @@ function dismiss() {
 }
 
 async function checkLocation() {
-  if (loaded.value) return
-  loaded.value = true
-
   // Check if previously dismissed
   try {
     const dismissed = localStorage.getItem(STORAGE_KEY)
@@ -66,10 +59,11 @@ async function checkLocation() {
 
   let countryCode = null
 
-  // Try multiple geo-IP services as fallbacks
+  // Try multiple geo-IP services (ordered by reliability)
   const geoProviders = [
     { url: 'https://ipinfo.io/json', codeField: 'country', timeout: 4000 },
     { url: 'https://ipapi.co/json/', codeField: 'country_code', timeout: 4000 },
+    { url: 'https://api.country.is/', codeField: 'country', timeout: 4000 },
   ]
 
   for (const provider of geoProviders) {
@@ -86,17 +80,25 @@ async function checkLocation() {
     }
   }
 
-  if (!countryCode) return
+  // Expose debug info
+  window.__safetyDebug = { countryCode, timestamp: Date.now() }
+
+  if (!countryCode) {
+    console.warn('[SafetyBanner] All geo-IP providers failed — banner will not show')
+    return
+  }
 
   // Dynamically import the dataset to check the country's EI score
   const dataset = await import('../generated/country-dataset.json')
   const match = dataset.default.find(c => c.code === countryCode)
+  window.__safetyDebug.match = match ? { name: match.name, ei: match.ei } : null
+
   if (match && match.ei !== undefined && match.ei !== null && match.ei < 25) {
+    console.log(`[SafetyBanner] Dangerous country detected: ${match.name} (EI: ${match.ei}) — showing banner`)
     detectedCountryName.value = match.name
-    // Small delay so page renders first
-    setTimeout(() => {
-      showBanner.value = true
-    }, 500)
+    showBanner.value = true
+  } else if (match) {
+    console.log(`[SafetyBanner] Safe country: ${match.name} (EI: ${match.ei}) — hiding banner`)
   }
 }
 
@@ -116,9 +118,10 @@ onMounted(async () => {
   await checkLocation()
 })
 
-// Re-check on SPA navigation (route changes)
-watch(() => window.location.search, () => {
-  if (checkTestMode()) return
+// Re-check on every SPA navigation (in case user's IP changes)
+watch(() => route.path, async () => {
+  if (checkTestMode() || showBanner.value) return
+  await checkLocation()
 })
 </script>
 

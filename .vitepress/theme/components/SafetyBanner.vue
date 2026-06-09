@@ -1,39 +1,37 @@
 <template>
   <!-- Global safety banner — matches the "DO NOT MOVE" banner theme -->
-  <Teleport to="body">
-    <div
-      v-if="showBanner"
-      class="safety-banner"
-    >
-      <div class="safety-banner-inner">
-        <div class="safety-banner-content">
-          <span class="safety-banner-icon">🚨</span>
-          <div class="safety-banner-text">
-            <div class="safety-banner-title">Safety Notice</div>
-            <p class="safety-banner-description">
-              We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>,
-              which has severe legal restrictions for LGBTQ+ people.
-              If you're in danger or concerned about your safety, please visit the
-              <a href="/transit/emergency/" class="safety-banner-link">Emergency Resources page →</a>.
-            </p>
-            <p class="safety-banner-footer">
-              Press <kbd class="safety-banner-kbd">Esc</kbd> 3× for an immediate safe exit
-            </p>
-          </div>
+  <div
+    v-if="showBanner"
+    class="safety-banner"
+  >
+    <div class="safety-banner-inner">
+      <div class="safety-banner-content">
+        <span class="safety-banner-icon">🚨</span>
+        <div class="safety-banner-text">
+          <div class="safety-banner-title">Safety Notice</div>
+          <p class="safety-banner-description">
+            We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>,
+            which has severe legal restrictions for LGBTQ+ people.
+            If you're in danger or concerned about your safety, please visit the
+            <a href="/transit/emergency/" class="safety-banner-link">Emergency Resources page →</a>.
+          </p>
+          <p class="safety-banner-footer">
+            Press <kbd class="safety-banner-kbd">Esc</kbd> 3× for an immediate safe exit
+          </p>
         </div>
-        <button
-          @click="dismiss"
-          class="safety-banner-close"
-          aria-label="Dismiss safety notice"
-          title="Dismiss"
-        >
-          <svg class="safety-banner-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
       </div>
+      <button
+        @click="dismiss"
+        class="safety-banner-close"
+        aria-label="Dismiss safety notice"
+        title="Dismiss"
+      >
+        <svg class="safety-banner-close-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
     </div>
-  </Teleport>
+  </div>
 </template>
 
 <script setup>
@@ -45,12 +43,8 @@ const showBanner = ref(false)
 const detectedCountryName = ref('')
 const loaded = ref(false)
 
-// Allow testing via ?testBanner=1 URL parameter
-const testMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('testBanner') === '1'
-if (testMode) {
-  detectedCountryName.value = 'Nigeria'
-  setTimeout(() => { showBanner.value = true }, 500)
-}
+// Allow testing via ?testBanner=1 URL parameter (client-side only)
+const testMode = ref(false)
 
 function dismiss() {
   showBanner.value = false
@@ -106,11 +100,17 @@ async function checkLocation() {
 }
 
 onMounted(() => {
+  // Check for ?testBanner=1 URL parameter (client-side only)
+  if (new URLSearchParams(window.location.search).get('testBanner') === '1') {
+    detectedCountryName.value = 'Nigeria'
+    setTimeout(() => { showBanner.value = true }, 300)
+    return
+  }
   checkLocation()
 })
 </script>
 
-<style scoped>
+<style>
 .safety-banner {
   position: fixed;
   top: 0;

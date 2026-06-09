@@ -683,7 +683,9 @@ const exchangeError = ref('')
 
 function getCurrencyCode(country) {
   if (!country?.currencies) return null
-  return country.currencies.split(',')[0].trim()
+  if (Array.isArray(country.currencies)) return country.currencies[0]?.trim() || null
+  if (typeof country.currencies === 'string') return country.currencies.split(',')[0].trim()
+  return null
 }
 
 function formatCurrencyFull(code) {

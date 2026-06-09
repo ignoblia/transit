@@ -1,26 +1,26 @@
 <template>
-  <!-- Global safety banner — appears at the top of every page if user is in a dangerous country -->
-  <div
-    v-if="showBanner"
-    class="safety-banner"
-  >
-    <div class="safety-banner-inner">
-      <div class="safety-banner-content">
-        <span class="safety-banner-icon">🚨</span>
-        <div class="safety-banner-text">
-          <p class="safety-banner-title">Safety Notice</p>
-          <p class="safety-banner-description">
-            We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>,
-            which has severe legal restrictions for LGBTQ+ people.
-            If you're in danger or concerned about your safety, please visit the
-            <a href="/transit/emergency/" class="safety-banner-link">Emergency Resources page</a>.
-          </p>
+  <!-- Global safety banner — matches the "DO NOT MOVE" banner theme -->
+  <Teleport to="body">
+    <div
+      v-if="showBanner"
+      class="safety-banner"
+    >
+      <div class="safety-banner-inner">
+        <div class="safety-banner-content">
+          <span class="safety-banner-icon">🚨</span>
+          <div class="safety-banner-text">
+            <div class="safety-banner-title">Safety Notice</div>
+            <p class="safety-banner-description">
+              We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>,
+              which has severe legal restrictions for LGBTQ+ people.
+              If you're in danger or concerned about your safety, please visit the
+              <a href="/transit/emergency/" class="safety-banner-link">Emergency Resources page</a>.
+            </p>
+            <p class="safety-banner-footer">
+              Press <kbd class="safety-banner-kbd">Esc</kbd> 3× for an immediate safe exit
+            </p>
+          </div>
         </div>
-      </div>
-      <div class="safety-banner-actions">
-        <span class="safety-banner-hint">
-          <kbd class="safety-banner-kbd">Esc</kbd> ×3 for safe exit
-        </span>
         <button
           @click="dismiss"
           class="safety-banner-close"
@@ -33,7 +33,7 @@
         </button>
       </div>
     </div>
-  </div>
+  </Teleport>
 </template>
 
 <script setup>
@@ -96,23 +96,22 @@ onMounted(() => {
   left: 0;
   right: 0;
   z-index: 99999;
-  width: 100%;
-  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  background: #fef2f2;
   border-bottom: 2px solid #f87171;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .dark .safety-banner {
-  background: linear-gradient(135deg, #450a0a 0%, #7f1d1d 100%);
+  background: #450a0a;
   border-bottom-color: #dc2626;
 }
 
 .safety-banner-inner {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 12px 16px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
@@ -120,15 +119,15 @@ onMounted(() => {
 .safety-banner-content {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 12px;
   flex: 1;
   min-width: 0;
 }
 
 .safety-banner-icon {
-  font-size: 1.25rem;
+  font-size: 2.25rem;  /* text-4xl */
   flex-shrink: 0;
-  line-height: 1.4;
+  line-height: 1;
 }
 
 .safety-banner-text {
@@ -137,35 +136,37 @@ onMounted(() => {
 }
 
 .safety-banner-title {
-  font-size: 0.875rem;
-  font-weight: 700;
-  color: #991b1b;
+  font-size: 1.25rem;   /* text-xl */
+  font-weight: 700;      /* font-bold */
+  color: #991b1b;        /* text-red-800 */
   margin: 0;
+  line-height: 1.3;
 }
 
 .dark .safety-banner-title {
-  color: #fca5a5;
+  color: #fecaca;        /* dark:text-red-200 */
 }
 
 .safety-banner-description {
-  font-size: 0.8125rem;
-  color: #b91c1c;
-  margin: 2px 0 0 0;
-  line-height: 1.4;
+  font-size: 0.875rem;   /* text-sm */
+  color: #b91c1c;        /* text-red-700 */
+  margin: 4px 0 0 0;
+  line-height: 1.5;
+  font-weight: 500;       /* font-medium */
 }
 
 .dark .safety-banner-description {
-  color: #fecaca;
+  color: #fca5a5;        /* dark:text-red-300 */
 }
 
 .safety-banner-link {
-  font-weight: 600;
+  font-weight: 700;
   text-decoration: underline;
   color: #991b1b;
 }
 
 .dark .safety-banner-link {
-  color: #fca5a5;
+  color: #fecaca;
 }
 
 .safety-banner-link:hover {
@@ -176,21 +177,14 @@ onMounted(() => {
   color: #fef2f2;
 }
 
-.safety-banner-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+.safety-banner-footer {
+  font-size: 0.75rem;    /* text-xs */
+  color: #dc2626;         /* text-red-600 */
+  margin: 6px 0 0 0;
 }
 
-.safety-banner-hint {
-  font-size: 0.75rem;
-  color: #dc2626;
-  white-space: nowrap;
-}
-
-.dark .safety-banner-hint {
-  color: #fca5a5;
+.dark .safety-banner-footer {
+  color: #f87171;         /* dark:text-red-400 */
 }
 
 .safety-banner-kbd {
@@ -198,7 +192,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   padding: 1px 6px;
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   font-family: monospace;
   background: #fca5a5;
   color: #7f1d1d;
@@ -216,26 +210,29 @@ onMounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  border: none;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(185, 28, 28, 0.25);
   background: transparent;
-  color: #b91c1c;
+  color: #991b1b;
   cursor: pointer;
   transition: background 0.15s;
+  margin-top: 2px;
 }
 
 .safety-banner-close:hover {
-  background: rgba(185, 28, 28, 0.12);
+  background: rgba(185, 28, 28, 0.1);
 }
 
 .dark .safety-banner-close {
-  color: #fca5a5;
+  color: #fecaca;
+  border-color: rgba(252, 165, 165, 0.25);
 }
 
 .dark .safety-banner-close:hover {
-  background: rgba(252, 165, 165, 0.15);
+  background: rgba(252, 165, 165, 0.1);
 }
 
 .safety-banner-close-icon {

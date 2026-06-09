@@ -897,11 +897,49 @@ watch([selectedFromCountry, selectedCountry], async ([from, to]) => {
   }
 })
 
+// ====== COUNTRY ALIASES ======
+// Map common alternative names / abbreviations to ISO2 country codes
+const countryAliases = {
+  'usa': 'US', 'america': 'US', 'united states of america': 'US',
+  'uk': 'GB', 'england': 'GB', 'britain': 'GB', 'great britain': 'GB',
+  'uae': 'AE', 'emirates': 'AE',
+  'drc': 'CD', 'congo': 'CD',
+  'dprk': 'KP',
+  'rok': 'KR',
+  'south korea': 'KR', 'korea': 'KR',
+  'holland': 'NL',
+  'burma': 'MM',
+  'ivory coast': 'CI',
+  "côte d'ivoire": 'CI',
+  'czechia': 'CZ', 'czech': 'CZ',
+  'macedonia': 'MK',
+  'swaziland': 'SZ',
+  'cabo verde': 'CV',
+  'east timor': 'TL',
+  'st ': 'st',  // "St" → "Saint" for St Lucia, St Vincent, etc.
+  'palestine': 'PS',
+  'venezuela': 'VE',
+  'vietnam': 'VN',
+}
+
+// Utility: check if a query matches a country (name, code, or alias)
+function countryMatchesQuery(country, q) {
+  if (country.name.toLowerCase().includes(q)) return true
+  if (country.code && country.code.toLowerCase().includes(q)) return true
+  // Check aliases
+  if (countryAliases[q] && countryAliases[q] === country.code) return true
+  // Check multi-word alias match
+  for (const [alias, code] of Object.entries(countryAliases)) {
+    if (alias.includes(q) && code === country.code) return true
+  }
+  return false
+}
+
 const filteredCountries = computed(() => {
   if (!query.value) return []
-  const q = query.value.toLowerCase()
+  const q = query.value.toLowerCase().trim()
   return dataset
-    .filter(c => c.name.toLowerCase().includes(q) || (c.code && c.code.toLowerCase().includes(q)))
+    .filter(c => countryMatchesQuery(c, q))
     .slice(0, 15)
 })
 
@@ -1248,9 +1286,9 @@ function clearSearch() {
 // ====== FROM-COUNTRY SEARCH ======
 const fromFiltered = computed(() => {
   if (!fromQuery.value) return []
-  const q = fromQuery.value.toLowerCase()
+  const q = fromQuery.value.toLowerCase().trim()
   return dataset
-    .filter(c => c.name.toLowerCase().includes(q) || (c.code && c.code.toLowerCase().includes(q)))
+    .filter(c => countryMatchesQuery(c, q))
     .slice(0, 10)
 })
 

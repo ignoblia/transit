@@ -261,23 +261,68 @@
             <span class="mr-2">💰</span> Cost of Living
           </h3>
 
-          <template v-if="costInfo && !wnLoading">
+          <template v-if="costInfo">
+            <!-- Monthly estimate (big) -->
             <div class="text-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 mb-3">
-              <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
-              <div class="text-xs text-gray-500 mt-1">Monthly Estimate</div>
+              <div v-if="costInfo.monthly_estimate_usd" class="text-3xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
+              <div class="text-xs text-gray-500 mt-1">Monthly Estimate (USD)</div>
             </div>
-            <div class="grid grid-cols-2 gap-2">
+
+            <!-- Rank + Salary -->
+            <div class="grid grid-cols-2 gap-2 mb-3">
               <div class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-lg font-bold text-green-600 dark:text-green-400">{{ costInfo.rank }}</div>
+                <div class="text-lg font-bold text-green-600 dark:text-green-400">{{ costInfo.rank ?? '-' }}</div>
                 <div class="text-[10px] text-gray-500">Rank (1=cheapest)</div>
               </div>
               <div v-if="salaryInfo" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
                 <div class="text-lg font-bold text-purple-600 dark:text-purple-400">${{ formatNumber(salaryInfo.medianNetUSD) }}</div>
                 <div class="text-[10px] text-gray-500">Median Salary/yr</div>
               </div>
+              <div v-else class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-lg font-bold text-gray-400">—</div>
+                <div class="text-[10px] text-gray-500">Median Salary/yr</div>
+              </div>
             </div>
-            <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 text-[11px] text-gray-500 text-center">
+
+            <!-- Salary coverage -->
+            <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 mb-3 text-[11px] text-gray-500 text-center">
               Salary covers ~{{ Math.round(salaryInfo.medianNetUSD / costInfo.monthly_estimate_usd) }} months of expenses
+            </div>
+
+            <!-- Cost breakdown indexes -->
+            <div class="grid grid-cols-2 gap-2">
+              <div v-if="costInfo.rent_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-base font-bold" :class="indexColor(costInfo.rent_index, 'cost')">{{ costInfo.rent_index }}</div>
+                <div class="text-[10px] text-gray-500">Rent Index</div>
+                <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div class="h-full rounded-full" :class="costBarClass(costInfo.rent_index, 'cost')" :style="{ width: costInfo.rent_index + '%' }"></div>
+                </div>
+              </div>
+              <div v-if="costInfo.utilities_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-base font-bold" :class="indexColor(costInfo.utilities_index, 'cost')">{{ costInfo.utilities_index }}</div>
+                <div class="text-[10px] text-gray-500">Utilities</div>
+                <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div class="h-full rounded-full" :class="costBarClass(costInfo.utilities_index, 'cost')" :style="{ width: costInfo.utilities_index + '%' }"></div>
+                </div>
+              </div>
+              <div v-if="costInfo.transport_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-base font-bold" :class="indexColor(costInfo.transport_index, 'cost')">{{ costInfo.transport_index }}</div>
+                <div class="text-[10px] text-gray-500">Transport</div>
+                <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div class="h-full rounded-full" :class="costBarClass(costInfo.transport_index, 'cost')" :style="{ width: costInfo.transport_index + '%' }"></div>
+                </div>
+              </div>
+              <div v-if="costInfo.grocery_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
+                <div class="text-base font-bold" :class="indexColor(costInfo.grocery_index, 'cost')">{{ costInfo.grocery_index }}</div>
+                <div class="text-[10px] text-gray-500">Groceries</div>
+                <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
+                  <div class="h-full rounded-full" :class="costBarClass(costInfo.grocery_index, 'cost')" :style="{ width: costInfo.grocery_index + '%' }"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3 text-[10px] text-gray-400 text-center">
+              Source: WhereNext (CC BY 4.0) · Lower index = cheaper
             </div>
           </template>
 
@@ -552,14 +597,39 @@
 import { ref, computed, onMounted, watch } from 'vue'
 import dataset from '../generated/country-dataset.json'
 import curatedInfoMap from '../generated/curated-country-info.json'
+import colDataRaw from '../generated/col-data.json'
 
-// ====== WHERENEXT API DATA ======
+// ====== COST OF LIVING DATA ======
+// Primary: generated col-data.json (from pipeline, cached)
+// Fallback: WhereNext direct API fetch
 const WHERENEXT_BASE = 'https://getwherenext.com'
 const whereNextCostIndex = ref([])
 const whereNextRelocIndex = ref([])
 const whereNextSalaries = ref([])
 const wnLoading = ref(true)
 const wnError = ref('')
+
+// Build a map from the generated col-data.json (keyed by ISO2 code)
+const colMap = computed(() => {
+  const map = {}
+  if (colDataRaw && typeof colDataRaw === 'object') {
+    for (const [code, data] of Object.entries(colDataRaw)) {
+      map[code.toUpperCase()] = {
+        monthly_estimate_usd: data.monthlyEstimateUSD,
+        rent_index: data.rentIndex,
+        utilities_index: data.utilitiesIndex,
+        transport_index: data.transportIndex,
+        cost_index: data.costOfLivingIndex,
+        grocery_index: data.groceriesIndex,
+        rank: data.rank,
+        region: data.region,
+        country: data.countryName,
+        source: data.source || 'generated',
+      }
+    }
+  }
+  return map
+})
 
 async function fetchWhereNextData() {
   try {
@@ -787,10 +857,32 @@ function dimDisplayVal(val, key) {
   return val
 }
 
+// For cost breakdown indexes (WhereNext scale: lower = cheaper)
+function indexColor(val, key) {
+  if (key === 'cost') {
+    if (val <= 33) return 'text-green-600 dark:text-green-400'
+    if (val <= 66) return 'text-yellow-600 dark:text-yellow-400'
+    return 'text-red-600 dark:text-red-400'
+  }
+  return 'text-gray-900 dark:text-gray-100'
+}
+
+function costBarClass(val, key) {
+  if (key === 'cost') {
+    if (val <= 33) return 'bg-green-500'
+    if (val <= 66) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
+  return 'bg-blue-500'
+}
+
 const costInfo = computed(() => {
   if (!selectedCountry.value) return null
-  const code = selectedCountry.value.code.toLowerCase()
-  return whereNextCostIndex.value.find(c => c.country_code === code) || null
+  const code = selectedCountry.value.code.toUpperCase()
+  // 1. Check generated COL data first (cached, reliable)
+  if (colMap.value[code]) return colMap.value[code]
+  // 2. Fallback to WhereNext direct fetch (case-insensitive)
+  return whereNextCostIndex.value.find(c => (c.country_code || '').toUpperCase() === code) || null
 })
 
 const relocInfo = computed(() => {

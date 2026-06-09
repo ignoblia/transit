@@ -9,9 +9,9 @@ description: Compare 25 countries on legal protections, healthcare access, safet
 
 This matrix compares **25 countries** across five key dimensions for transgender individuals considering relocation. Each dimension is scored 1–5 (5 being best). The [Equaldex Equality Index](https://www.equaldex.com/equality-index) score is provided for reference — note that it measures **LGBTQ+ equality broadly** and is not trans-specific.
 
-<div style="background: #fef9e7; border: 1px solid #f39c12; border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
-<strong>⚠️ Important:</strong> The Equaldex Equality Index measures LGBTQ+ equality broadly, including same-sex marriage, adoption rights, and sexual orientation laws. A high Equaldex score does not necessarily mean a country has good trans-specific healthcare, gender recognition, or community safety. This matrix provides trans-specific scoring to address that gap.
-</div>
+::: warning ⚠️ Important
+The Equaldex Equality Index measures LGBTQ+ equality broadly, including same-sex marriage, adoption rights, and sexual orientation laws. A high Equaldex score does not necessarily mean a country has good trans-specific healthcare, gender recognition, or community safety. This matrix provides trans-specific scoring to address that gap.
+:::
 
 ## Comparison Matrix
 

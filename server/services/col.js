@@ -46,15 +46,18 @@ async function fetchAll() {
       if (!code) continue
 
       result[code] = {
-        countryName: item.country_name || null,
+        countryName: item.country || item.country_name || null,
         countryCode: code,
-        costOfLivingIndex: item.cost_of_living_index ?? null,
+        // WhereNext uses cost_index (not cost_of_living_index)
+        costOfLivingIndex: item.cost_index ?? item.cost_of_living_index ?? null,
+        // WhereNext uses grocery_index (not groceries_index)
+        groceriesIndex: item.grocery_index ?? item.groceries_index ?? null,
         rentIndex: item.rent_index ?? null,
-        groceriesIndex: item.groceries_index ?? null,
         utilitiesIndex: item.utilities_index ?? null,
         transportIndex: item.transport_index ?? null,
         monthlyEstimateUSD: item.monthly_estimate_usd ?? null,
         rank: item.rank ?? null,
+        region: item.region ?? null,
         source: 'WhereNext (CC BY 4.0)',
       }
       count++

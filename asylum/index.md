@@ -83,9 +83,9 @@ Grant rates fluctuate year to year and depend on the applicant's country of orig
 - **France:** 45–60% (OFPRA has LGBTQ+ unit; process can be slow for some nationalities; appeals averaged 12–18 months)
 - **United States:** 30–50% (varies enormously by immigration court circuit; highly politicised; some circuits are far more favourable than others; current administration policy is rapidly evolving)
 
-<div style="background: #fef9e7; border: 1px solid #f39c12; border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
-<strong>⚠️ Important:</strong> Asylum grant rates change with government policy, court appointments, and geopolitical shifts. The data above reflects 2023–2025 trends. Always verify current rates with a qualified immigration lawyer or refugee support organisation before making decisions.
-</div>
+::: warning ⚠️ Important
+Asylum grant rates change with government policy, court appointments, and geopolitical shifts. The data above reflects 2023–2025 trends. Always verify current rates with a qualified immigration lawyer or refugee support organisation before making decisions.
+:::
 
 
 ## What Evidence You Need to Build a Credible Asylum Claim

@@ -9,9 +9,9 @@ description: Top trans-friendly countries per continent with budget picks and be
 
 Below are our top picks for trans-friendly relocation by continent. Each continent lists a **top score pick** (highest overall trans-friendliness), a **budget pick** (good rights at lower cost), and a **best for asylum seekers** pick (for those fleeing persecution). Rankings are based on trans-specific criteria: legal gender recognition model, healthcare access, safety, and community support — not just Equaldex scores.
 
-<div style="background: #fef9e7; border: 1px solid #f39c12; border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
-<strong>⚠️ About the Equaldex scores:</strong> The <a href="https://www.equaldex.com/equality-index">Equaldex Equality Index</a> measures LGBTQ+ equality broadly — including same-sex marriage, adoption, and sexual orientation laws. It is <strong>not trans-specific</strong>. A country with a high Equaldex score may still have barriers to trans healthcare, gender recognition, or community safety. Where possible, this page uses trans-specific criteria in addition to Equaldex data.
-</div>
+::: warning ⚠️ About the Equaldex scores
+The [Equaldex Equality Index](https://www.equaldex.com/equality-index) measures LGBTQ+ equality broadly — including same-sex marriage, adoption, and sexual orientation laws. It is **not trans-specific**. A country with a high Equaldex score may still have barriers to trans healthcare, gender recognition, or community safety. Where possible, this page uses trans-specific criteria in addition to Equaldex data.
+:::
 
 
 ## Europe

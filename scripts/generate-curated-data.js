@@ -131,6 +131,7 @@ const curatedData = {
     digitalNomadVisa: 'Freelancer visa (6 months, renewable)',
     euFreeMovement: true,
     notes: 'Self-ID law (SBGG) in force since 1 November 2024. Healthcare access varies significantly by region.',
+    regionalNote: 'Conditions vary by state (Bundesland). Berlin, Hamburg, and North Rhine-Westphalia are the most progressive with strong trans healthcare networks. Bavaria and Saxony are more conservative — access to care and social acceptance is noticeably more difficult. Research LGBTQ+ resources in your specific city before moving.',
     languageNote: 'German is the official language. English proficiency is high in cities and among younger people, especially in tech/startup hubs like Berlin. Learning German is important for bureaucracy and integration.',
     resourceLinks: {
       immigration: 'https://www.make-it-in-germany.com/',
@@ -307,6 +308,7 @@ const curatedData = {
     digitalNomadVisa: 'Global Talent visa; Youth Mobility (under 35)',
     euFreeMovement: false,
     notes: 'Post-Brexit; NHS has very long waiting lists for gender clinics.',
+    regionalNote: 'Scotland is significantly more progressive than England and Wales — Scotland has a self-ID system (Gender Recognition Reform Bill), while England requires a medical diagnosis. Northern Ireland is the most conservative. London, Manchester, and Edinburgh are the most trans-friendly cities. NHS Gender Identity Clinic wait times can exceed 5 years in England.',
     languageNote: 'English — no language barrier for English speakers. For non-native speakers, the UK offers extensive ESL programs and the NHS provides interpreter services.',
     resourceLinks: {
       immigration: 'https://www.gov.uk/browse/visas-immigration',
@@ -338,7 +340,8 @@ const curatedData = {
     safety: 3,
     digitalNomadVisa: 'Digital Nomad Visa (2024, new)',
     euFreeMovement: true,
-    notes: 'Conservative influence rising; safety varies by region.',
+    notes: 'Conservative influence rising; safety varies significantly by region.',
+    regionalNote: 'Northern Italy (Emilia-Romagna, Tuscany, Lombardy) is significantly more progressive with better trans healthcare access and community support. Southern Italy and rural areas are much more conservative. Rome and Milan have the strongest LGBTQ+ communities. Bologna is widely considered the most trans-friendly city in Italy.',
     languageNote: 'Italian is the official language. English is moderately spoken in tourist areas and among younger Italians, but proficiency is lower than in Northern Europe. Learning Italian is important for integration.',
     resourceLinks: {
       immigration: 'https://www.interno.gov.it/en',
@@ -548,6 +551,7 @@ const curatedData = {
     digitalNomadVisa: 'No specific visa; Express Entry or work permit',
     euFreeMovement: false,
     notes: 'Very progressive; publicly funded healthcare covers gender-affirming care.',
+    regionalNote: 'British Columbia and Ontario are the most trans-friendly provinces with strong healthcare networks and legal protections. Alberta and Saskatchewan are more conservative — recent legislation has targeted trans youth. Quebec has excellent healthcare but French-language requirements can be a barrier for newcomers. Atlantic provinces are generally safe but have fewer specialist resources.',
     languageNote: 'English and French are both federal official languages. English is the majority language in most provinces; French is dominant in Quebec. Most major cities are bilingual and welcoming to English speakers.',
     resourceLinks: {
       immigration: 'https://www.canada.ca/en/immigration-refugees-citizenship.html',
@@ -564,6 +568,7 @@ const curatedData = {
     digitalNomadVisa: 'Domestic: varies; International: ESTA/B-1',
     euFreeMovement: false,
     notes: 'Very polarized; some states have sanctuary laws, others have bans.',
+    regionalNote: 'Rights and safety vary dramatically by state. California, New York, Massachusetts, Washington, Oregon, Colorado, and Illinois are generally safe with strong legal protections and trans healthcare access. Texas, Florida, Tennessee, Alabama, Arkansas, and Oklahoma are increasingly hostile — recent laws restrict trans healthcare, bathroom access, and sports participation. If you must move to the US, choose a blue state and research local laws carefully. Even within safe states, rural areas can be conservative.',
     languageNote: 'No official language at federal level; English is the de facto national language. Spanish is widely spoken as a second language. Major cities are multilingual and very diverse.',
     resourceLinks: {
       immigration: 'https://www.uscis.gov/',
@@ -580,6 +585,7 @@ const curatedData = {
     digitalNomadVisa: 'Working Holiday Visa (under 35)',
     euFreeMovement: false,
     notes: 'Strong protections; healthcare varies by state.',
+    regionalNote: 'Victoria and New South Wales (Melbourne / Sydney) are the most progressive with self-ID and excellent trans healthcare. Queensland and the ACT also have good protections. Western Australia and South Australia are moderate. Tasmania has improved significantly but resources are more limited. Rural and remote areas across all states are significantly more conservative — avoid moving to Outback or regional towns as an openly trans person.',
     languageNote: 'English is the de facto national language. Australia is predominantly English-speaking. There are also over 250 Indigenous Australian languages.',
     resourceLinks: {
       immigration: 'https://immi.homeaffairs.gov.au/',
@@ -644,6 +650,7 @@ const curatedData = {
     digitalNomadVisa: 'Digital Nomad Visa (1 year, renewable)',
     euFreeMovement: false,
     notes: 'Strongest trans rights in LatAm; but high violence rates.',
+    regionalNote: 'São Paulo and Rio de Janeiro have the largest LGBTQ+ communities and best trans healthcare access but also high crime rates. Southern cities like Curitiba and Porto Alegre are more organized but socially conservative. The Northeast (Salvador, Recife, Fortaleza) has a vibrant queer culture but also high violence against trans people. Avoid rural areas entirely — Brazil has the highest trans murder rate in the world, concentrated outside major cities.',
     languageNote: 'Portuguese is the official language. English is not widely spoken outside tourist areas and business districts. Spanish is understood to some degree. Learning Portuguese is essential.',
     resourceLinks: {
       immigration: 'https://www.gov.br/mj/pt-br/',
@@ -763,6 +770,51 @@ const curatedData = {
       housing: 'https://www.sahibinden.com/',
       community: 'https://www.spod.org.tr/',
       languageLearning: 'https://www.turkishclass101.com/',
+    },
+  },
+  MX: {
+    rights: expandRights([2,1,1,0,1,1,1,0,1,0,1],
+      'Self-ID (varies by state)', 'Varies by state', 'Partial (federal protections, varies by state)'),
+    safety: 2,
+    digitalNomadVisa: 'Digital Nomad Visa (1 year)',
+    euFreeMovement: false,
+    notes: 'Mixed; progressive laws in CDMX, conservative states hostile.',
+    regionalNote: 'Mexico City (CDMX) is the safest and most progressive — self-ID is possible and there is a vibrant trans community. Jalisco (Guadalajara) and Baja California are moderate but with growing resources. States like Chihuahua, Nuevo León, Guanajuato, and most rural areas are very conservative and can be dangerous for trans people. Violence against trans women is extremely high across the country, especially outside major cities.',
+    resourceLinks: {
+      immigration: 'https://www.inm.gob.mx/',
+      transHealthcare: 'https://www.gob.mx/salud',
+      housing: 'https://www.inmuebles24.com/',
+      community: 'https://www.fundacionarcoiris.org.mx/',
+      languageLearning: 'https://www.duolingo.com/course/es/',
+    },
+  },
+  IN: {
+    rights: expandRights([1,0,0,0,0,0,0,1,1,1,1],
+      'Medicalized (surgery required)', 'Gatekeeping (very limited)', 'None (no federal anti-discrimination law)'),
+    safety: 2,
+    digitalNomadVisa: 'Digital Nomad Visa (2024, new)',
+    euFreeMovement: false,
+    notes: 'Legal protections exist on paper but social acceptance varies enormously.',
+    regionalNote: 'Conditions vary dramatically by state and city. Major metros like Mumbai, Delhi, Bangalore, and Kolkata are relatively safer with visible LGBTQ+ communities and some trans healthcare options. Kerala is the most progressive state overall. Rural areas and conservative states (Uttar Pradesh, Bihar, Madhya Pradesh, Rajasthan, Haryana) are extremely dangerous — violence and discrimination are rampant. The Transgender Persons Act 2019 provides some legal recognition but enforcement is weak.',
+    resourceLinks: {
+      immigration: 'https://www.indianvisaonline.gov.in/',
+      transHealthcare: 'https://www.mohfw.gov.in/',
+      housing: 'https://www.magicbricks.com/',
+      community: 'https://www.orimarglobal.org/',
+      languageLearning: 'https://www.multibhashi.com/',
+    },
+  },
+  RU: {
+    rights: expandRights([0,0,0,0,0,0,0,0,0,0,0],
+      'Banned (no recognition)', 'None (restricted)', 'None'),
+    safety: 1,
+    digitalNomadVisa: 'No specific visa; work visa required',
+    euFreeMovement: false,
+    notes: 'Extremely dangerous — "gay propaganda" law since 2013, LGBTQ+ "extremist" designation since 2023.',
+    regionalNote: 'Moscow and St Petersburg have small underground LGBTQ+ communities but it is extremely dangerous to be openly trans anywhere in Russia. Chechnya is the most dangerous region — known for government-sanctioned torture and killings of LGBTQ+ people. Since the 2023 Supreme Court ruling labeling the "international LGBTQ+ movement" as extremist, even private communications can lead to prosecution. Do not move to Russia.',
+    resourceLinks: {
+      immigration: 'https://www.mid.ru/en/',
+      community: 'https://www.lgbtnet.org/',
     },
   },
 }

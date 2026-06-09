@@ -124,6 +124,11 @@
                   ⚠️ If you are already here, see the <a href="/transit/emergency/" class="underline font-semibold">Emergency page</a>
                   for immediate safety resources.
                 </p>
+                <!-- Regional variation note -->
+                <div v-if="curatedInfo?.regionalNote" class="mt-3 pt-3 border-t" :class="safetyLevel.borderClass">
+                  <p class="text-xs font-semibold uppercase tracking-wider mb-1" :class="safetyLevel.metaClass">Regional Variation</p>
+                  <p class="text-xs leading-relaxed" :class="safetyLevel.textClass">{{ curatedInfo.regionalNote }}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -923,6 +928,7 @@ const safetyLevel = computed(() => {
     textClass: 'text-gray-700 dark:text-gray-300',
     metaClass: 'text-gray-500 dark:text-gray-400',
     linkClass: 'text-gray-400 dark:text-gray-500',
+    borderClass: 'border-gray-200 dark:border-gray-600',
     emergencyLink: false,
   }
 
@@ -937,6 +943,7 @@ const safetyLevel = computed(() => {
       textClass: 'text-red-700 dark:text-red-300',
       metaClass: 'text-red-600 dark:text-red-400',
       linkClass: 'text-red-500 dark:text-red-400',
+      borderClass: 'border-red-300 dark:border-red-700',
       emergencyLink: true,
     }
   }
@@ -951,6 +958,7 @@ const safetyLevel = computed(() => {
       textClass: 'text-orange-700 dark:text-orange-300',
       metaClass: 'text-orange-600 dark:text-orange-400',
       linkClass: 'text-orange-500 dark:text-orange-400',
+      borderClass: 'border-orange-300 dark:border-orange-700',
       emergencyLink: true,
     }
   }
@@ -965,6 +973,7 @@ const safetyLevel = computed(() => {
       textClass: 'text-yellow-700 dark:text-yellow-300',
       metaClass: 'text-yellow-600 dark:text-yellow-400',
       linkClass: 'text-yellow-500 dark:text-yellow-400',
+      borderClass: 'border-yellow-300 dark:border-yellow-700',
       emergencyLink: false,
     }
   }
@@ -979,6 +988,7 @@ const safetyLevel = computed(() => {
       textClass: 'text-green-700 dark:text-green-300',
       metaClass: 'text-green-600 dark:text-green-400',
       linkClass: 'text-green-500 dark:text-green-400',
+      borderClass: 'border-green-300 dark:border-green-700',
       emergencyLink: false,
     }
   }
@@ -993,6 +1003,7 @@ const safetyLevel = computed(() => {
     textClass: 'text-emerald-700 dark:text-emerald-300',
     metaClass: 'text-emerald-600 dark:text-emerald-400',
     linkClass: 'text-emerald-500 dark:text-emerald-400',
+    borderClass: 'border-emerald-300 dark:border-emerald-700',
     emergencyLink: false,
   }
 })

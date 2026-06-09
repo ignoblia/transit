@@ -1,32 +1,5 @@
 <template>
   <div class="max-w-5xl mx-auto pt-6 pb-8 px-4 sm:px-0">
-    <!-- ⚠️ Geolocation danger warning -->
-    <div
-      v-if="detectedCountryDanger"
-      class="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600"
-    >
-      <div class="flex items-start gap-3">
-        <span class="text-3xl flex-shrink-0">🚨</span>
-        <div>
-          <div class="text-lg font-bold text-red-800 dark:text-red-200">Safety Notice</div>
-          <p class="text-sm text-red-700 dark:text-red-300 mt-1">
-            We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>, which has severe legal restrictions for LGBTQ+ people.
-            If you're in danger or concerned about your safety, please visit the
-            <a href="/transit/emergency/" class="underline font-semibold hover:text-red-900 dark:hover:text-red-100">Emergency Resources page</a>.
-          </p>
-          <p class="text-xs text-red-500 dark:text-red-400 mt-1">
-            You can also press <kbd class="px-1.5 py-0.5 bg-red-200 dark:bg-red-800 rounded text-xs font-mono">Esc</kbd> 3× for an immediate safe exit.
-          </p>
-          <button
-            @click="detectedCountryDanger = false"
-            class="mt-2 text-xs font-medium text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 px-3 py-1 rounded-lg transition-colors"
-          >
-            Dismiss
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- Search bar -->
     <div class="relative mb-8">
       <div class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1">
@@ -766,8 +739,6 @@ onMounted(async () => {
 
 // ====== AUTO-DETECT USER COUNTRY ======
 const detectingCountry = ref(true)
-const detectedCountryName = ref('')
-const detectedCountryDanger = ref(false)
 
 async function autoDetectUserCountry() {
   try {
@@ -778,16 +749,9 @@ async function autoDetectUserCountry() {
     if (!countryCode) return
     // Find the country in the dataset by ISO code
     const match = dataset.find(c => c.code === countryCode)
-    if (match) {
-      // Check if user's country is dangerous
-      if (match.ei !== undefined && match.ei !== null && match.ei < 25) {
-        detectedCountryName.value = match.name
-        detectedCountryDanger.value = true
-      }
-      if (!selectedFromCountry.value) {
-        selectedFromCountry.value = match
-        fromQuery.value = match.name
-      }
+    if (match && !selectedFromCountry.value) {
+      selectedFromCountry.value = match
+      fromQuery.value = match.name
     }
   } catch (e) {
     // Silently fail — user can still type their country manually

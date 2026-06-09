@@ -64,20 +64,22 @@ app.get('/api/status', (req, res) => {
   const store = require('./db/store')
   const dataset = store.loadCountryDataset()
   const curated = store.loadCuratedInfo()
-  const numbeo = store.loadNumbeoData()
-  const teleport = store.loadTeleportData()
+  const economy = store.loadEconomyData()
+  const visa = store.loadVisaData()
+  const unhcr = store.loadUNHCRData()
 
   res.json({
     server: 'running',
     port: PORT,
     dataSources: {
       countryDataset: dataset ? `${dataset.length} countries` : 'not loaded',
-      curatedInfo: curated ? `${Object.keys(curated.data || curated).length} profiles` : 'not loaded',
-      numbeo: numbeo ? `${Object.keys(numbeo.data || {}).length} entries` : 'not loaded',
-      teleport: teleport ? `${Object.keys(teleport.data || {}).length} entries` : 'not loaded',
+      curatedInfo: curated ? `${Object.keys(curated).length} profiles` : 'not loaded',
+      economy: economy ? `${Object.keys(economy).length} entries` : 'not loaded',
+      visa: visa ? `${Object.keys(visa).length} entries` : 'not loaded',
+      unhcr: unhcr ? `${Object.keys(unhcr).length} entries` : 'not loaded',
     },
     lastRefresh: store.getLastRefreshTime(),
-    numbeoConfigured: !!process.env.NUMBEO_API_KEY,
+    freeDataSources: 'All core sources are free — no API keys needed',
   })
 })
 

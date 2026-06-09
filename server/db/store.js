@@ -93,31 +93,46 @@ class DataStore {
   }
 
   /**
-   * Load Numbeo data (cost of living).
+   * Load economy data (World Bank).
    */
-  loadNumbeoData() {
-    const filePath = path.join(GENERATED_DIR, 'numbeo-data.json')
+  loadEconomyData() {
+    const filePath = path.join(GENERATED_DIR, 'economy-data.json')
     try {
       if (fs.existsSync(filePath)) {
         return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
       }
     } catch (err) {
-      console.error('[Store] Error loading Numbeo data:', err.message)
+      console.error('[Store] Error loading economy data:', err.message)
     }
     return null
   }
 
   /**
-   * Load Teleport data (quality of life).
+   * Load visa requirements data.
    */
-  loadTeleportData() {
-    const filePath = path.join(GENERATED_DIR, 'teleport-data.json')
+  loadVisaData() {
+    const filePath = path.join(GENERATED_DIR, 'visa-data.json')
     try {
       if (fs.existsSync(filePath)) {
         return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
       }
     } catch (err) {
-      console.error('[Store] Error loading Teleport data:', err.message)
+      console.error('[Store] Error loading visa data:', err.message)
+    }
+    return null
+  }
+
+  /**
+   * Load UNHCR refugee/asylum data.
+   */
+  loadUNHCRData() {
+    const filePath = path.join(GENERATED_DIR, 'unhcr-data.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading UNHCR data:', err.message)
     }
     return null
   }
@@ -141,27 +156,27 @@ class DataStore {
 
   /**
    * Build and return the full merged country list.
-   * Joins: country-dataset × curated × numbeo × teleport
+   * Joins: country-dataset × curated × economy × visa × unhcr
    */
   getFullCountryList() {
     const dataset = this.loadCountryDataset()
     const curated = this.loadCuratedInfo()
-    const numbeo = this.loadNumbeoData()
-    const teleport = this.loadTeleportData()
+    const economy = this.loadEconomyData()
+    const visa = this.loadVisaData()
+    const unhcr = this.loadUNHCRData()
 
     if (!dataset) return []
-
-    const numbeoMap = numbeo?.data || {}
-    const teleportMap = teleport?.data || {}
 
     return dataset.map(c => ({
       ...c,
        // Curated info
        ...(curated?.[c.code] || {}),
-      // Numbeo cost of living
-      numbeo: numbeoMap[c.code] || null,
-      // Teleport quality of life
-      teleport: teleportMap[c.code] || null,
+      // World Bank economic data
+      economy: economy?.[c.code] || null,
+      // Visa requirements summary
+      visa: visa?.[c.code] || null,
+      // UNHCR refugee/asylum data
+      unhcr: unhcr?.[c.code] || null,
     }))
   }
 

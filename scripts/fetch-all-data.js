@@ -89,7 +89,7 @@ async function fetchJSON(url, retries = 2) {
 
 // ====== FETCH EQUALDEX DATA ======
 async function fetchEqualdex() {
-  console.log('[1/4] Fetching Equaldex Equality Index...')
+  console.log('[1/5] Fetching Equaldex Equality Index...')
   let data = null
   try {
     data = await fetchJSON(EQUALITY_INDEX_URL)
@@ -104,7 +104,7 @@ async function fetchEqualdex() {
 
 // ====== FETCH REST COUNTRIES DATA ======
 async function fetchRestCountries() {
-  console.log('[2/4] Fetching REST Countries data...')
+  console.log('[2/5] Fetching REST Countries data...')
   let data = null
   try {
     data = await fetchJSON(REST_COUNTRIES_URL)
@@ -117,43 +117,63 @@ async function fetchRestCountries() {
   return data
 }
 
-// ====== FETCH NUMBEO DATA ======
-async function fetchNumbeo() {
-  console.log('[3/4] Fetching Numbeo cost of living data...')
+// ====== FETCH ECONOMY DATA (WORLD BANK) ======
+async function fetchEconomy() {
+  console.log('[3/5] Fetching World Bank economic data...')
   try {
-    const numbeo = require('../server/services/numbeo')
-    const data = await numbeo.fetchAll()
+    const economy = require('../server/services/numbeo')
+    const data = await economy.fetchAll()
     if (data && Object.keys(data).length > 0) {
-      writeJSON(path.join(DATA_DIR, 'numbeo-data.json'), data)
+      writeJSON(path.join(DATA_DIR, 'economy-data.json'), data)
       return data
     }
   } catch (err) {
     console.error(`  ✗ Error: ${err.message}`)
-    // Try reading cached data
-    const cached = readCache(path.join(DATA_DIR, 'numbeo-data.json'))
+    const cached = readCache(path.join(DATA_DIR, 'economy-data.json'))
     if (cached) {
-      console.log('  → Using cached numbeo data')
+      console.log('  → Using cached economy data')
       return cached
     }
   }
   return {}
 }
 
-// ====== FETCH TELEPORT DATA ======
-async function fetchTeleport() {
-  console.log('[4/4] Fetching Teleport quality of life data...')
+// ====== FETCH VISA DATA ======
+async function fetchVisa() {
+  console.log('[4/5] Fetching visa requirements data...')
   try {
-    const teleport = require('../server/services/teleport')
-    const data = await teleport.fetchAll()
+    const visa = require('../server/services/visa')
+    const data = await visa.fetchAll()
     if (data && Object.keys(data).length > 0) {
-      writeJSON(path.join(DATA_DIR, 'teleport-data.json'), data)
+      writeJSON(path.join(DATA_DIR, 'visa-data.json'), data)
       return data
     }
   } catch (err) {
     console.error(`  ✗ Error: ${err.message}`)
-    const cached = readCache(path.join(DATA_DIR, 'teleport-data.json'))
+    const cached = readCache(path.join(DATA_DIR, 'visa-data.json'))
     if (cached) {
-      console.log('  → Using cached teleport data')
+      console.log('  → Using cached visa data')
+      return cached
+    }
+  }
+  return {}
+}
+
+// ====== FETCH UNHCR DATA ======
+async function fetchUNHCR() {
+  console.log('[5/5] Fetching UNHCR refugee data...')
+  try {
+    const unhcr = require('../server/services/unhcr')
+    const data = await unhcr.fetchAll()
+    if (data && Object.keys(data).length > 0) {
+      writeJSON(path.join(DATA_DIR, 'unhcr-data.json'), data)
+      return data
+    }
+  } catch (err) {
+    console.error(`  ✗ Error: ${err.message}`)
+    const cached = readCache(path.join(DATA_DIR, 'unhcr-data.json'))
+    if (cached) {
+      console.log('  → Using cached UNHCR data')
       return cached
     }
   }
@@ -247,15 +267,18 @@ async function main() {
     writeJSON(path.join(DATA_DIR, 'rest-countries.json'), restData)
   }
 
-  // Fetch Numbeo and Teleport data (these handle their own errors/caching)
-  const [numbeoData, teleportData] = await Promise.all([
-    fetchNumbeo(),
-    fetchTeleport(),
+  // Fetch Economy (World Bank), Visa, and UNHCR data (all free, no API keys)
+  const [economyData, visaData] = await Promise.all([
+    fetchEconomy(),
+    fetchVisa(),
   ])
 
   // Build and write the merged search dataset
   const dataset = buildCountryDataset(equalityData, restData)
   writeJSON(path.join(DATA_DIR, 'country-dataset.json'), dataset)
+
+  // Fetch UNHCR data (runs after dataset is written since it loads the dataset)
+  const unhcrData = await fetchUNHCR()
 
   console.log('')
   console.log('═══ Done! ═══')

@@ -138,6 +138,21 @@ class DataStore {
   }
 
   /**
+   * Load cost of living data (WhereNext).
+   */
+  loadCOLData() {
+    const filePath = path.join(GENERATED_DIR, 'col-data.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading cost of living data:', err.message)
+    }
+    return null
+  }
+
+  /**
    * Save data to a JSON file in the generated directory.
    */
   saveData(filename, data) {
@@ -156,12 +171,13 @@ class DataStore {
 
   /**
    * Build and return the full merged country list.
-   * Joins: country-dataset × curated × economy × visa × unhcr
+   * Joins: country-dataset × curated × economy × col × visa × unhcr
    */
   getFullCountryList() {
     const dataset = this.loadCountryDataset()
     const curated = this.loadCuratedInfo()
     const economy = this.loadEconomyData()
+    const col = this.loadCOLData()
     const visa = this.loadVisaData()
     const unhcr = this.loadUNHCRData()
 
@@ -173,6 +189,8 @@ class DataStore {
        ...(curated?.[c.code] || {}),
       // World Bank economic data
       economy: economy?.[c.code] || null,
+      // Cost of living data (WhereNext)
+      costOfLiving: col?.[c.code] || null,
       // Visa requirements summary
       visa: visa?.[c.code] || null,
       // UNHCR refugee/asylum data

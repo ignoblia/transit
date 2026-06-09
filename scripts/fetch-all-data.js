@@ -1,11 +1,13 @@
 /**
- * Fetches data from multiple APIs for the TransIT search feature.
+ * Fetches data from multiple free APIs for the TransIT search feature.
  *
  * Sources:
  *   - Equaldex Equality Index (LGBTQ+ rights scores)
  *   - REST Countries (flags, capitals, regions, populations)
- *   - Numbeo (cost of living indices — requires API key in .env)
- *   - Teleport (quality of life scores — free, open API)
+ *   - World Bank (economic indicators: GDP, unemployment, GINI)
+ *   - WhereNext (cost of living data — free, no key, CC BY 4.0)
+ *   - passport-index-data GitHub (visa requirements — free, CC-licensed)
+ *   - UNHCR (refugee/asylum data — free, public API)
  *
  * Run: node scripts/fetch-all-data.js
  * Called automatically before `vitepress build`
@@ -89,7 +91,7 @@ async function fetchJSON(url, retries = 2) {
 
 // ====== FETCH EQUALDEX DATA ======
 async function fetchEqualdex() {
-  console.log('[1/5] Fetching Equaldex Equality Index...')
+  console.log('[1/6] Fetching Equaldex Equality Index...')
   let data = null
   try {
     data = await fetchJSON(EQUALITY_INDEX_URL)
@@ -104,7 +106,7 @@ async function fetchEqualdex() {
 
 // ====== FETCH REST COUNTRIES DATA ======
 async function fetchRestCountries() {
-  console.log('[2/5] Fetching REST Countries data...')
+  console.log('[2/6] Fetching REST Countries data...')
   let data = null
   try {
     data = await fetchJSON(REST_COUNTRIES_URL)
@@ -119,7 +121,7 @@ async function fetchRestCountries() {
 
 // ====== FETCH ECONOMY DATA (WORLD BANK) ======
 async function fetchEconomy() {
-  console.log('[3/5] Fetching World Bank economic data...')
+  console.log('[3/6] Fetching World Bank economic data...')
   try {
     const economy = require('../server/services/numbeo')
     const data = await economy.fetchAll()
@@ -140,7 +142,7 @@ async function fetchEconomy() {
 
 // ====== FETCH VISA DATA ======
 async function fetchVisa() {
-  console.log('[4/5] Fetching visa requirements data...')
+  console.log('[4/6] Fetching visa requirements data...')
   try {
     const visa = require('../server/services/visa')
     const data = await visa.fetchAll()
@@ -159,9 +161,30 @@ async function fetchVisa() {
   return {}
 }
 
+// ====== FETCH COL DATA (WHERENEXT) ======
+async function fetchCOL() {
+  console.log('[5/6] Fetching cost of living data from WhereNext...')
+  try {
+    const col = require('../server/services/col')
+    const data = await col.fetchAll()
+    if (data && Object.keys(data).length > 0) {
+      writeJSON(path.join(DATA_DIR, 'col-data.json'), data)
+      return data
+    }
+  } catch (err) {
+    console.error(`  ✗ Error: ${err.message}`)
+    const cached = readCache(path.join(DATA_DIR, 'col-data.json'))
+    if (cached) {
+      console.log('  → Using cached cost of living data')
+      return cached
+    }
+  }
+  return {}
+}
+
 // ====== FETCH UNHCR DATA ======
 async function fetchUNHCR() {
-  console.log('[5/5] Fetching UNHCR refugee data...')
+  console.log('[6/6] Fetching UNHCR refugee data...')
   try {
     const unhcr = require('../server/services/unhcr')
     const data = await unhcr.fetchAll()
@@ -267,10 +290,11 @@ async function main() {
     writeJSON(path.join(DATA_DIR, 'rest-countries.json'), restData)
   }
 
-  // Fetch Economy (World Bank), Visa, and UNHCR data (all free, no API keys)
-  const [economyData, visaData] = await Promise.all([
+  // Fetch Economy (World Bank), Visa, and Cost of Living (all free, no API keys)
+  const [economyData, visaData, colData] = await Promise.all([
     fetchEconomy(),
     fetchVisa(),
+    fetchCOL(),
   ])
 
   // Build and write the merged search dataset

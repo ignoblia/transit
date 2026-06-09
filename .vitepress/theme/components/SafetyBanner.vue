@@ -13,7 +13,7 @@
             We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>,
             which has severe legal restrictions for LGBTQ+ people.
             If you're in danger or concerned about your safety, please visit the
-            <a href="/transit/emergency/" class="safety-banner-link">Emergency Resources page →</a>.
+            <a href="/transit/emergency/" class="safety-banner-link" @click="dismiss">Emergency Resources page →</a>.
           </p>
           <p class="safety-banner-footer">
             Press <kbd class="safety-banner-kbd">Esc</kbd> 3× for an immediate safe exit

@@ -37,13 +37,13 @@
  *     costOfLivingScore: ...,
  *     cityScores: [...]}
  *   },
- *   // Numbeo data (Phase 1)
- *   numbeo: {
- *     costOfLivingIndex: ...,
+ *   // Cost of living data (WhereNext, CC BY 4.0)
+ *   costOfLiving: {
+ *     monthlyEstimateUSD: ...,
  *     rentIndex: ...,
- *     groceriesIndex: ...,
- *     restaurantPriceIndex: ...,
- *     localPurchasingPower: ...,
+ *     utilitiesIndex: ...,
+ *     transportIndex: ...,
+ *     costOfLivingIndex: ...,
  *   },
  *   // Metadata
  *   lastUpdated: "2026-06-08T...",

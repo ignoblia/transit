@@ -5,8 +5,8 @@
  *   - Basic info (name, code, flag, capital, region, population)
  *   - Equaldex equality scores
  *   - Curated trans-specific data (rights, safety, visa notes, language)
- *   - Numbeo cost of living indices
- *   - Teleport quality of life scores
+ *   - WhereNext cost of living data (free, CC BY 4.0)
+ *   - World Bank economic indicators (GDP, unemployment, GINI)
  *
  * Query params:
  *   ?code=DE       — Filter by country code (ISO alpha-2)
@@ -66,7 +66,7 @@ router.get('/', (req, res) => {
       let aVal = a[sortField]
       let bVal = b[sortField]
 
-      // Handle nested fields (e.g., numbeo.costOfLivingIndex)
+      // Handle nested fields (e.g., costOfLiving.monthlyEstimateUSD)
       if (sortField.includes('.')) {
         const parts = sortField.split('.')
         aVal = parts.reduce((o, k) => o?.[k], a)

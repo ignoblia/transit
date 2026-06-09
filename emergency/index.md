@@ -178,4 +178,4 @@ Bridge care while establishing local providers
 ```
 
 
-*Last verified: June 2026. Information for individuals in immediate crisis. Country situations change rapidly — verify current conditions with support organisations before acting.*
+*Last verified: June 8, 2026. Information for individuals in immediate crisis. Country situations change rapidly — verify current conditions with support organisations before acting.*

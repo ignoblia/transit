@@ -1,7 +1,9 @@
 node_modules
+server/node_modules
 .vitepress/cache
 .vitepress/dist
 .vitepress/theme/generated
 .DS_Store
 *.local
+.env
 .opencode

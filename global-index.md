@@ -17,34 +17,34 @@ This matrix compares **25 countries** across five key dimensions for transgender
 
 | Country | ⚠️ Rapidly Changing? | Legal (1–5) | Healthcare (1–5) | Safety (1–5) | Cost (1=Expensive, 5=Affordable) | Visa Access (1–5) | Equaldex Score | Last Verified |
 |---------|----------------------|-------------|------------------|-------------|----------------------------------|-------------------|----------------|---------------|
-| **Argentina** | No | 5 | 5 | 3 | 4 | 3 | 87 | June 2026 |
-| **Australia** | No | 4 | 4 | 4 | 3 | 3 | 83 | June 2026 |
-| **Belgium** | No | 5 | 4 | 4 | 3 | 3 | 91 | June 2026 |
-| **Brazil** | Yes | 4 | 4 | 2 | 4 | 3 | 75 | June 2026 |
-| **Canada** | No | 5 | 5 | 5 | 2 | 3 | 92 | June 2026 |
-| **Chile** | No | 4 | 3 | 3 | 4 | 3 | 74 | June 2026 |
-| **Costa Rica** | No | 4 | 3 | 4 | 4 | 3 | 82 | June 2026 |
-| **Denmark** | No | 5 | 5 | 5 | 2 | 3 | 90 | June 2026 |
-| **Finland** | No | 5 | 4 | 5 | 2 | 3 | 86 | June 2026 |
-| **France** | No | 4 | 3 | 3 | 3 | 3 | 88 | June 2026 |
-| **Germany** | No | 5 | 4 | 4 | 3 | 4 | 87 | June 2026 |
-| **Iceland** | No | 5 | 4 | 5 | 1 | 3 | 93 | June 2026 |
-| **Ireland** | No | 5 | 4 | 4 | 2 | 3 | 87 | June 2026 |
-| **Japan** | No | 2 | 2 | 3 | 2 | 3 | 33 | June 2026 |
-| **Malta** | No | 5 | 5 | 5 | 3 | 2 | 93 | June 2026 |
-| **Mexico** | No | 3 | 3 | 3 | 4 | 3 | 65 | June 2026 |
-| **Netherlands** | No | 5 | 5 | 5 | 2 | 3 | 94 | June 2026 |
-| **New Zealand** | No | 5 | 5 | 5 | 2 | 3 | 84 | June 2026 |
-| **Norway** | No | 5 | 5 | 5 | 1 | 3 | 87 | June 2026 |
-| **Portugal** | No | 5 | 4 | 4 | 4 | 4 | 84 | June 2026 |
-| **South Africa** | No | 3 | 2 | 1 | 4 | 3 | 58 | June 2026 |
-| **Spain** | No | 5 | 4 | 4 | 3 | 4 | 89 | June 2026 |
-| **Sweden** | No | 5 | 4 | 5 | 2 | 3 | 86 | June 2026 |
-| **Switzerland** | No | 4 | 4 | 4 | 1 | 3 | 78 | June 2026 |
-| **Taiwan** | No | 3 | 3 | 4 | 4 | 3 | 60 | June 2026 |
-| **Thailand** | No | 3 | 4 | 3 | 5 | 3 | 48 | June 2026 |
-| **United Kingdom** | <Badge type="danger" text="Yes" /> | 3 | 2 | 3 | 2 | 3 | 68 | June 2026 |
-| **United States** | <Badge type="danger" text="Yes" /> | 2 | 2 | 2 | 2 | 2 | 78 | June 2026 |
+| **Argentina** | No | 5 | 5 | 3 | 4 | 3 | 87 | June 8, 2026 |
+| **Australia** | No | 4 | 4 | 4 | 3 | 3 | 83 | June 8, 2026 |
+| **Belgium** | No | 5 | 4 | 4 | 3 | 3 | 91 | June 8, 2026 |
+| **Brazil** | Yes | 4 | 4 | 2 | 4 | 3 | 75 | June 8, 2026 |
+| **Canada** | No | 5 | 5 | 5 | 2 | 3 | 92 | June 8, 2026 |
+| **Chile** | No | 4 | 3 | 3 | 4 | 3 | 74 | June 8, 2026 |
+| **Costa Rica** | No | 4 | 3 | 4 | 4 | 3 | 82 | June 8, 2026 |
+| **Denmark** | No | 5 | 5 | 5 | 2 | 3 | 90 | June 8, 2026 |
+| **Finland** | No | 5 | 4 | 5 | 2 | 3 | 86 | June 8, 2026 |
+| **France** | No | 4 | 3 | 3 | 3 | 3 | 88 | June 8, 2026 |
+| **Germany** | No | 5 | 4 | 4 | 3 | 4 | 87 | June 8, 2026 |
+| **Iceland** | No | 5 | 4 | 5 | 1 | 3 | 93 | June 8, 2026 |
+| **Ireland** | No | 5 | 4 | 4 | 2 | 3 | 87 | June 8, 2026 |
+| **Japan** | No | 2 | 2 | 3 | 2 | 3 | 33 | June 8, 2026 |
+| **Malta** | No | 5 | 5 | 5 | 3 | 2 | 93 | June 8, 2026 |
+| **Mexico** | No | 3 | 3 | 3 | 4 | 3 | 65 | June 8, 2026 |
+| **Netherlands** | No | 5 | 5 | 5 | 2 | 3 | 94 | June 8, 2026 |
+| **New Zealand** | No | 5 | 5 | 5 | 2 | 3 | 84 | June 8, 2026 |
+| **Norway** | No | 5 | 5 | 5 | 1 | 3 | 87 | June 8, 2026 |
+| **Portugal** | No | 5 | 4 | 4 | 4 | 4 | 84 | June 8, 2026 |
+| **South Africa** | No | 3 | 2 | 1 | 4 | 3 | 58 | June 8, 2026 |
+| **Spain** | No | 5 | 4 | 4 | 3 | 4 | 89 | June 8, 2026 |
+| **Sweden** | No | 5 | 4 | 5 | 2 | 3 | 86 | June 8, 2026 |
+| **Switzerland** | No | 4 | 4 | 4 | 1 | 3 | 78 | June 8, 2026 |
+| **Taiwan** | No | 3 | 3 | 4 | 4 | 3 | 60 | June 8, 2026 |
+| **Thailand** | No | 3 | 4 | 3 | 5 | 3 | 48 | June 8, 2026 |
+| **United Kingdom** | <Badge type="danger" text="Yes" /> | 3 | 2 | 3 | 2 | 3 | 68 | June 8, 2026 |
+| **United States** | <Badge type="danger" text="Yes" /> | 2 | 2 | 2 | 2 | 2 | 78 | June 8, 2026 |
 
 <div style="background: #fef2f2; border: 1px solid #dc2626; border-radius: 8px; padding: 1rem; margin: 1.5rem 0;">
 <strong>⚠️ Countries with active legislative rollback or rapidly changing situations:</strong> USA (state-level bans on trans healthcare, bathroom access, drag performance; federal protections shift with administration), UK (ongoing political debate on trans rights; NHS gender clinic waiting lists exceeding 5 years; conversion therapy ban stalled), Hungary (anti-LGBTQ+ laws since 2020; ban on legal gender recognition since 2020; "child protection" law restricts LGBTQ+ content), Russia (banned "international LGBT movement" as extremist in 2023; gender recognition effectively impossible; criminal penalties for "LGBTQ+ propaganda"), Brazil (strong laws but rising political violence; 2023–2025 saw anti-trans hate crime increases). Always verify current conditions before making decisions based on this matrix.
@@ -116,4 +116,4 @@ Based on: availability of digital nomad/remote work visas, ease of work visa spo
 - [Transgender Europe (TGEU)](https://tgeu.org): Trans advocacy in Europe
 
 
-*Scores are based on research from ILGA, TGEU, Equaldex, government sources, community reports, and legal databases as of June 2026. Scores are simplified indicators and should not replace detailed country-specific research. Always verify current conditions with official sources and local trans organisations before making relocation decisions.*
+*Scores are based on research from ILGA, TGEU, Equaldex, government sources, community reports, and legal databases as of June 8, 2026. Scores are simplified indicators and should not replace detailed country-specific research. Always verify current conditions with official sources and local trans organisations before making relocation decisions.*

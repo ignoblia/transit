@@ -15,7 +15,7 @@ description: "Comprehensive guide to Malta for transgender relocation: legal rec
 | **EU Member** | Yes |
 | **Equaldex Score** | 93 |
 | **Trans-Specific Rating** | 5/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -76,4 +76,4 @@ Malta's small size means there are limited specialist options. For complex care,
 7. **Not ideal for asylum seekers** — small island with limited refugee infrastructure. Germany or Canada are better options.
 
 
-*Sources: ILGA Europe, Malta LGBTIQ+ Rights Movement, TGEU, Equaldex. Last verified: June 2026.*
+*Sources: ILGA Europe, Malta LGBTIQ+ Rights Movement, TGEU, Equaldex. Last verified: June 8, 2026.*

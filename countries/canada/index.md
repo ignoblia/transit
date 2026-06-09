@@ -14,7 +14,7 @@ description: "Comprehensive guide to Canada for transgender relocation: legal re
 | **Currency** | Canadian Dollar (CAD) |
 | **Equaldex Score** | 92 |
 | **Trans-Specific Rating** | 5/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -148,4 +148,4 @@ Canada's publicly funded healthcare system covers gender-affirming care, but the
 **Canada offers some of the best trans rights in the world, combined with a large community and strong asylum system. The main barriers are cost of living, immigration competitiveness, and harsh winters.**
 
 
-*Sources: Government of Canada (IRCC, CHRC), Rainbow Health Ontario, Trans Care BC, The 519, TGEU, Equaldex, community reports. Last verified: June 2026.*
+*Sources: Government of Canada (IRCC, CHRC), Rainbow Health Ontario, Trans Care BC, The 519, TGEU, Equaldex, community reports. Last verified: June 8, 2026.*

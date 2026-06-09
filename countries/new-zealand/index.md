@@ -14,7 +14,7 @@ description: "Comprehensive guide to New Zealand for transgender relocation: leg
 | **Currency** | New Zealand Dollar (NZD) |
 | **Equaldex Score** | 84 |
 | **Trans-Specific Rating** | 5/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -72,4 +72,4 @@ description: "Comprehensive guide to New Zealand for transgender relocation: leg
 5. **Distance from support networks** if you are from Europe or the Americas
 
 
-*Sources: Gender Minorities Aotearoa, Human Rights Commission NZ, TGEU, Equaldex. Last verified: June 2026.*
+*Sources: Gender Minorities Aotearoa, Human Rights Commission NZ, TGEU, Equaldex. Last verified: June 8, 2026.*

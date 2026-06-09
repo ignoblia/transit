@@ -253,4 +253,4 @@ This is one of the hardest parts of relocation as a trans person: your documents
 The [Equaldex Equality Index](https://www.equaldex.com/equality-index) is referenced throughout this site. It measures **LGBTQ+ equality broadly** — it includes sexual orientation and gender identity rights but does not specifically measure trans-specific protections. A country with a high Equaldex score does not necessarily have good trans-specific healthcare, gender recognition, or community safety. Wherever possible, use trans-specific sources (TGEU, ILGA trans rights data, community reports) in addition to Equaldex.
 
 
-*Last verified: June 2026. Costs and visa fees change. Check official government websites for current income thresholds, visa fees, and processing times before making financial commitments.*
+*Last verified: June 8, 2026. Costs and visa fees change. Check official government websites for current income thresholds, visa fees, and processing times before making financial commitments.*

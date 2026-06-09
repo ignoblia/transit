@@ -1,0 +1,194 @@
+/**
+ * Data store for TransIT API.
+ *
+ * Currently uses JSON files on disk (backed by the build pipeline).
+ * Designed so the interface can stay the same when swapping to PostgreSQL.
+ *
+ * Schema for a country entry:
+ * {
+ *   code: "DE",           // ISO 3166-1 alpha-2
+ *   name: "Germany",
+ *   // Equaldex data
+ *   ei: 87,
+ *   ei_legal: ...,
+ *   ei_po: ...,
+ *   rank: 12,
+ *   // REST Countries data
+ *   flag: "https://...",
+ *   capital: "Berlin",
+ *   region: "Europe",
+ *   population: 83200000,
+ *   languages: ["German"],
+ *   currencies: ["EUR"],
+ *   continent: "Europe",
+ *   // Curated data
+ *   safety: 4,
+ *   digitalNomadVisa: "Freelancer visa...",
+ *   euFreeMovement: true,
+ *   languageNote: "...",
+ *   notes: "...",
+ *   resourceLinks: { ... },
+ *   // Teleport data (Phase 1)
+ *   teleport: {
+ *     housingScore: ...,
+ *     healthcareScore: ...,
+ *     educationScore: ...,
+ *     safetyScore: ...,
+ *     costOfLivingScore: ...,
+ *     cityScores: [...]}
+ *   },
+ *   // Numbeo data (Phase 1)
+ *   numbeo: {
+ *     costOfLivingIndex: ...,
+ *     rentIndex: ...,
+ *     groceriesIndex: ...,
+ *     restaurantPriceIndex: ...,
+ *     localPurchasingPower: ...,
+ *   },
+ *   // Metadata
+ *   lastUpdated: "2026-06-08T...",
+ *   dataSource: "api"     // "api" or "cache"
+ * }
+ */
+
+const fs = require('fs')
+const path = require('path')
+const dotenv = require('dotenv')
+
+dotenv.config({ path: path.join(__dirname, '..', '..', '.env') })
+
+// Path to the generated data files from the build pipeline
+const GENERATED_DIR = path.join(__dirname, '..', '..', '.vitepress', 'theme', 'generated')
+
+class DataStore {
+  /**
+   * Load the merged country dataset from the build pipeline.
+   * Returns null if the file doesn't exist yet.
+   */
+  loadCountryDataset() {
+    const filePath = path.join(GENERATED_DIR, 'country-dataset.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading country dataset:', err.message)
+    }
+    return null
+  }
+
+  /**
+   * Load curated country info (rights, safety, visa notes, etc.)
+   */
+  loadCuratedInfo() {
+    const filePath = path.join(GENERATED_DIR, 'curated-country-info.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading curated info:', err.message)
+    }
+    return null
+  }
+
+  /**
+   * Load Numbeo data (cost of living).
+   */
+  loadNumbeoData() {
+    const filePath = path.join(GENERATED_DIR, 'numbeo-data.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading Numbeo data:', err.message)
+    }
+    return null
+  }
+
+  /**
+   * Load Teleport data (quality of life).
+   */
+  loadTeleportData() {
+    const filePath = path.join(GENERATED_DIR, 'teleport-data.json')
+    try {
+      if (fs.existsSync(filePath)) {
+        return JSON.parse(fs.readFileSync(filePath, 'utf-8'))
+      }
+    } catch (err) {
+      console.error('[Store] Error loading Teleport data:', err.message)
+    }
+    return null
+  }
+
+  /**
+   * Save data to a JSON file in the generated directory.
+   */
+  saveData(filename, data) {
+    const filePath = path.join(GENERATED_DIR, filename)
+    if (!fs.existsSync(GENERATED_DIR)) {
+      fs.mkdirSync(GENERATED_DIR, { recursive: true })
+    }
+    // Add a metadata wrapper with timestamp
+    const wrapped = {
+      lastUpdated: new Date().toISOString(),
+      data
+    }
+    fs.writeFileSync(filePath, JSON.stringify(wrapped, null, 2), 'utf-8')
+    console.log(`[Store] Saved ${filename}`)
+  }
+
+  /**
+   * Build and return the full merged country list.
+   * Joins: country-dataset × curated × numbeo × teleport
+   */
+  getFullCountryList() {
+    const dataset = this.loadCountryDataset()
+    const curated = this.loadCuratedInfo()
+    const numbeo = this.loadNumbeoData()
+    const teleport = this.loadTeleportData()
+
+    if (!dataset) return []
+
+    const numbeoMap = numbeo?.data || {}
+    const teleportMap = teleport?.data || {}
+
+    return dataset.map(c => ({
+      ...c,
+       // Curated info
+       ...(curated?.[c.code] || {}),
+      // Numbeo cost of living
+      numbeo: numbeoMap[c.code] || null,
+      // Teleport quality of life
+      teleport: teleportMap[c.code] || null,
+    }))
+  }
+
+  /**
+   * Get a single country by ISO code.
+   */
+  getCountry(code) {
+    const all = this.getFullCountryList()
+    return all.find(c => c.code === code.toUpperCase()) || null
+  }
+
+  /**
+   * Get the timestamp of the last successful data refresh.
+   */
+  getLastRefreshTime() {
+    const dataset = this.loadCountryDataset()
+    if (!dataset) return null
+
+    // Check when the dataset was last modified
+    const filePath = path.join(GENERATED_DIR, 'country-dataset.json')
+    try {
+      const stat = fs.statSync(filePath)
+      return stat.mtime.toISOString()
+    } catch {
+      return null
+    }
+  }
+}
+
+module.exports = new DataStore()

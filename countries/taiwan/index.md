@@ -13,7 +13,7 @@ description: "Trans relocation guide for Taiwan: legal overview, visa options, c
 | **Currency** | New Taiwan Dollar (TWD) |
 | **Equaldex Score** | 60 |
 | **Trans-Specific Rating** | 3/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -54,4 +54,4 @@ Taiwan is the most progressive country for LGBTQ+ rights in Asia. Same-sex marri
 - **Asylum:** Not available for LGBTQ+ claims
 
 
-*Sources: Taiwan Alliance to Promote Civil Partnership Rights, ILGA, Equaldex. Last verified: June 2026.*
+*Sources: Taiwan Alliance to Promote Civil Partnership Rights, ILGA, Equaldex. Last verified: June 8, 2026.*

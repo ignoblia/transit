@@ -34,4 +34,4 @@ Select a country below for a detailed profile covering legal recognition, health
 | [Thailand](/countries/thailand/) | 3/5 | Affordable healthcare, large trans community, no legal protections |
 
 
-*All profiles last verified: June 2026. Country situations change — always verify current conditions with official sources and local trans organisations.*
+*All profiles last verified: June 8, 2026. Country situations change — always verify current conditions with official sources and local trans organisations.*

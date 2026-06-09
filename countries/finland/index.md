@@ -15,7 +15,7 @@ description: "Comprehensive guide to Finland for transgender relocation: legal r
 | **EU Member** | Yes |
 | **Equaldex Score** | 86 |
 | **Trans-Specific Rating** | 4/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -65,4 +65,4 @@ description: "Comprehensive guide to Finland for transgender relocation: legal r
 5. **High alcohol prices** and limited social life outside Helsinki.
 
 
-*Sources: Seta (LGBTQ+ organisation), HUS Gender Identity Clinic, TGEU, Equaldex. Last verified: June 2026.*
+*Sources: Seta (LGBTQ+ organisation), HUS Gender Identity Clinic, TGEU, Equaldex. Last verified: June 8, 2026.*

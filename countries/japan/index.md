@@ -13,7 +13,7 @@ description: "Trans relocation guide for Japan: legal overview, visa options, co
 | **Currency** | Japanese Yen (JPY) |
 | **Equaldex Score** | 33 |
 | **Trans-Specific Rating** | 2/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -54,4 +54,4 @@ description: "Trans relocation guide for Japan: legal overview, visa options, co
 - **Asylum:** Not available for LGBTQ+ claims
 
 
-*Sources: ILGA, Equaldex, Japan Transgender Association. Last verified: June 2026.*
+*Sources: ILGA, Equaldex, Japan Transgender Association. Last verified: June 8, 2026.*

@@ -267,4 +267,4 @@ If your documents do not match (e.g., different gender markers on passport vs. b
 - [IATA Travel Centre](https://www.iatatravelcentre.com): Visa and transit requirements
 
 
-*Last verified: June 2026. Laws, visa policies, and healthcare systems change. Always verify current requirements with official sources and local trans organisations before making decisions. These checklists are a framework — adapt them to your specific circumstances, destination, and risk profile.*
+*Last verified: June 8, 2026. Laws, visa policies, and healthcare systems change. Always verify current requirements with official sources and local trans organisations before making decisions. These checklists are a framework — adapt them to your specific circumstances, destination, and risk profile.*

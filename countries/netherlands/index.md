@@ -15,7 +15,7 @@ description: "Comprehensive guide to the Netherlands for transgender relocation:
 | **EU Member** | Yes |
 | **Equaldex Score** | 94 |
 | **Trans-Specific Rating** | 5/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -69,4 +69,4 @@ description: "Comprehensive guide to the Netherlands for transgender relocation:
 5. **Healthcare deductible:** €385/year (2025) must be paid before insurance covers most care
 
 
-*Sources: COC Nederland, Transgender Netwerk Nederland, TGEU, Equaldex. Last verified: June 2026.*
+*Sources: COC Nederland, Transgender Netwerk Nederland, TGEU, Equaldex. Last verified: June 8, 2026.*

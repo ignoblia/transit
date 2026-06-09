@@ -15,7 +15,7 @@ description: "Comprehensive guide to Spain for transgender relocation: legal rec
 | **EU Member** | Yes |
 | **Equaldex Score** | 89 |
 | **Trans-Specific Rating** | 4/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -137,4 +137,4 @@ Spain's public healthcare system (SNS) covers gender-affirming care, but coverag
 **Spain offers excellent trans rights, a large and visible community, and good quality of life. The main barriers are low local salaries, regional variation in healthcare, and the need to learn Spanish.**
 
 
-*Sources: Gobierno de España (Ley Trans), FELGTBI+, TGEU, ILGA Europe, Equaldex, community reports. Last verified: June 2026.*
+*Sources: Gobierno de España (Ley Trans), FELGTBI+, TGEU, ILGA Europe, Equaldex, community reports. Last verified: June 8, 2026.*

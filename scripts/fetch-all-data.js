@@ -4,13 +4,17 @@
  * Sources:
  *   - Equaldex Equality Index (LGBTQ+ rights scores)
  *   - REST Countries (flags, capitals, regions, populations)
+ *   - Numbeo (cost of living indices — requires API key in .env)
+ *   - Teleport (quality of life scores — free, open API)
  *
  * Run: node scripts/fetch-all-data.js
  * Called automatically before `vitepress build`
+ * Also called by the server's cron scheduler for daily refreshes.
  */
 
 const fs = require('fs')
 const path = require('path')
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') })
 
 const DATA_DIR = path.join(__dirname, '..', '.vitepress', 'theme', 'generated')
 const EQUALITY_INDEX_URL = 'https://www.equaldex.com/api/equality-index?format=json'
@@ -70,7 +74,7 @@ async function fetchJSON(url, retries = 2) {
   for (let attempt = 1; attempt <= retries + 1; attempt++) {
     try {
       const controller = new AbortController()
-      const timeout = setTimeout(() => controller.abort(), 15000)
+      const timeout = setTimeout(() => controller.abort(), 10000)
       const resp = await fetch(url, { signal: controller.signal })
       clearTimeout(timeout)
       if (!resp.ok) throw new Error(`HTTP ${resp.status}`)
@@ -85,7 +89,7 @@ async function fetchJSON(url, retries = 2) {
 
 // ====== FETCH EQUALDEX DATA ======
 async function fetchEqualdex() {
-  console.log('[1/2] Fetching Equaldex Equality Index...')
+  console.log('[1/4] Fetching Equaldex Equality Index...')
   let data = null
   try {
     data = await fetchJSON(EQUALITY_INDEX_URL)
@@ -100,7 +104,7 @@ async function fetchEqualdex() {
 
 // ====== FETCH REST COUNTRIES DATA ======
 async function fetchRestCountries() {
-  console.log('[2/2] Fetching REST Countries data...')
+  console.log('[2/4] Fetching REST Countries data...')
   let data = null
   try {
     data = await fetchJSON(REST_COUNTRIES_URL)
@@ -111,6 +115,49 @@ async function fetchRestCountries() {
     if (data.length) console.log('  → Using cached data')
   }
   return data
+}
+
+// ====== FETCH NUMBEO DATA ======
+async function fetchNumbeo() {
+  console.log('[3/4] Fetching Numbeo cost of living data...')
+  try {
+    const numbeo = require('../server/services/numbeo')
+    const data = await numbeo.fetchAll()
+    if (data && Object.keys(data).length > 0) {
+      writeJSON(path.join(DATA_DIR, 'numbeo-data.json'), data)
+      return data
+    }
+  } catch (err) {
+    console.error(`  ✗ Error: ${err.message}`)
+    // Try reading cached data
+    const cached = readCache(path.join(DATA_DIR, 'numbeo-data.json'))
+    if (cached) {
+      console.log('  → Using cached numbeo data')
+      return cached
+    }
+  }
+  return {}
+}
+
+// ====== FETCH TELEPORT DATA ======
+async function fetchTeleport() {
+  console.log('[4/4] Fetching Teleport quality of life data...')
+  try {
+    const teleport = require('../server/services/teleport')
+    const data = await teleport.fetchAll()
+    if (data && Object.keys(data).length > 0) {
+      writeJSON(path.join(DATA_DIR, 'teleport-data.json'), data)
+      return data
+    }
+  } catch (err) {
+    console.error(`  ✗ Error: ${err.message}`)
+    const cached = readCache(path.join(DATA_DIR, 'teleport-data.json'))
+    if (cached) {
+      console.log('  → Using cached teleport data')
+      return cached
+    }
+  }
+  return {}
 }
 
 // ====== BUILD SEARCHABLE DATASET ======
@@ -173,7 +220,7 @@ async function main() {
 
   ensureDir(DATA_DIR)
 
-  // Fetch from all APIs in parallel
+  // Fetch from all APIs
   const [equalityData, restData] = await Promise.all([
     fetchEqualdex(),
     fetchRestCountries(),
@@ -199,6 +246,12 @@ async function main() {
   if (restData) {
     writeJSON(path.join(DATA_DIR, 'rest-countries.json'), restData)
   }
+
+  // Fetch Numbeo and Teleport data (these handle their own errors/caching)
+  const [numbeoData, teleportData] = await Promise.all([
+    fetchNumbeo(),
+    fetchTeleport(),
+  ])
 
   // Build and write the merged search dataset
   const dataset = buildCountryDataset(equalityData, restData)

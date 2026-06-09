@@ -15,7 +15,7 @@ description: "Comprehensive guide to Germany for transgender relocation: legal r
 | **EU Member** | Yes |
 | **Equaldex Score** | 87 |
 | **Trans-Specific Rating** | 4/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -162,4 +162,4 @@ Germany's Equaldex score of 87 is fair, but there are gaps:
 **Germany is an excellent choice for trans migrants who can handle the bureaucracy, learn the language, and settle in one of the major progressive cities.**
 
 
-*Sources: Bundesregierung (SBGG), Queermed, dgti, TGEU, ILGA Europe, Equaldex, community reports. Last verified: June 2026.*
+*Sources: Bundesregierung (SBGG), Queermed, dgti, TGEU, ILGA Europe, Equaldex, community reports. Last verified: June 8, 2026.*

@@ -15,7 +15,7 @@ description: "Comprehensive guide to Portugal for transgender relocation: legal 
 | **EU Member** | Yes |
 | **Equaldex Score** | 84 |
 | **Trans-Specific Rating** | 4/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -160,4 +160,4 @@ GAT is the single most important organisation for trans healthcare in Portugal. 
 **Portugal is one of the best value destinations in Western Europe for trans migrants. The combination of legal protections, moderate cost of living, and accessible visas makes it a strong choice, especially if you have remote income.**
 
 
-*Sources: Governo de Portugal (SNS), GAT Portugal, ILGA Portugal, TGEU, Equaldex, community reports. Last verified: June 2026.*
+*Sources: Governo de Portugal (SNS), GAT Portugal, ILGA Portugal, TGEU, Equaldex, community reports. Last verified: June 8, 2026.*

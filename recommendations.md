@@ -181,4 +181,4 @@ Each pick is evaluated on five trans-specific criteria:
 The [Equaldex Equality Index](https://www.equaldex.com/equality-index) is used as a supplementary reference only, with the understanding that it measures broad LGBTQ+ equality and is not trans-specific.
 
 
-*Last verified: June 2026. Rankings are based on conditions as of June 2026 and may change. Country situations, legal frameworks, and healthcare access evolve — always verify with current sources before making relocation decisions.*
+*Last verified: June 8, 2026. Rankings are based on conditions as of June 8, 2026 and may change. Country situations, legal frameworks, and healthcare access evolve — always verify with current sources before making relocation decisions.*

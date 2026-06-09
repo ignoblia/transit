@@ -13,7 +13,7 @@ description: "Trans relocation guide for South Africa: legal overview, visa opti
 | **Currency** | South African Rand (ZAR) |
 | **Equaldex Score** | 58 |
 | **Trans-Specific Rating** | 2/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -54,4 +54,4 @@ description: "Trans relocation guide for South Africa: legal overview, visa opti
 - **Asylum:** Available in principle but limited in practice
 
 
-*Sources: Iranti, ILGA, Equaldex. Last verified: June 2026.*
+*Sources: Iranti, ILGA, Equaldex. Last verified: June 8, 2026.*

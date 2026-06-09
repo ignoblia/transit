@@ -15,7 +15,7 @@ description: "Comprehensive guide to Iceland for transgender relocation: legal r
 | **EU Member** | No (part of EEA/Schengen) |
 | **Equaldex Score** | 93 |
 | **Trans-Specific Rating** | 5/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -148,4 +148,4 @@ Iceland's Equaldex score of 93 is deserved, but there are important gaps:
 **If you answered "no" to more than one of these, consider another country. Iceland is excellent for trans rights but genuinely difficult for migration.**
 
 
-*Sources: Government of Iceland (stjornarradid.is), Trans Ísland, TGEU, Equaldex, community reports. Last verified: June 2026.*
+*Sources: Government of Iceland (stjornarradid.is), Trans Ísland, TGEU, Equaldex, community reports. Last verified: June 8, 2026.*

@@ -13,7 +13,7 @@ description: "Trans relocation guide for Thailand: legal overview, visa options,
 | **Currency** | Thai Baht (THB) |
 | **Equaldex Score** | 48 |
 | **Trans-Specific Rating** | 3/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -56,4 +56,4 @@ description: "Trans relocation guide for Thailand: legal overview, visa options,
 - **Visa pathways** for long-term settlement are limited except for retirees or high-income professionals
 
 
-*Sources: ILGA, Equaldex, community reports. Last verified: June 2026.*
+*Sources: ILGA, Equaldex, community reports. Last verified: June 8, 2026.*

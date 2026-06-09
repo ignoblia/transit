@@ -228,4 +228,4 @@ If you are outside your country of origin but not yet in a safe third country:
 The [Equaldex Equality Index](https://www.equaldex.com/equality-index) is referenced throughout this site. It measures **LGBTQ+ equality broadly** — it includes sexual orientation and gender identity rights but does not specifically measure trans-specific protections. A country with a high Equaldex score does not necessarily have good trans-specific healthcare, gender recognition, or community safety. Wherever possible, this site uses trans-specific sources (TGEU, ILGA trans rights data, community reports) in addition to Equaldex.
 
 
-*Last verified: June 2026. Asylum law changes constantly. Country-specific grant rates fluctuate. Consult a qualified immigration lawyer in your target country before making decisions. The organisations listed above provide free or low-cost services for asylum seekers.*
+*Last verified: June 8, 2026. Asylum law changes constantly. Country-specific grant rates fluctuate. Consult a qualified immigration lawyer in your target country before making decisions. The organisations listed above provide free or low-cost services for asylum seekers.*

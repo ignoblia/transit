@@ -15,7 +15,7 @@ description: "Comprehensive guide to Argentina for transgender relocation: legal
 | **EU Member** | No |
 | **Equaldex Score** | 87 |
 | **Trans-Specific Rating** | 5/5 (laws), 3/5 (economic reality) |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -151,4 +151,4 @@ Argentina's Equaldex score of 87 reflects the legal framework, but there are maj
 **Argentina's trans rights framework is world-leading. The economic situation is the biggest barrier. If you have stable foreign income and can handle the instability, Argentina offers excellent value and strong legal protections.**
 
 
-*Sources: ATTTA, FALGBT, Casa del Encuentro, TGEU, Equaldex, community reports. Last verified: June 2026.*
+*Sources: ATTTA, FALGBT, Casa del Encuentro, TGEU, Equaldex, community reports. Last verified: June 8, 2026.*

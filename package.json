@@ -1,13 +1,16 @@
 {
   "name": "transit-site",
   "version": "1.0.0",
-  "description": "",
+  "description": "A guide for transgender individuals to research and plan moves to safer countries",
   "main": "index.js",
   "scripts": {
     "dev": "vitepress dev",
+    "dev:api": "node server/index.js",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:api\"",
     "fetch-data": "node scripts/fetch-all-data.js && node scripts/generate-curated-data.js",
     "build": "npm run fetch-data && vitepress build && powershell -Command \"New-Item -ItemType File -Path docs\\.nojekyll -Force\"",
     "preview": "vitepress preview",
+    "server": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -19,5 +22,12 @@
     "postcss": "^8.5.15",
     "tailwindcss": "^3.4.19",
     "vitepress": "^1.6.4"
+  },
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3"
   }
 }

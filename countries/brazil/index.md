@@ -13,7 +13,7 @@ description: "Trans relocation guide for Brazil: legal overview, visa options, c
 | **Currency** | Brazilian Real (BRL) |
 | **Equaldex Score** | 75 |
 | **Trans-Specific Rating** | Laws: 4/5, Safety: 2/5 |
-| **Last Verified** | June 2026 |
+| **Last Verified** | June 8, 2026 |
 
 
 ## Legal Overview
@@ -54,4 +54,4 @@ description: "Trans relocation guide for Brazil: legal overview, visa options, c
 - **Asylum:** Not recommended; safety concerns outweigh legal protections for most
 
 
-*Sources: ANTRA (Associação Nacional de Travestis e Transexuais), ILGA, Equaldex. Last verified: June 2026.*
+*Sources: ANTRA (Associação Nacional de Travestis e Transexuais), ILGA, Equaldex. Last verified: June 8, 2026.*

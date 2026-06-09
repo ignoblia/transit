@@ -743,7 +743,7 @@ const detectingCountry = ref(true)
 async function autoDetectUserCountry() {
   // Try multiple geo-IP services
   const geoProviders = [
-    { url: 'https://ip-api.com/json/', codeField: 'countryCode' },
+    { url: 'https://ipinfo.io/json', codeField: 'country' },
     { url: 'https://ipapi.co/json/', codeField: 'country_code' },
   ]
   for (const provider of geoProviders) {

@@ -66,7 +66,7 @@ async function checkLocation() {
 
   // Try multiple geo-IP services as fallbacks
   const geoProviders = [
-    { url: 'https://ip-api.com/json/', codeField: 'countryCode', timeout: 4000 },
+    { url: 'https://ipinfo.io/json', codeField: 'country', timeout: 4000 },
     { url: 'https://ipapi.co/json/', codeField: 'country_code', timeout: 4000 },
   ]
 

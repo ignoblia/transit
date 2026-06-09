@@ -1,0 +1,11 @@
+{
+  "_global": {
+    "year": 2024,
+    "globalRefugees": 30958200,
+    "globalAsylumSeekers": 8352712,
+    "globalIDPs": 68131711,
+    "globalStateless": 4360087,
+    "note": "Country-level breakdown requires additional API configuration",
+    "dataSource": "UNHCR Refugee Population Statistics"
+  }
+}

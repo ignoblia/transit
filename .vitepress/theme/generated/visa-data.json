@@ -1,0 +1,2191 @@
+{
+  "AE": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 105,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AF": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 198,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AG": {
+    "summary": {
+      "visaFree": 113,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 85,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AL": {
+    "summary": {
+      "visaFree": 92,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 106,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AM": {
+    "summary": {
+      "visaFree": 69,
+      "visaOnArrival": 21,
+      "eta": 0,
+      "evisa": 50,
+      "visaRequired": 57,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "AO": {
+    "summary": {
+      "visaFree": 100,
+      "visaOnArrival": 1,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 97,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AR": {
+    "summary": {
+      "visaFree": 90,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 108,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AT": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AU": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 0,
+      "eta": 45,
+      "evisa": 151,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "AZ": {
+    "summary": {
+      "visaFree": 21,
+      "visaOnArrival": 9,
+      "eta": 0,
+      "evisa": 76,
+      "visaRequired": 91,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "BA": {
+    "summary": {
+      "visaFree": 99,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 99,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BB": {
+    "summary": {
+      "visaFree": 179,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 19,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BD": {
+    "summary": {
+      "visaFree": 23,
+      "visaOnArrival": 141,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 33,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "BE": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BF": {
+    "summary": {
+      "visaFree": 19,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 179,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BG": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BH": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 66,
+      "eta": 0,
+      "evisa": 126,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BI": {
+    "summary": {
+      "visaFree": 6,
+      "visaOnArrival": 192,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BJ": {
+    "summary": {
+      "visaFree": 61,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 137,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BN": {
+    "summary": {
+      "visaFree": 59,
+      "visaOnArrival": 5,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 133,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "BO": {
+    "summary": {
+      "visaFree": 60,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 138,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BR": {
+    "summary": {
+      "visaFree": 101,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 3,
+      "visaRequired": 94,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BS": {
+    "summary": {
+      "visaFree": 122,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 76,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BT": {
+    "summary": {
+      "visaFree": 3,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 195,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BW": {
+    "summary": {
+      "visaFree": 103,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 94,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BY": {
+    "summary": {
+      "visaFree": 94,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 2,
+      "visaRequired": 102,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "BZ": {
+    "summary": {
+      "visaFree": 106,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 92,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CA": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 0,
+      "eta": 53,
+      "evisa": 0,
+      "visaRequired": 143,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "CD": {
+    "summary": {
+      "visaFree": 4,
+      "visaOnArrival": 3,
+      "eta": 0,
+      "evisa": 191,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CF": {
+    "summary": {
+      "visaFree": 14,
+      "visaOnArrival": 1,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 183,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CG": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 10,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 183,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CH": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CI": {
+    "summary": {
+      "visaFree": 23,
+      "visaOnArrival": 0,
+      "eta": 175,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CL": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CM": {
+    "summary": {
+      "visaFree": 6,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 192,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CN": {
+    "summary": {
+      "visaFree": 81,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 117,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CO": {
+    "summary": {
+      "visaFree": 101,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 97,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CR": {
+    "summary": {
+      "visaFree": 95,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 103,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CU": {
+    "summary": {
+      "visaFree": 21,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 155,
+      "visaRequired": 20,
+      "noAdmission": 2,
+      "total": 198
+    }
+  },
+  "CV": {
+    "summary": {
+      "visaFree": 60,
+      "visaOnArrival": 138,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CY": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "CZ": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DE": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DJ": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 197,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DK": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DM": {
+    "summary": {
+      "visaFree": 196,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 2,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DO": {
+    "summary": {
+      "visaFree": 108,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 90,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "DZ": {
+    "summary": {
+      "visaFree": 7,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 190,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "EC": {
+    "summary": {
+      "visaFree": 152,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 46,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "EE": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "EG": {
+    "summary": {
+      "visaFree": 9,
+      "visaOnArrival": 115,
+      "eta": 0,
+      "evisa": 5,
+      "visaRequired": 69,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ER": {
+    "summary": {
+      "visaFree": 2,
+      "visaOnArrival": 2,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 194,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ES": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ET": {
+    "summary": {
+      "visaFree": 2,
+      "visaOnArrival": 117,
+      "eta": 0,
+      "evisa": 78,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "FI": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "FJ": {
+    "summary": {
+      "visaFree": 112,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 86,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "FM": {
+    "summary": {
+      "visaFree": 198,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "FR": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GA": {
+    "summary": {
+      "visaFree": 9,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 189,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GB": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 0,
+      "eta": 85,
+      "evisa": 0,
+      "visaRequired": 112,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GD": {
+    "summary": {
+      "visaFree": 123,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 75,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GE": {
+    "summary": {
+      "visaFree": 103,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 52,
+      "visaRequired": 42,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "GH": {
+    "summary": {
+      "visaFree": 39,
+      "visaOnArrival": 23,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 136,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GM": {
+    "summary": {
+      "visaFree": 131,
+      "visaOnArrival": 1,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 66,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GN": {
+    "summary": {
+      "visaFree": 21,
+      "visaOnArrival": 1,
+      "eta": 0,
+      "evisa": 176,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GQ": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 193,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GR": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GT": {
+    "summary": {
+      "visaFree": 86,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 112,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GW": {
+    "summary": {
+      "visaFree": 14,
+      "visaOnArrival": 184,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "GY": {
+    "summary": {
+      "visaFree": 62,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 136,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "HK": {
+    "summary": {
+      "visaFree": 147,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 49,
+      "visaRequired": 1,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "HN": {
+    "summary": {
+      "visaFree": 86,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 112,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "HR": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "HT": {
+    "summary": {
+      "visaFree": 193,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 5,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "HU": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ID": {
+    "summary": {
+      "visaFree": 16,
+      "visaOnArrival": 82,
+      "eta": 0,
+      "evisa": 100,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "IE": {
+    "summary": {
+      "visaFree": 78,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 120,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "IL": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 0,
+      "eta": 101,
+      "evisa": 97,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "IN": {
+    "summary": {
+      "visaFree": 3,
+      "visaOnArrival": 3,
+      "eta": 0,
+      "evisa": 161,
+      "visaRequired": 31,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "IQ": {
+    "summary": {
+      "visaFree": 3,
+      "visaOnArrival": 6,
+      "eta": 0,
+      "evisa": 188,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "IR": {
+    "summary": {
+      "visaFree": 43,
+      "visaOnArrival": 145,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 9,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "IS": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "IT": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "JM": {
+    "summary": {
+      "visaFree": 103,
+      "visaOnArrival": 21,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 74,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "JO": {
+    "summary": {
+      "visaFree": 11,
+      "visaOnArrival": 133,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 54,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "JP": {
+    "summary": {
+      "visaFree": 72,
+      "visaOnArrival": 0,
+      "eta": 2,
+      "evisa": 7,
+      "visaRequired": 116,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "KE": {
+    "summary": {
+      "visaFree": 77,
+      "visaOnArrival": 0,
+      "eta": 121,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KG": {
+    "summary": {
+      "visaFree": 80,
+      "visaOnArrival": 4,
+      "eta": 0,
+      "evisa": 113,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KH": {
+    "summary": {
+      "visaFree": 8,
+      "visaOnArrival": 189,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "KI": {
+    "summary": {
+      "visaFree": 123,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 75,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KM": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 198,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KN": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 0,
+      "eta": 116,
+      "evisa": 77,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KP": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 198,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KR": {
+    "summary": {
+      "visaFree": 62,
+      "visaOnArrival": 0,
+      "eta": 48,
+      "evisa": 88,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "KW": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 52,
+      "eta": 0,
+      "evisa": 1,
+      "visaRequired": 139,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "KZ": {
+    "summary": {
+      "visaFree": 85,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 113,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LA": {
+    "summary": {
+      "visaFree": 15,
+      "visaOnArrival": 155,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 28,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LB": {
+    "summary": {
+      "visaFree": 7,
+      "visaOnArrival": 96,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 94,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "LC": {
+    "summary": {
+      "visaFree": 95,
+      "visaOnArrival": 48,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 55,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LI": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LK": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 193,
+      "eta": 0,
+      "evisa": 1,
+      "visaRequired": 3,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "LR": {
+    "summary": {
+      "visaFree": 14,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 167,
+      "visaRequired": 17,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LS": {
+    "summary": {
+      "visaFree": 81,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 117,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LT": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LU": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LV": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "LY": {
+    "summary": {
+      "visaFree": 2,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 188,
+      "visaRequired": 1,
+      "noAdmission": 7,
+      "total": 198
+    }
+  },
+  "MA": {
+    "summary": {
+      "visaFree": 70,
+      "visaOnArrival": 0,
+      "eta": 8,
+      "evisa": 7,
+      "visaRequired": 113,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MC": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MD": {
+    "summary": {
+      "visaFree": 102,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 92,
+      "visaRequired": 3,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "ME": {
+    "summary": {
+      "visaFree": 101,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 97,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MG": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 196,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 1,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "MH": {
+    "summary": {
+      "visaFree": 32,
+      "visaOnArrival": 78,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 88,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MK": {
+    "summary": {
+      "visaFree": 80,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 118,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ML": {
+    "summary": {
+      "visaFree": 24,
+      "visaOnArrival": 2,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 172,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MM": {
+    "summary": {
+      "visaFree": 10,
+      "visaOnArrival": 6,
+      "eta": 0,
+      "evisa": 87,
+      "visaRequired": 95,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MN": {
+    "summary": {
+      "visaFree": 64,
+      "visaOnArrival": 3,
+      "eta": 0,
+      "evisa": 95,
+      "visaRequired": 36,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MO": {
+    "summary": {
+      "visaFree": 90,
+      "visaOnArrival": 101,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 7,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MR": {
+    "summary": {
+      "visaFree": 9,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 188,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MT": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MU": {
+    "summary": {
+      "visaFree": 113,
+      "visaOnArrival": 69,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 16,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MV": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 192,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "MW": {
+    "summary": {
+      "visaFree": 64,
+      "visaOnArrival": 84,
+      "eta": 0,
+      "evisa": 50,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MX": {
+    "summary": {
+      "visaFree": 63,
+      "visaOnArrival": 0,
+      "eta": 3,
+      "evisa": 0,
+      "visaRequired": 132,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "MY": {
+    "summary": {
+      "visaFree": 167,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 28,
+      "visaRequired": 2,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "MZ": {
+    "summary": {
+      "visaFree": 37,
+      "visaOnArrival": 155,
+      "eta": 0,
+      "evisa": 6,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NA": {
+    "summary": {
+      "visaFree": 22,
+      "visaOnArrival": 115,
+      "eta": 0,
+      "evisa": 61,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NE": {
+    "summary": {
+      "visaFree": 19,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 179,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NG": {
+    "summary": {
+      "visaFree": 18,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 180,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NI": {
+    "summary": {
+      "visaFree": 89,
+      "visaOnArrival": 73,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 36,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NL": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NO": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NP": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 185,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 12,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NR": {
+    "summary": {
+      "visaFree": 3,
+      "visaOnArrival": 13,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 182,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "NZ": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 0,
+      "eta": 60,
+      "evisa": 0,
+      "visaRequired": 137,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "OM": {
+    "summary": {
+      "visaFree": 14,
+      "visaOnArrival": 69,
+      "eta": 0,
+      "evisa": 115,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PA": {
+    "summary": {
+      "visaFree": 116,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 82,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PE": {
+    "summary": {
+      "visaFree": 103,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 95,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PG": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 14,
+      "eta": 81,
+      "evisa": 102,
+      "visaRequired": 1,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PH": {
+    "summary": {
+      "visaFree": 161,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 37,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PK": {
+    "summary": {
+      "visaFree": 9,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 183,
+      "visaRequired": 5,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "PL": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PS": {
+    "summary": {
+      "visaFree": 156,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 42,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PT": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PW": {
+    "summary": {
+      "visaFree": 33,
+      "visaOnArrival": 163,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 2,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "PY": {
+    "summary": {
+      "visaFree": 69,
+      "visaOnArrival": 2,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 127,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "QA": {
+    "summary": {
+      "visaFree": 6,
+      "visaOnArrival": 93,
+      "eta": 0,
+      "evisa": 99,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "RO": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "RS": {
+    "summary": {
+      "visaFree": 89,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 109,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "RU": {
+    "summary": {
+      "visaFree": 66,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 61,
+      "visaRequired": 71,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "RW": {
+    "summary": {
+      "visaFree": 108,
+      "visaOnArrival": 89,
+      "eta": 0,
+      "evisa": 1,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SA": {
+    "summary": {
+      "visaFree": 5,
+      "visaOnArrival": 69,
+      "eta": 0,
+      "evisa": 106,
+      "visaRequired": 17,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "SB": {
+    "summary": {
+      "visaFree": 31,
+      "visaOnArrival": 45,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 122,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SC": {
+    "summary": {
+      "visaFree": 197,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "SD": {
+    "summary": {
+      "visaFree": 4,
+      "visaOnArrival": 3,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 191,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SE": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SG": {
+    "summary": {
+      "visaFree": 164,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 34,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SI": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SK": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SL": {
+    "summary": {
+      "visaFree": 15,
+      "visaOnArrival": 121,
+      "eta": 0,
+      "evisa": 62,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SM": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SN": {
+    "summary": {
+      "visaFree": 60,
+      "visaOnArrival": 75,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 63,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SO": {
+    "summary": {
+      "visaFree": 2,
+      "visaOnArrival": 6,
+      "eta": 0,
+      "evisa": 190,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SR": {
+    "summary": {
+      "visaFree": 21,
+      "visaOnArrival": 0,
+      "eta": 155,
+      "evisa": 21,
+      "visaRequired": 0,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "SS": {
+    "summary": {
+      "visaFree": 3,
+      "visaOnArrival": 2,
+      "eta": 0,
+      "evisa": 193,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ST": {
+    "summary": {
+      "visaFree": 57,
+      "visaOnArrival": 1,
+      "eta": 0,
+      "evisa": 140,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SV": {
+    "summary": {
+      "visaFree": 88,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 110,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "SY": {
+    "summary": {
+      "visaFree": 9,
+      "visaOnArrival": 16,
+      "eta": 0,
+      "evisa": 171,
+      "visaRequired": 0,
+      "noAdmission": 2,
+      "total": 198
+    }
+  },
+  "SZ": {
+    "summary": {
+      "visaFree": 97,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 101,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TD": {
+    "summary": {
+      "visaFree": 16,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 182,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TG": {
+    "summary": {
+      "visaFree": 15,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 183,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TH": {
+    "summary": {
+      "visaFree": 97,
+      "visaOnArrival": 15,
+      "eta": 0,
+      "evisa": 86,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TJ": {
+    "summary": {
+      "visaFree": 84,
+      "visaOnArrival": 12,
+      "eta": 0,
+      "evisa": 79,
+      "visaRequired": 23,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TL": {
+    "summary": {
+      "visaFree": 35,
+      "visaOnArrival": 163,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TM": {
+    "summary": {
+      "visaFree": 0,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 198,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TN": {
+    "summary": {
+      "visaFree": 99,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 99,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TO": {
+    "summary": {
+      "visaFree": 32,
+      "visaOnArrival": 37,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 129,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TR": {
+    "summary": {
+      "visaFree": 94,
+      "visaOnArrival": 11,
+      "eta": 0,
+      "evisa": 10,
+      "visaRequired": 83,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TT": {
+    "summary": {
+      "visaFree": 100,
+      "visaOnArrival": 5,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 93,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TV": {
+    "summary": {
+      "visaFree": 31,
+      "visaOnArrival": 167,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TW": {
+    "summary": {
+      "visaFree": 67,
+      "visaOnArrival": 3,
+      "eta": 4,
+      "evisa": 17,
+      "visaRequired": 107,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "TZ": {
+    "summary": {
+      "visaFree": 51,
+      "visaOnArrival": 123,
+      "eta": 0,
+      "evisa": 24,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "UA": {
+    "summary": {
+      "visaFree": 81,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 44,
+      "visaRequired": 73,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "UG": {
+    "summary": {
+      "visaFree": 40,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 158,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "US": {
+    "summary": {
+      "visaFree": 4,
+      "visaOnArrival": 0,
+      "eta": 42,
+      "evisa": 0,
+      "visaRequired": 140,
+      "noAdmission": 12,
+      "total": 198
+    }
+  },
+  "UY": {
+    "summary": {
+      "visaFree": 85,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 113,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "UZ": {
+    "summary": {
+      "visaFree": 94,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 46,
+      "visaRequired": 58,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "VA": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "VC": {
+    "summary": {
+      "visaFree": 186,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 12,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "VE": {
+    "summary": {
+      "visaFree": 74,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 124,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "VN": {
+    "summary": {
+      "visaFree": 39,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 159,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "VU": {
+    "summary": {
+      "visaFree": 120,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 78,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "WS": {
+    "summary": {
+      "visaFree": 29,
+      "visaOnArrival": 169,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "XK": {
+    "summary": {
+      "visaFree": 109,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 89,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "YE": {
+    "summary": {
+      "visaFree": 1,
+      "visaOnArrival": 11,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 185,
+      "noAdmission": 1,
+      "total": 198
+    }
+  },
+  "ZA": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 27,
+      "visaRequired": 78,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ZM": {
+    "summary": {
+      "visaFree": 116,
+      "visaOnArrival": 29,
+      "eta": 0,
+      "evisa": 53,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "ZW": {
+    "summary": {
+      "visaFree": 41,
+      "visaOnArrival": 103,
+      "eta": 0,
+      "evisa": 54,
+      "visaRequired": 0,
+      "noAdmission": 0,
+      "total": 198
+    }
+  },
+  "AD": {
+    "summary": {
+      "visaFree": 93,
+      "visaOnArrival": 0,
+      "eta": 0,
+      "evisa": 0,
+      "visaRequired": 105,
+      "noAdmission": 0,
+      "total": 198
+    }
+  }
+}

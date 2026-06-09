@@ -35,7 +35,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
+import { useRoute } from 'vitepress'
 
 const STORAGE_KEY = 'transit-safety-banner-dismissed'
 
@@ -99,14 +100,25 @@ async function checkLocation() {
   }
 }
 
-onMounted(() => {
-  // Check for ?testBanner=1 URL parameter (client-side only)
-  if (new URLSearchParams(window.location.search).get('testBanner') === '1') {
+const route = useRoute()
+
+function checkTestMode() {
+  if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('testBanner') === '1') {
     detectedCountryName.value = 'Nigeria'
-    setTimeout(() => { showBanner.value = true }, 300)
-    return
+    showBanner.value = true
+    return true
   }
-  checkLocation()
+  return false
+}
+
+onMounted(async () => {
+  if (checkTestMode()) return
+  await checkLocation()
+})
+
+// Re-check on SPA navigation (route changes)
+watch(() => window.location.search, () => {
+  if (checkTestMode()) return
 })
 </script>
 

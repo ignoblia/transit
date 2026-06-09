@@ -106,22 +106,22 @@
       <!-- Bento grid: 2 columns on desktop -->
       <div class="bento-grid">
         
-        <!-- ⚠️ DANGER WARNING for criminalized countries (ei < 20) -->
-        <div v-if="isDangerous" class="bento-card bento-span-2">
-          <div class="p-4 rounded-xl bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600">
+        <!-- 🏳️‍⚧️ Safety Level card (appears for every country) -->
+        <div class="bento-card bento-span-2">
+          <div class="p-4 rounded-xl" :class="safetyLevel.cardBg">
             <div class="flex items-start gap-3">
-              <span class="text-4xl flex-shrink-0">🚨</span>
+              <span class="text-4xl flex-shrink-0">{{ safetyLevel.emoji }}</span>
               <div>
-                <div class="text-xl font-bold text-red-800 dark:text-red-200 mb-1">DO NOT MOVE TO THIS COUNTRY</div>
-                <p class="text-sm text-red-700 dark:text-red-300 font-medium">
-                  This country has severe legal restrictions against LGBTQ+ people, including criminalization of same-sex activity.
-                  Relocating here as an openly trans person is extremely dangerous.
+                <div class="text-xl font-bold" :class="safetyLevel.titleClass">{{ safetyLevel.title }}</div>
+                <p class="text-sm font-medium mt-1" :class="safetyLevel.textClass">
+                  {{ safetyLevel.description }}
                 </p>
-                <p class="text-xs text-red-600 dark:text-red-400 mt-2">
-                  Equaldex Equality Index: <strong>{{ selectedCountry.ei }}</strong>/100 · Rank: #{{ selectedCountry.rank ?? 'N/A' }} of 197
+                <p class="text-xs mt-2" :class="safetyLevel.metaClass">
+                  Equaldex Equality Index: <strong>{{ selectedCountry.ei }}</strong>/100 · Tier: {{ safetyLevel.label }}
+                  <span v-if="selectedCountry.rank"> · Rank: #{{ selectedCountry.rank }} of 197</span>
                 </p>
-                <p class="text-xs text-red-500 dark:text-red-400 mt-1">
-                  ⚠️ If you are already here, see the <a href="/transit/emergency/" class="underline font-semibold hover:text-red-800 dark:hover:text-red-200">Emergency page</a>
+                <p v-if="safetyLevel.emergencyLink" class="text-xs mt-1" :class="safetyLevel.linkClass">
+                  ⚠️ If you are already here, see the <a href="/transit/emergency/" class="underline font-semibold">Emergency page</a>
                   for immediate safety resources.
                 </p>
               </div>
@@ -906,8 +906,97 @@ const curatedInfo = computed(() => {
 })
 
 // ====== DANGER WARNING ======
-// Countries with Equaldex score < 20 have severe legal restrictions
+// Countries with Equaldex score < 25 have severe legal restrictions
 // including criminalization of same-sex activity
+
+/** Safety level tiers based on Equality Index score */
+const safetyLevel = computed(() => {
+  if (!selectedCountry.value) return {}
+  const ei = selectedCountry.value.ei
+  if (ei === undefined || ei === null) return {
+    label: 'Unknown',
+    emoji: '❓',
+    title: 'No Data Available',
+    description: 'We don\'t have enough data to assess safety for this country.',
+    cardBg: 'bg-gray-50 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600',
+    titleClass: 'text-gray-800 dark:text-gray-200',
+    textClass: 'text-gray-700 dark:text-gray-300',
+    metaClass: 'text-gray-500 dark:text-gray-400',
+    linkClass: 'text-gray-400 dark:text-gray-500',
+    emergencyLink: false,
+  }
+
+  if (ei < 25) {
+    return {
+      label: 'Severe Risk',
+      emoji: '🚨',
+      title: 'DO NOT MOVE TO THIS COUNTRY',
+      description: 'This country has severe legal restrictions against LGBTQ+ people, including criminalization of same-sex activity. Relocating here as an openly trans person is extremely dangerous.',
+      cardBg: 'bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600',
+      titleClass: 'text-red-800 dark:text-red-200',
+      textClass: 'text-red-700 dark:text-red-300',
+      metaClass: 'text-red-600 dark:text-red-400',
+      linkClass: 'text-red-500 dark:text-red-400',
+      emergencyLink: true,
+    }
+  }
+  if (ei < 40) {
+    return {
+      label: 'High Risk',
+      emoji: '⚠️',
+      title: 'Moving Not Recommended',
+      description: 'This country has significant legal restrictions or social hostility toward LGBTQ+ people. Same-sex activity may be restricted and trans rights are not protected. If you must move here, have a strong support network and legal safeguards in place.',
+      cardBg: 'bg-orange-50 dark:bg-orange-950 border-2 border-orange-400 dark:border-orange-600',
+      titleClass: 'text-orange-800 dark:text-orange-200',
+      textClass: 'text-orange-700 dark:text-orange-300',
+      metaClass: 'text-orange-600 dark:text-orange-400',
+      linkClass: 'text-orange-500 dark:text-orange-400',
+      emergencyLink: true,
+    }
+  }
+  if (ei < 60) {
+    return {
+      label: 'Moderate Risk',
+      emoji: '🟡',
+      title: 'Proceed with Caution',
+      description: 'This country has mixed protections. While same-sex activity is likely legal, trans-specific rights may be limited and social acceptance varies. Research local laws carefully and seek community support before relocating.',
+      cardBg: 'bg-yellow-50 dark:bg-yellow-950 border-2 border-yellow-400 dark:border-yellow-600',
+      titleClass: 'text-yellow-800 dark:text-yellow-200',
+      textClass: 'text-yellow-700 dark:text-yellow-300',
+      metaClass: 'text-yellow-600 dark:text-yellow-400',
+      linkClass: 'text-yellow-500 dark:text-yellow-400',
+      emergencyLink: false,
+    }
+  }
+  if (ei < 80) {
+    return {
+      label: 'Low Risk',
+      emoji: '🟢',
+      title: 'Generally Safe',
+      description: 'This country has reasonable legal protections for LGBTQ+ people. Same-sex activity is legal and some trans rights are recognized. Social acceptance varies by region, but overall conditions are favorable.',
+      cardBg: 'bg-green-50 dark:bg-green-950 border-2 border-green-400 dark:border-green-600',
+      titleClass: 'text-green-800 dark:text-green-200',
+      textClass: 'text-green-700 dark:text-green-300',
+      metaClass: 'text-green-600 dark:text-green-400',
+      linkClass: 'text-green-500 dark:text-green-400',
+      emergencyLink: false,
+    }
+  }
+  // ei >= 80
+  return {
+    label: 'Best',
+    emoji: '🏳️‍🌈',
+    title: 'Highly Recommended',
+    description: 'This country has strong legal protections and broad social acceptance for LGBTQ+ people. Trans rights are well-established with legal gender recognition, healthcare access, and anti-discrimination protections.',
+    cardBg: 'bg-emerald-50 dark:bg-emerald-950 border-2 border-emerald-400 dark:border-emerald-600',
+    titleClass: 'text-emerald-800 dark:text-emerald-200',
+    textClass: 'text-emerald-700 dark:text-emerald-300',
+    metaClass: 'text-emerald-600 dark:text-emerald-400',
+    linkClass: 'text-emerald-500 dark:text-emerald-400',
+    emergencyLink: false,
+  }
+})
+
 const isDangerous = computed(() => {
   if (!selectedCountry.value) return false
   const ei = selectedCountry.value.ei

@@ -45,6 +45,8 @@ const detectedCountryName = ref('')
 
 function dismiss() {
   showBanner.value = false
+  // Don't save dismissal in test mode — would block real detections
+  if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('testBanner') === '1') return
   try {
     localStorage.setItem(STORAGE_KEY, 'true')
   } catch (_) {}
@@ -114,6 +116,10 @@ function checkTestMode() {
 }
 
 onMounted(async () => {
+  // Allow clearing the dismissed flag via URL param
+  if (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('resetBanner') === '1') {
+    try { localStorage.removeItem(STORAGE_KEY) } catch (_) {}
+  }
   if (checkTestMode()) return
   await checkLocation()
 })

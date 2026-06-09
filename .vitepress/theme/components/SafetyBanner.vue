@@ -45,6 +45,13 @@ const showBanner = ref(false)
 const detectedCountryName = ref('')
 const loaded = ref(false)
 
+// Allow testing via ?testBanner=1 URL parameter
+const testMode = typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('testBanner') === '1'
+if (testMode) {
+  detectedCountryName.value = 'Nigeria'
+  setTimeout(() => { showBanner.value = true }, 500)
+}
+
 function dismiss() {
   showBanner.value = false
   try {

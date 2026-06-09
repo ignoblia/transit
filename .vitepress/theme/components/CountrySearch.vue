@@ -1,5 +1,32 @@
 <template>
   <div class="max-w-5xl mx-auto pt-6 pb-8 px-4 sm:px-0">
+    <!-- ⚠️ Geolocation danger warning -->
+    <div
+      v-if="detectedCountryDanger"
+      class="mb-6 p-4 rounded-xl bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600"
+    >
+      <div class="flex items-start gap-3">
+        <span class="text-3xl flex-shrink-0">🚨</span>
+        <div>
+          <div class="text-lg font-bold text-red-800 dark:text-red-200">Safety Notice</div>
+          <p class="text-sm text-red-700 dark:text-red-300 mt-1">
+            We noticed you're accessing this site from <strong>{{ detectedCountryName }}</strong>, which has severe legal restrictions for LGBTQ+ people.
+            If you're in danger or concerned about your safety, please visit the
+            <a href="/transit/emergency/" class="underline font-semibold hover:text-red-900 dark:hover:text-red-100">Emergency Resources page</a>.
+          </p>
+          <p class="text-xs text-red-500 dark:text-red-400 mt-1">
+            You can also press <kbd class="px-1.5 py-0.5 bg-red-200 dark:bg-red-800 rounded text-xs font-mono">Esc</kbd> 3× for an immediate safe exit.
+          </p>
+          <button
+            @click="detectedCountryDanger = false"
+            class="mt-2 text-xs font-medium text-red-700 dark:text-red-300 bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 px-3 py-1 rounded-lg transition-colors"
+          >
+            Dismiss
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Search bar -->
     <div class="relative mb-8">
       <div class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1">
@@ -105,6 +132,29 @@
 
       <!-- Bento grid: 2 columns on desktop -->
       <div class="bento-grid">
+        
+        <!-- ⚠️ DANGER WARNING for criminalized countries (ei < 20) -->
+        <div v-if="isDangerous" class="bento-card bento-span-2">
+          <div class="p-4 rounded-xl bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600">
+            <div class="flex items-start gap-3">
+              <span class="text-4xl flex-shrink-0">🚨</span>
+              <div>
+                <div class="text-xl font-bold text-red-800 dark:text-red-200 mb-1">DO NOT MOVE TO THIS COUNTRY</div>
+                <p class="text-sm text-red-700 dark:text-red-300 font-medium">
+                  This country has severe legal restrictions against LGBTQ+ people, including criminalization of same-sex activity.
+                  Relocating here as an openly trans person is extremely dangerous.
+                </p>
+                <p class="text-xs text-red-600 dark:text-red-400 mt-2">
+                  Equaldex Equality Index: <strong>{{ selectedCountry.ei }}</strong>/100 · Rank: #{{ selectedCountry.rank ?? 'N/A' }} of 197
+                </p>
+                <p class="text-xs text-red-500 dark:text-red-400 mt-1">
+                  ⚠️ If you are already here, see the <a href="/transit/emergency/" class="underline font-semibold hover:text-red-800 dark:hover:text-red-200">Emergency page</a>
+                  for immediate safety resources.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
         
         <!-- Equality Index card (spans full width) -->
         <div v-if="selectedCountry.ei !== undefined" class="bento-card bento-span-2">
@@ -262,10 +312,23 @@
           </h3>
 
           <template v-if="costInfo">
-            <!-- Monthly estimate (big) -->
+            <!-- Monthly estimate (big) — local currency + USD -->
             <div class="text-center p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 mb-3">
-              <div v-if="costInfo.monthly_estimate_usd" class="text-3xl font-bold text-gray-900 dark:text-gray-100">${{ costInfo.monthly_estimate_usd }}</div>
-              <div class="text-xs text-gray-500 mt-1">Monthly Estimate (USD)</div>
+              <div v-if="costInfo.monthly_estimate_usd" class="text-3xl font-bold text-gray-900 dark:text-gray-100">
+                <template v-if="localCostDisplay">
+                  {{ localCostDisplay.symbol }}{{ localCostDisplay.amountFormatted }}
+                  <span class="text-lg text-gray-400 font-normal mx-1">/</span>
+                </template>
+                ${{ costInfo.monthly_estimate_usd }}
+              </div>
+              <div class="text-xs text-gray-500 mt-1">
+                <template v-if="localCostDisplay">
+                  Monthly Estimate ({{ localCostDisplay.code }} / USD)
+                </template>
+                <template v-else>
+                  Monthly Estimate (USD)
+                </template>
+              </div>
             </div>
 
             <!-- Rank + Salary -->
@@ -631,6 +694,50 @@ const colMap = computed(() => {
   return map
 })
 
+// ====== EXCHANGE RATES (USD -> local currency) ======
+const exchangeRates = ref(null)
+const ratesLoading = ref(true)
+
+async function fetchExchangeRates() {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD', {
+      signal: AbortSignal.timeout(8000)
+    })
+    if (res.ok) {
+      const data = await res.json()
+      exchangeRates.value = data.rates || null
+    }
+  } catch (e) {
+    console.warn('[ExchangeRates]', e)
+  } finally {
+    ratesLoading.value = false
+  }
+}
+
+/** Get the first currency code for a country */
+function getCountryCurrency(country) {
+  if (!country?.currencies?.length) return null
+  return country.currencies[0]
+}
+
+/** Computed: local currency version of the monthly cost estimate */
+const localCostDisplay = computed(() => {
+  if (!costInfo.value?.monthly_estimate_usd) return null
+  const currencyCode = getCountryCurrency(selectedCountry.value)
+  if (!currencyCode || !exchangeRates.value?.[currencyCode]) return null
+  const usdAmt = costInfo.value.monthly_estimate_usd
+  const rate = exchangeRates.value[currencyCode]
+  const localAmt = Math.round(usdAmt * rate)
+  const info = currencyInfo[currencyCode]
+  const symbol = info?.symbol || currencyCode
+  return {
+    amount: localAmt,
+    amountFormatted: localAmt.toLocaleString('en-US'),
+    code: currencyCode,
+    symbol,
+  }
+})
+
 async function fetchWhereNextData() {
   try {
     const [costRes, relocRes, salRes] = await Promise.all([
@@ -653,11 +760,14 @@ async function fetchWhereNextData() {
 
 onMounted(async () => {
   fetchWhereNextData()
+  fetchExchangeRates()
   await autoDetectUserCountry()
 })
 
 // ====== AUTO-DETECT USER COUNTRY ======
 const detectingCountry = ref(true)
+const detectedCountryName = ref('')
+const detectedCountryDanger = ref(false)
 
 async function autoDetectUserCountry() {
   try {
@@ -668,9 +778,16 @@ async function autoDetectUserCountry() {
     if (!countryCode) return
     // Find the country in the dataset by ISO code
     const match = dataset.find(c => c.code === countryCode)
-    if (match && !selectedFromCountry.value) {
-      selectedFromCountry.value = match
-      fromQuery.value = match.name
+    if (match) {
+      // Check if user's country is dangerous
+      if (match.ei !== undefined && match.ei !== null && match.ei < 25) {
+        detectedCountryName.value = match.name
+        detectedCountryDanger.value = true
+      }
+      if (!selectedFromCountry.value) {
+        selectedFromCountry.value = match
+        fromQuery.value = match.name
+      }
     }
   } catch (e) {
     // Silently fail — user can still type their country manually
@@ -817,6 +934,22 @@ const filteredCountries = computed(() => {
 const curatedInfo = computed(() => {
   if (!selectedCountry.value) return null
   return curatedInfoMap[selectedCountry.value.code] || null
+})
+
+// ====== DANGER WARNING ======
+// Countries with Equaldex score < 20 have severe legal restrictions
+// including criminalization of same-sex activity
+const isDangerous = computed(() => {
+  if (!selectedCountry.value) return false
+  const ei = selectedCountry.value.ei
+  return ei !== undefined && ei !== null && ei < 25
+})
+
+// Countries with moderate restrictions (ei 25-39) — use caution
+const isRestricted = computed(() => {
+  if (!selectedCountry.value || isDangerous.value) return false
+  const ei = selectedCountry.value.ei
+  return ei !== undefined && ei !== null && ei >= 25 && ei < 40
 })
 
 // ====== WHERENEXT COMPUTED ======

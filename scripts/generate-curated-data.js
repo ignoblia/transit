@@ -767,14 +767,252 @@ const curatedData = {
   },
 }
 
+// ====== AUTO-GENERATE RIGHTS DATA FOR UNCOVERED COUNTRIES ======
+
+/**
+ * Determine legal recognition type based on EI score.
+ */
+function autoLegalRecognition(ei) {
+  if (ei === null || ei === undefined) return 'banned'
+  if (ei >= 70) return 'self-id'
+  if (ei >= 40) return 'medicalized'
+  if (ei >= 20) return 'medicalized'
+  return 'banned'
+}
+
+/**
+ * Generate a full rights object based on Equaldex EI scores.
+ * This provides reasonable estimates for countries without manually curated data.
+ */
+function autoGenerateRights(ei, ei_legal, ei_po) {
+  // Default: worst case
+  let legalRecognition = 'banned'
+  let sameSexMarriage = false
+  let adoptionBySameSex = false
+  let conversionTherapyBan = false
+  let hateCrimeLaws = false
+  let employmentDiscrimination = false
+  let housingDiscrimination = false
+  let bloodDonation = false
+  let transMilitary = false
+  let thirdGenderOption = false
+  let healthcareCoverage = 'none'
+
+  if (ei === null || ei === undefined) {
+    // No data — assume worst
+    return expandRights(
+      [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+      'Unknown (assume no protections)',
+      'Unknown',
+      'Unknown'
+    )
+  }
+
+  // Determine recognition type
+  if (ei >= 80) {
+    legalRecognition = 'self-id'
+    sameSexMarriage = true
+    adoptionBySameSex = true
+    conversionTherapyBan = true
+    hateCrimeLaws = true
+    employmentDiscrimination = true
+    housingDiscrimination = true
+    bloodDonation = true
+    transMilitary = true
+    thirdGenderOption = ei >= 85
+    healthcareCoverage = 'public'
+  } else if (ei >= 65) {
+    legalRecognition = 'self-id'
+    sameSexMarriage = true
+    adoptionBySameSex = true
+    conversionTherapyBan = ei >= 75
+    hateCrimeLaws = true
+    employmentDiscrimination = true
+    housingDiscrimination = true
+    bloodDonation = true
+    transMilitary = true
+    thirdGenderOption = ei >= 70
+    healthcareCoverage = 'public'
+  } else if (ei >= 50) {
+    legalRecognition = 'medicalized'
+    sameSexMarriage = true
+    adoptionBySameSex = ei >= 55
+    conversionTherapyBan = false
+    hateCrimeLaws = true
+    employmentDiscrimination = true
+    housingDiscrimination = ei >= 55
+    bloodDonation = true
+    transMilitary = true
+    thirdGenderOption = false
+    healthcareCoverage = 'public'
+  } else if (ei >= 35) {
+    legalRecognition = 'medicalized'
+    sameSexMarriage = ei >= 40
+    adoptionBySameSex = false
+    conversionTherapyBan = false
+    hateCrimeLaws = false
+    employmentDiscrimination = ei >= 40
+    housingDiscrimination = false
+    bloodDonation = ei >= 40
+    transMilitary = ei >= 40
+    thirdGenderOption = false
+    healthcareCoverage = 'private'
+  } else if (ei >= 20) {
+    legalRecognition = 'medicalized'
+    sameSexMarriage = false
+    adoptionBySameSex = false
+    conversionTherapyBan = false
+    hateCrimeLaws = false
+    employmentDiscrimination = false
+    housingDiscrimination = false
+    bloodDonation = false
+    transMilitary = false
+    thirdGenderOption = false
+    healthcareCoverage = 'none'
+  } else {
+    // ei < 20 — criminalized
+    legalRecognition = 'banned'
+    sameSexMarriage = false
+    adoptionBySameSex = false
+    conversionTherapyBan = false
+    hateCrimeLaws = false
+    employmentDiscrimination = false
+    housingDiscrimination = false
+    bloodDonation = false
+    transMilitary = false
+    thirdGenderOption = false
+    healthcareCoverage = 'none'
+  }
+
+  const recogCode = legalRecognition === 'self-id' ? 2 : legalRecognition === 'medicalized' ? 1 : 0
+  const healthCode = healthcareCoverage === 'public' ? 2 : healthcareCoverage === 'private' ? 1 : 0
+
+  // Generate labels
+  const legalLabels = {
+    'self-id': 'Self-ID (estimated)',
+    'medicalized': 'Medicalized (estimated)',
+    'banned': 'Not recognised / Banned (estimated)',
+  }
+  const healthLabels = {
+    'public': 'Public coverage (estimated)',
+    'private': 'Private only (estimated)',
+    'none': 'Not covered (estimated)',
+  }
+  const antiDiscLabels = {
+    high: 'Comprehensive (estimated)',
+    moderate: 'Partial (estimated)',
+    low: 'Limited or none (estimated)',
+    none: 'None (estimated)',
+  }
+
+  let antiDiscLabel = antiDiscLabels.none
+  if (ei >= 65) antiDiscLabel = antiDiscLabels.high
+  else if (ei >= 35) antiDiscLabel = antiDiscLabels.moderate
+  else if (ei >= 20) antiDiscLabel = antiDiscLabels.low
+
+  return expandRights(
+    [
+      recogCode,
+      sameSexMarriage ? 1 : 0,
+      adoptionBySameSex ? 1 : 0,
+      conversionTherapyBan ? 1 : 0,
+      hateCrimeLaws ? 1 : 0,
+      employmentDiscrimination ? 1 : 0,
+      housingDiscrimination ? 1 : 0,
+      bloodDonation ? 1 : 0,
+      transMilitary ? 1 : 0,
+      thirdGenderOption ? 1 : 0,
+      healthCode,
+    ],
+    legalLabels[legalRecognition],
+    healthLabels[healthcareCoverage],
+    antiDiscLabel
+  )
+}
+
+/**
+ * Generate safety score from EI score (1-5).
+ */
+function autoSafety(ei) {
+  if (ei === null || ei === undefined) return 1
+  if (ei >= 80) return 5
+  if (ei >= 65) return 4
+  if (ei >= 50) return 3
+  if (ei >= 35) return 2
+  return 1
+}
+
+/**
+ * Generate a brief note based on EI score.
+ */
+function autoNote(name, ei) {
+  if (ei === null || ei === undefined) {
+    return `${name} has unknown LGBTQ+ rights status. Exercise extreme caution.`
+  }
+  if (ei < 20) {
+    return `CRIMINALIZED: ${name} has severe legal restrictions against LGBTQ+ people. Relocating here as an openly trans person is extremely dangerous.`
+  }
+  if (ei < 35) {
+    return `${name} has very limited LGBTQ+ rights. Legal recognition is severely restricted. Not recommended for relocation.`
+  }
+  if (ei < 50) {
+    return `${name} has some LGBTQ+ protections but significant gaps remain. Medicalized gender recognition. Use caution.`
+  }
+  if (ei < 65) {
+    return `${name} has moderate LGBTQ+ rights. Some legal protections exist but trans-specific healthcare and recognition may be limited.`
+  }
+  if (ei < 80) {
+    return `${name} has good LGBTQ+ rights with most legal protections in place. Self-ID may be available.`
+  }
+  return `${name} has excellent LGBTQ+ rights with comprehensive legal protections.`
+}
+
 function generate() {
   if (!fs.existsSync(DATA_DIR)) {
     fs.mkdirSync(DATA_DIR, { recursive: true })
   }
 
+  // Load equality index data to fill gaps
+  const equalityPath = path.join(DATA_DIR, 'equality-index.json')
+  let equalityData = []
+  try {
+    equalityData = JSON.parse(fs.readFileSync(equalityPath, 'utf-8'))
+    console.log(`[Curated] Loaded ${equalityData.length} equality entries for auto-generation`)
+  } catch (err) {
+    console.warn(`[Curated] Could not load equality data (${err.message}) — only using ${Object.keys(curatedData).length} manually curated profiles`)
+  }
+
+  // Build result: start with manually curated, then fill gaps
+  const result = { ...curatedData }
+
+  if (equalityData.length > 0) {
+    let autoCount = 0
+    for (const entry of equalityData) {
+      const code = entry.region_id
+      // Skip if already manually curated
+      if (result[code]) continue
+
+      const ei = entry.ei
+      const ei_legal = entry.ei_legal
+      const ei_po = entry.ei_po
+      const name = entry.name || code
+
+      result[code] = {
+        rights: autoGenerateRights(ei, ei_legal, ei_po),
+        safety: autoSafety(ei),
+        digitalNomadVisa: 'No specific visa information',
+        euFreeMovement: false,
+        notes: autoNote(name, ei),
+        languageNote: 'Language information not yet curated. Research the official language(s) of this country before relocating.',
+      }
+      autoCount++
+    }
+    console.log(`[Curated] Auto-generated data for ${autoCount} additional countries`)
+  }
+
   const outputPath = path.join(DATA_DIR, 'curated-country-info.json')
-  fs.writeFileSync(outputPath, JSON.stringify(curatedData, null, 2), 'utf-8')
-  console.log(`[Curated] Saved ${Object.keys(curatedData).length} country profiles to ${outputPath}`)
+  fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), 'utf-8')
+  console.log(`[Curated] Saved ${Object.keys(result).length} country profiles to ${outputPath}`)
 }
 
 generate()

@@ -2,10 +2,17 @@
   <div class="max-w-5xl mx-auto pt-6 pb-8 px-4 sm:px-0">
     <!-- Search bar -->
     <div class="relative mb-8">
-      <div class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1">
+      <div
+        class="flex gap-3 items-center bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-700 rounded-xl shadow-sm focus-within:border-blue-400 dark:focus-within:border-blue-500 transition-colors p-1"
+      >
         <span class="pl-4 text-gray-400">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
           </svg>
         </span>
         <input
@@ -51,7 +58,7 @@
             :alt="country.flagAlt || `Flag of ${country.name}`"
             class="w-6 h-4 object-cover rounded shadow-sm"
           />
-          <span class="w-6 h-4 bg-gray-200 rounded flex items-center justify-center text-xs" v-else>?</span>
+          <span v-else class="w-6 h-4 bg-gray-200 rounded flex items-center justify-center text-xs">?</span>
           <div class="flex-1">
             <span class="font-medium text-gray-900 dark:text-gray-100">{{ country.name }}</span>
             <span class="text-xs text-gray-500 ml-2">{{ country.continent || '' }}</span>
@@ -75,7 +82,6 @@
 
     <!-- Country detail — Bento Box Grid -->
     <div v-if="selectedCountry" class="animate-fade-in">
-      
       <!-- Row: Country header (full width) -->
       <div class="bento-card bento-full mb-4">
         <div class="flex items-start gap-4 flex-wrap">
@@ -96,7 +102,9 @@
               <span v-if="selectedCountry.population"> · Pop: {{ formatNumber(selectedCountry.population) }}</span>
             </p>
             <p class="text-xs text-gray-400 mt-1">
-              <span v-if="selectedCountry.languages?.length">Languages: {{ selectedCountry.languages.join(', ') }}</span>
+              <span v-if="selectedCountry.languages?.length">
+                Languages: {{ selectedCountry.languages.join(', ') }}
+              </span>
               <span v-if="curatedInfo?.languageNote"> · {{ curatedInfo.languageNote.split('.')[0] }}.</span>
             </p>
           </div>
@@ -105,7 +113,6 @@
 
       <!-- Bento grid: 2 columns on desktop -->
       <div class="bento-grid">
-        
         <!-- 🏳️‍⚧️ Safety Level card (appears for every country) -->
         <div class="bento-card bento-span-2">
           <div class="p-4 rounded-xl" :class="safetyLevel.cardBg">
@@ -121,19 +128,22 @@
                   <span v-if="selectedCountry.rank"> · Rank: #{{ selectedCountry.rank }} of 197</span>
                 </p>
                 <p v-if="safetyLevel.emergencyLink" class="text-xs mt-1" :class="safetyLevel.linkClass">
-                  ⚠️ If you are already here, see the <a href="/transit/emergency/" class="underline font-semibold">Emergency page</a>
+                  ⚠️ If you are already here, see the
+                  <a href="/transit/emergency/" class="underline font-semibold">Emergency page</a>
                   for immediate safety resources.
                 </p>
                 <!-- Regional variation note -->
                 <div v-if="curatedInfo?.regionalNote" class="mt-3 pt-3 border-t" :class="safetyLevel.borderClass">
-                  <p class="text-xs font-semibold uppercase tracking-wider mb-1" :class="safetyLevel.metaClass">Regional Variation</p>
+                  <p class="text-xs font-semibold uppercase tracking-wider mb-1" :class="safetyLevel.metaClass">
+                    Regional Variation
+                  </p>
                   <p class="text-xs leading-relaxed" :class="safetyLevel.textClass">{{ curatedInfo.regionalNote }}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Equality Index card (spans full width) -->
         <div v-if="selectedCountry.ei !== undefined" class="bento-card bento-span-2">
           <h3 class="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">
@@ -145,11 +155,15 @@
               <div class="text-xs text-gray-500 mt-1">Overall Score</div>
             </div>
             <div class="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">{{ selectedCountry.ei_legal ?? '-' }}</div>
+              <div class="text-4xl font-bold text-blue-600 dark:text-blue-400">
+                {{ selectedCountry.ei_legal ?? '-' }}
+              </div>
               <div class="text-xs text-gray-500 mt-1">Legal Score</div>
             </div>
             <div class="text-center p-4 rounded-xl bg-gray-50 dark:bg-gray-700/50">
-              <div class="text-4xl font-bold text-purple-600 dark:text-purple-400">{{ selectedCountry.ei_po ?? '-' }}</div>
+              <div class="text-4xl font-bold text-purple-600 dark:text-purple-400">
+                {{ selectedCountry.ei_po ?? '-' }}
+              </div>
               <div class="text-xs text-gray-500 mt-1">Public Opinion</div>
             </div>
           </div>
@@ -190,8 +204,10 @@
             <!-- Checklist items in compact 2-col -->
             <div class="grid grid-cols-2 gap-x-4 gap-y-2">
               <div v-for="item in rightsList" :key="item.key" class="flex items-center gap-2">
-                <span class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[10px]"
-                      :class="item.value ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'">
+                <span
+                  class="flex-shrink-0 w-4 h-4 rounded-full flex items-center justify-center text-[10px]"
+                  :class="item.value ? 'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300' : 'bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300'"
+                >
                   {{ item.value ? '✓' : '✗' }}
                 </span>
                 <span class="text-xs text-gray-700 dark:text-gray-300 leading-tight">{{ item.label }}</span>
@@ -202,7 +218,7 @@
             <div class="mt-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2">
               <div class="flex items-center gap-2 text-xs">
                 <span class="uppercase tracking-wider text-gray-500">Healthcare:</span>
-                <Badge :variant="coverageVariant(curatedInfo.rights.healthcareCoverage)">
+                <Badge :variant="coverageVariant(curatedInfo.rights.healthcareCoverage)" class="text-[11px]">
                   {{ coverageLabel(curatedInfo.rights.healthcareCoverage) }}
                 </Badge>
               </div>
@@ -231,7 +247,8 @@
               </p>
               <div class="mt-4 p-3 rounded-lg bg-gray-50 dark:bg-gray-700/30 inline-block">
                 <span class="text-xs text-gray-500 dark:text-gray-400">
-                  Equaldex Rank: <strong class="text-gray-700 dark:text-gray-200">#{{ selectedCountry.rank || 'N/A' }}</strong> of 197
+                  Equaldex Rank:
+                  <strong class="text-gray-700 dark:text-gray-200">#{{ selectedCountry.rank || 'N/A' }}</strong> of 197
                 </span>
               </div>
             </div>
@@ -253,13 +270,21 @@
               </div>
             </div>
             <div class="grid grid-cols-2 gap-2">
-              <div v-for="dim in dimensions" :key="dim.key"
-                   class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
-                <div class="text-base font-bold" :class="dimScoreClass(relocInfo[dim.key], dim.key)">{{ dimDisplayVal(relocInfo[dim.key], dim.key) }}</div>
+              <div
+                v-for="dim in dimensions"
+                :key="dim.key"
+                class="text-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30"
+              >
+                <div class="text-base font-bold" :class="scoreColor(relocInfo[dim.key], dim.key, 'dim')">
+                  {{ dimDisplayVal(relocInfo[dim.key], dim.key) }}
+                </div>
                 <div class="text-[10px] text-gray-500 mt-0.5">{{ dim.label }}</div>
                 <div class="mt-1 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                  <div class="h-full rounded-full transition-all" :class="dimBarClass(relocInfo[dim.key], dim.key)"
-                       :style="{ width: dimDisplayVal(relocInfo[dim.key], dim.key) + '%' }"></div>
+                  <div
+                    class="h-full rounded-full transition-all"
+                    :class="scoreColor(relocInfo[dim.key], dim.key, 'bar')"
+                    :style="{ width: dimDisplayVal(relocInfo[dim.key], dim.key) + '%' }"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -316,7 +341,9 @@
                 <div class="text-[10px] text-gray-500">Rank (1=cheapest)</div>
               </div>
               <div v-if="salaryInfo" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-lg font-bold text-purple-600 dark:text-purple-400">${{ formatNumber(salaryInfo.medianNetUSD) }}</div>
+                <div class="text-lg font-bold text-purple-600 dark:text-purple-400">
+                  ${{ formatNumber(salaryInfo.medianNetUSD) }}
+                </div>
                 <div class="text-[10px] text-gray-500">Median Salary/yr</div>
               </div>
               <div v-else class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
@@ -326,38 +353,77 @@
             </div>
 
             <!-- Salary coverage -->
-            <div v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD" class="mt-2 mb-3 text-[11px] text-gray-500 text-center">
+            <div
+              v-if="costInfo.monthly_estimate_usd && salaryInfo?.medianNetUSD"
+              class="mt-2 mb-3 text-[11px] text-gray-500 text-center"
+            >
               Salary covers ~{{ Math.round(salaryInfo.medianNetUSD / costInfo.monthly_estimate_usd) }} months of expenses
             </div>
 
             <!-- Cost breakdown indexes -->
             <div class="grid grid-cols-2 gap-2">
-              <div v-if="costInfo.rent_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-base font-bold" :class="indexColor(costInfo.rent_index, 'cost')">{{ costInfo.rent_index }}</div>
+              <div
+                v-if="costInfo.rent_index != null"
+                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center"
+              >
+                <div class="text-base font-bold" :class="scoreColor(costInfo.rent_index, 'cost', 'text')">
+                  {{ costInfo.rent_index }}
+                </div>
                 <div class="text-[10px] text-gray-500">Rent Index</div>
                 <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                  <div class="h-full rounded-full" :class="costBarClass(costInfo.rent_index, 'cost')" :style="{ width: costInfo.rent_index + '%' }"></div>
+                  <div
+                    class="h-full rounded-full"
+                    :class="scoreColor(costInfo.rent_index, 'cost', 'bar')"
+                    :style="{ width: costInfo.rent_index + '%' }"
+                  ></div>
                 </div>
               </div>
-              <div v-if="costInfo.utilities_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-base font-bold" :class="indexColor(costInfo.utilities_index, 'cost')">{{ costInfo.utilities_index }}</div>
+              <div
+                v-if="costInfo.utilities_index != null"
+                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center"
+              >
+                <div class="text-base font-bold" :class="scoreColor(costInfo.utilities_index, 'cost', 'text')">
+                  {{ costInfo.utilities_index }}
+                </div>
                 <div class="text-[10px] text-gray-500">Utilities</div>
                 <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                  <div class="h-full rounded-full" :class="costBarClass(costInfo.utilities_index, 'cost')" :style="{ width: costInfo.utilities_index + '%' }"></div>
+                  <div
+                    class="h-full rounded-full"
+                    :class="scoreColor(costInfo.utilities_index, 'cost', 'bar')"
+                    :style="{ width: costInfo.utilities_index + '%' }"
+                  ></div>
                 </div>
               </div>
-              <div v-if="costInfo.transport_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-base font-bold" :class="indexColor(costInfo.transport_index, 'cost')">{{ costInfo.transport_index }}</div>
+              <div
+                v-if="costInfo.transport_index != null"
+                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center"
+              >
+                <div class="text-base font-bold" :class="scoreColor(costInfo.transport_index, 'cost', 'text')">
+                  {{ costInfo.transport_index }}
+                </div>
                 <div class="text-[10px] text-gray-500">Transport</div>
                 <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                  <div class="h-full rounded-full" :class="costBarClass(costInfo.transport_index, 'cost')" :style="{ width: costInfo.transport_index + '%' }"></div>
+                  <div
+                    class="h-full rounded-full"
+                    :class="scoreColor(costInfo.transport_index, 'cost', 'bar')"
+                    :style="{ width: costInfo.transport_index + '%' }"
+                  ></div>
                 </div>
               </div>
-              <div v-if="costInfo.grocery_index != null" class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center">
-                <div class="text-base font-bold" :class="indexColor(costInfo.grocery_index, 'cost')">{{ costInfo.grocery_index }}</div>
+              <div
+                v-if="costInfo.grocery_index != null"
+                class="p-2 rounded-lg bg-gray-50 dark:bg-gray-700/50 text-center"
+              >
+                <div class="text-base font-bold" :class="scoreColor(costInfo.grocery_index, 'cost', 'text')">
+                  {{ costInfo.grocery_index }}
+                </div>
                 <div class="text-[10px] text-gray-500">Groceries</div>
                 <div class="mt-0.5 h-1 rounded-full bg-gray-200 dark:bg-gray-600 overflow-hidden">
-                  <div class="h-full rounded-full" :class="costBarClass(costInfo.grocery_index, 'cost')" :style="{ width: costInfo.grocery_index + '%' }"></div>
+                  <div
+                    class="h-full rounded-full"
+                    :class="scoreColor(costInfo.grocery_index, 'cost', 'bar')"
+                    :style="{ width: costInfo.grocery_index + '%' }"
+                  ></div>
                 </div>
               </div>
             </div>
@@ -382,17 +448,29 @@
                 Check these sites for cost estimates:
               </p>
               <div class="flex flex-col gap-2.5">
-                <a href="https://www.numbeo.com/cost-of-living/" target="_blank" rel="noopener"
-                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
-                  🌐  Numbeo — Compare city living costs
+                <a
+                  href="https://www.numbeo.com/cost-of-living/"
+                  target="_blank"
+                  rel="noopener"
+                  class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors"
+                >
+                  🌐 Numbeo — Compare city living costs
                 </a>
-                <a href="https://www.expatistan.com/cost-of-living" target="_blank" rel="noopener"
-                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
-                  📊  Expatistan — User-reported prices
+                <a
+                  href="https://www.expatistan.com/cost-of-living"
+                  target="_blank"
+                  rel="noopener"
+                  class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors"
+                >
+                  📊 Expatistan — User-reported prices
                 </a>
-                <a href="https://livingcost.org/" target="_blank" rel="noopener"
-                   class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors">
-                  💰  LivingCost — Monthly budget breakdown
+                <a
+                  href="https://livingcost.org/"
+                  target="_blank"
+                  rel="noopener"
+                  class="block w-full py-3 rounded-xl text-sm font-medium text-center bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 hover:bg-blue-100 dark:hover:bg-blue-900/50 border border-blue-200 dark:border-blue-800/50 transition-colors"
+                >
+                  💰 LivingCost — Monthly budget breakdown
                 </a>
               </div>
             </div>
@@ -407,15 +485,21 @@
           <div class="space-y-2.5 text-sm">
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Capital</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.capital || 'N/A' }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">
+                {{ selectedCountry.capital || 'N/A' }}
+              </span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Population</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ formatNumber(selectedCountry.population) || 'N/A' }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">
+                {{ formatNumber(selectedCountry.population) || 'N/A' }}
+              </span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Languages</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.languages?.join(', ') || 'N/A' }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">
+                {{ selectedCountry.languages?.join(', ') || 'N/A' }}
+              </span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Currency</span>
@@ -423,38 +507,54 @@
                 {{ toCurrencyCode ? formatCurrencyFull(toCurrencyCode) : (selectedCountry.currencies || 'N/A') }}
               </span>
             </div>
-            <div v-if="exchangeRate && fromCurrencyCode && toCurrencyCode && fromCurrencyCode !== toCurrencyCode"
-                 class="flex justify-between items-center p-2 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30">
+            <div
+              v-if="exchangeRate && fromCurrencyCode && toCurrencyCode && fromCurrencyCode !== toCurrencyCode"
+              class="flex justify-between items-center p-2 rounded-lg bg-green-50 dark:bg-green-900/20 border border-green-100 dark:border-green-800/30"
+            >
               <span class="text-xs text-gray-500 dark:text-gray-400">1 {{ fromCurrencyCode }} =</span>
               <span class="font-medium text-gray-900 dark:text-gray-100 text-xs">
                 {{ exchangeRate.toFixed(4) }} {{ toCurrencyCode }}
-                <span v-if="currencyInfo[toCurrencyCode]" class="text-gray-500"> ({{ currencyInfo[toCurrencyCode].symbol }})</span>
+                <span v-if="currencyInfo[toCurrencyCode]" class="text-gray-500">
+                  ({{ currencyInfo[toCurrencyCode].symbol }})
+                </span>
               </span>
             </div>
-            <div v-else-if="exchangeLoading && fromCurrencyCode && toCurrencyCode"
-                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+            <div
+              v-else-if="exchangeLoading && fromCurrencyCode && toCurrencyCode"
+              class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30"
+            >
               <span class="text-xs text-gray-400 animate-pulse">Loading exchange rate...</span>
             </div>
-            <div v-else-if="detectingCountry && !fromCurrencyCode"
-                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+            <div
+              v-else-if="detectingCountry && !fromCurrencyCode"
+              class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30"
+            >
               <span class="text-xs text-gray-400 animate-pulse">Detecting your location...</span>
             </div>
-            <div v-else-if="fromCurrencyCode && toCurrencyCode && fromCurrencyCode === toCurrencyCode"
-                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+            <div
+              v-else-if="fromCurrencyCode && toCurrencyCode && fromCurrencyCode === toCurrencyCode"
+              class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30"
+            >
               <span class="text-xs text-gray-500 dark:text-gray-400">Same currency</span>
               <span class="text-xs text-gray-700 dark:text-gray-300 font-medium">1:1</span>
             </div>
-            <div v-else-if="!fromCurrencyCode && !detectingCountry"
-                 class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
+            <div
+              v-else-if="!fromCurrencyCode && !detectingCountry"
+              class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30"
+            >
               <span class="text-xs text-gray-400">Type a from-country above for exchange rate</span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Region</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.subregion || selectedCountry.region || selectedCountry.continent }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">
+                {{ selectedCountry.subregion || selectedCountry.region || selectedCountry.continent }}
+              </span>
             </div>
             <div class="flex justify-between items-center p-2 rounded-lg bg-gray-50 dark:bg-gray-700/30">
               <span class="text-gray-500 dark:text-gray-400">Continent</span>
-              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">{{ selectedCountry.continent }}</span>
+              <span class="font-medium text-gray-900 dark:text-gray-100 text-right">
+                {{ selectedCountry.continent }}
+              </span>
             </div>
           </div>
         </div>
@@ -503,11 +603,15 @@
 
           <!-- Migration details grid -->
           <div v-if="selectedCountry.code" class="space-y-3 text-sm">
-
             <!-- Destination header -->
-            <div class="flex items-center gap-2 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
+            <div
+              class="flex items-center gap-2 p-3 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50"
+            >
               <span class="text-blue-600 dark:text-blue-400 font-medium">📍 Moving to {{ selectedCountry.name }}</span>
-              <span v-if="curatedInfo?.euFreeMovement" class="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+              <span
+                v-if="curatedInfo?.euFreeMovement"
+                class="ml-auto inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+              >
                 EU Free Movement
               </span>
             </div>
@@ -520,12 +624,20 @@
                   {{ curatedInfo?.digitalNomadVisa || 'Standard visa/residency pathways' }}
                 </div>
                 <div v-if="visaDifficulty" class="mt-1">
-                  <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium"
-                        :class="visaDifficultyBadgeClass">{{ visaDifficulty }}</span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium"
+                    :class="visaDifficultyBadgeClass"
+                  >
+                    {{ visaDifficulty }}
+                  </span>
                 </div>
                 <div v-if="curatedInfo?.resourceLinks?.immigration" class="mt-1.5">
-                  <a :href="curatedInfo.resourceLinks.immigration" target="_blank" rel="noopener"
-                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  <a
+                    :href="curatedInfo.resourceLinks.immigration"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     🛂 Immigration portal →
                   </a>
                 </div>
@@ -537,13 +649,21 @@
                   {{ curatedInfo?.rights?.healthcareLabel || 'See Rights Checklist' }}
                 </div>
                 <div class="text-xs text-gray-500 mt-1">
-                  Coverage: <Badge :variant="coverageVariant(curatedInfo?.rights?.healthcareCoverage)" class="text-[11px]">
+                  Coverage:
+                  <Badge
+                    :variant="coverageVariant(curatedInfo?.rights?.healthcareCoverage)"
+                    class="text-[11px]"
+                  >
                     {{ coverageLabel(curatedInfo?.rights?.healthcareCoverage) }}
                   </Badge>
                 </div>
                 <div v-if="curatedInfo?.resourceLinks?.transHealthcare" class="mt-1.5">
-                  <a :href="curatedInfo.resourceLinks.transHealthcare" target="_blank" rel="noopener"
-                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  <a
+                    :href="curatedInfo.resourceLinks.transHealthcare"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     🏥 Healthcare system →
                   </a>
                 </div>
@@ -555,8 +675,12 @@
                   {{ curatedInfo?.languageNote || languageInfo }}
                 </div>
                 <div v-if="curatedInfo?.resourceLinks?.languageLearning" class="mt-1.5">
-                  <a :href="curatedInfo.resourceLinks.languageLearning" target="_blank" rel="noopener"
-                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  <a
+                    :href="curatedInfo.resourceLinks.languageLearning"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     📚 Learn the language →
                   </a>
                 </div>
@@ -566,14 +690,22 @@
                 <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Community</div>
                 <div class="font-medium text-gray-900 dark:text-gray-100 text-sm">{{ communityInfo }}</div>
                 <div v-if="curatedInfo?.resourceLinks?.community" class="mt-1.5">
-                  <a :href="curatedInfo.resourceLinks.community" target="_blank" rel="noopener"
-                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  <a
+                    :href="curatedInfo.resourceLinks.community"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     🏳️‍🌈 LGBTQ+ organisation →
                   </a>
                 </div>
                 <div v-if="curatedInfo?.resourceLinks?.housing" class="mt-1">
-                  <a :href="curatedInfo.resourceLinks.housing" target="_blank" rel="noopener"
-                     class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline">
+                  <a
+                    :href="curatedInfo.resourceLinks.housing"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-flex items-center gap-1 text-xs text-blue-600 dark:text-blue-400 hover:underline"
+                  >
                     🏠 Housing →
                   </a>
                 </div>
@@ -581,33 +713,59 @@
             </div>
 
             <!-- Visa info from WhereNext API -->
-            <div v-if="visaLoading" class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 text-center text-sm text-gray-500">
+            <div
+              v-if="visaLoading"
+              class="p-3 rounded-xl bg-gray-50 dark:bg-gray-700/50 text-center text-sm text-gray-500"
+            >
               <span class="inline-block animate-pulse">Loading visa information...</span>
             </div>
-            <div v-else-if="visaApiData" class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 space-y-2">
+            <div
+              v-else-if="visaApiData"
+              class="p-4 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50 space-y-2"
+            >
               <div class="flex items-center gap-2">
                 <span class="text-blue-600 dark:text-blue-400 font-medium text-sm">🛂 Visa Pathways</span>
-                <span v-if="visaApiData.confidence === 'high'" class="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300">Verified</span>
+                <span
+                  v-if="visaApiData.confidence === 'high'"
+                  class="ml-auto text-[10px] px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300"
+                >
+                  Verified
+                </span>
               </div>
               <p class="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">{{ visaApiData.answer }}</p>
               <div v-if="visaApiData.facts?.length" class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
-                <div v-for="fact in visaApiData.facts" :key="fact.label"
-                     class="flex items-start gap-2 text-xs p-2 rounded bg-white/50 dark:bg-gray-800/50">
+                <div
+                  v-for="fact in visaApiData.facts"
+                  :key="fact.label"
+                  class="flex items-start gap-2 text-xs p-2 rounded bg-white/50 dark:bg-gray-800/50"
+                >
                   <span class="text-blue-500 mt-0.5">•</span>
                   <div>
                     <span class="font-medium text-gray-900 dark:text-gray-100">{{ fact.label }}:</span>
-                    <span class="text-gray-600 dark:text-gray-400"> {{ fact.value }}{{ fact.unit ? ' ' + fact.unit : '' }}</span>
+                    <span class="text-gray-600 dark:text-gray-400">
+                      {{ fact.value }}{{ fact.unit ? ' ' + fact.unit : '' }}
+                    </span>
                   </div>
                 </div>
               </div>
               <div v-if="visaApiData.citations?.length" class="mt-2 text-[10px] text-gray-400">
                 <span>Sources: </span>
-                <a v-for="(citation, ci) in visaApiData.citations" :key="ci"
-                   :href="citation.url" target="_blank" rel="noopener"
-                   class="underline hover:text-blue-500 mr-2">{{ citation.label }}</a>
+                <a
+                  v-for="(citation, ci) in visaApiData.citations"
+                  :key="ci"
+                  :href="citation.url"
+                  target="_blank"
+                  rel="noopener"
+                  class="underline hover:text-blue-500 mr-2"
+                >
+                  {{ citation.label }}
+                </a>
               </div>
             </div>
-            <div v-else-if="visaError" class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50">
+            <div
+              v-else-if="visaError"
+              class="p-3 rounded-xl bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50"
+            >
               <p class="text-amber-800 dark:text-amber-200 text-sm">
                 <span class="font-medium">💡 Passport Tip:</span>
                 {{ passportSuggestion }}
@@ -619,14 +777,18 @@
             </p>
           </div>
         </div>
-        
       </div><!-- /bento-grid -->
     </div>
 
     <!-- Empty state -->
     <div v-else class="text-center py-16 text-gray-400">
       <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        />
       </svg>
       <p class="text-lg">Search for a country above</p>
       <p class="text-sm mt-2">Get Equality Index scores, trans rights info, and migration guidance.</p>
@@ -635,22 +797,192 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, onUnmounted, watch } from 'vue'
 import dataset from '../generated/country-dataset.json'
 import curatedInfoMap from '../generated/curated-country-info.json'
 import colDataRaw from '../generated/col-data.json'
 
-// ====== COST OF LIVING DATA ======
-// Primary: generated col-data.json (from pipeline, cached)
-// Fallback: WhereNext direct API fetch
+// ============== UTILITIES ==============
+/** Abort controller for cleanup on unmount */
+const abortController = ref(new AbortController())
+let debounceTimer = null
+
+function useDebounceFn(fn, delay = 300) {
+  return (...args) => {
+    clearTimeout(debounceTimer)
+    debounceTimer = setTimeout(() => fn(...args), delay)
+  }
+}
+
+/** Unified colour / bar class helper */
+function scoreColor(val, key, type = 'text') {
+  const isCost = key === 'cost'
+  // For relocation dimensions, cost is inverted (lower = better)
+  if (isCost && type !== 'dim') {
+    // cost indexes (rent, utilities, etc.) where lower is better
+    if (val <= 33) return type === 'text' ? 'text-green-600 dark:text-green-400' : 'bg-green-500'
+    if (val <= 66) return type === 'text' ? 'text-yellow-600 dark:text-yellow-400' : 'bg-yellow-500'
+    return type === 'text' ? 'text-red-600 dark:text-red-400' : 'bg-red-500'
+  }
+  // For relocation dimension cost, we invert display value, but raw val is still original; use dimDisplayVal logic
+  // Actually in template we already convert display value, so scoreColor receives raw value; for dim we need the inverted logic
+  if (type === 'dim') {
+    const displayVal = key === 'cost' ? 100 - val : val
+    if (displayVal >= 70) return 'text-green-600 dark:text-green-400'
+    if (displayVal >= 40) return 'text-yellow-600 dark:text-yellow-400'
+    return 'text-red-600 dark:text-red-400'
+  }
+  if (type === 'bar') {
+    const displayVal = key === 'cost' ? 100 - val : val
+    if (displayVal >= 70) return 'bg-green-500'
+    if (displayVal >= 40) return 'bg-yellow-500'
+    return 'bg-red-500'
+  }
+  // fallback text
+  if (val >= 80) return 'text-green-600 dark:text-green-400'
+  if (val >= 60) return 'text-blue-600 dark:text-blue-400'
+  if (val >= 40) return 'text-yellow-600 dark:text-yellow-400'
+  return 'text-red-600 dark:text-red-400'
+}
+
+// ============== CONSTANTS ==============
 const WHERENEXT_BASE = 'https://getwherenext.com'
+const dimensions = [
+  { key: 'cost', label: 'Cost' },
+  { key: 'safety', label: 'Safety' },
+  { key: 'healthcare', label: 'Health' },
+  { key: 'education', label: 'Education' },
+  { key: 'career', label: 'Career' },
+  { key: 'lifestyle', label: 'Lifestyle' },
+  { key: 'infrastructure', label: 'Infrastructure' },
+]
+
+// Pre-built alias map for O(1) lookup
+const aliasMap = new Map([
+  ['usa', 'US'], ['america', 'US'], ['united states of america', 'US'],
+  ['uk', 'GB'], ['england', 'GB'], ['britain', 'GB'], ['great britain', 'GB'],
+  ['uae', 'AE'], ['emirates', 'AE'],
+  ['drc', 'CD'], ['congo', 'CD'],
+  ['dprk', 'KP'],
+  ['rok', 'KR'],
+  ['south korea', 'KR'], ['korea', 'KR'],
+  ['holland', 'NL'],
+  ['burma', 'MM'],
+  ['ivory coast', 'CI'], ["côte d'ivoire", 'CI'],
+  ['czechia', 'CZ'], ['czech', 'CZ'],
+  ['macedonia', 'MK'],
+  ['swaziland', 'SZ'],
+  ['cabo verde', 'CV'],
+  ['east timor', 'TL'],
+  ['st ', 'st'],
+  ['palestine', 'PS'],
+  ['venezuela', 'VE'],
+  ['vietnam', 'VN'],
+])
+
+// ============== REACTIVE STATE ==============
+const query = ref('')
+const showDropdown = ref(false)
+const highlightIndex = ref(-1)
+const selectedCountry = ref(null)
+const searchInput = ref(null)
+
+const fromQuery = ref('')
+const showFromDropdown = ref(false)
+const fromHighlightIndex = ref(-1)
+const selectedFromCountry = ref(null)
+
+// WhereNext data
 const whereNextCostIndex = ref([])
 const whereNextRelocIndex = ref([])
 const whereNextSalaries = ref([])
 const wnLoading = ref(true)
 const wnError = ref('')
 
-// Build a map from the generated col-data.json (keyed by ISO2 code)
+// Exchange rates & currency info
+const exchangeRates = ref(null)
+const ratesLoading = ref(true)
+const exchangeRate = ref(null)
+const exchangeLoading = ref(false)
+const exchangeError = ref('')
+const detectingCountry = ref(true)
+
+// Visa API state
+const visaApiData = ref(null)
+const visaLoading = ref(false)
+const visaError = ref('')
+
+// Timestamp
+const lastUpdated = ref(formatDate(new Date()))
+
+// ============== DATA FETCHING ==============
+async function fetchExchangeRates(signal) {
+  try {
+    const res = await fetch('https://open.er-api.com/v6/latest/USD', {
+      signal,
+      headers: { Accept: 'application/json' },
+    })
+    if (res.ok) {
+      const data = await res.json()
+      exchangeRates.value = data.rates || null
+    }
+  } catch (e) {
+    if (e.name !== 'AbortError') console.warn('[ExchangeRates]', e)
+  } finally {
+    ratesLoading.value = false
+  }
+}
+
+async function fetchWhereNextData(signal) {
+  try {
+    const [costRes, relocRes, salRes] = await Promise.all([
+      fetch(`${WHERENEXT_BASE}/api/data/cost-of-living`, { signal }),
+      fetch(`${WHERENEXT_BASE}/api/data/relocation-index`, { signal }),
+      fetch(`${WHERENEXT_BASE}/api/data/median-salaries`, { signal }).then(r =>
+        r.ok ? r.json() : { countries: [] }
+      ),
+    ])
+    const costData = await costRes.json()
+    const relocData = await relocRes.json()
+    whereNextCostIndex.value = costData.data || []
+    whereNextRelocIndex.value = relocData.data || []
+    whereNextSalaries.value = salRes.countries || []
+  } catch (e) {
+    if (e.name !== 'AbortError') {
+      wnError.value = 'Could not load relocation data'
+      console.warn('[WhereNext]', e)
+    }
+  } finally {
+    wnLoading.value = false
+  }
+}
+
+async function autoDetectUserCountry(signal) {
+  const geoProviders = [
+    { url: 'https://ipinfo.io/json', codeField: 'country' },
+    { url: 'https://ipapi.co/json/', codeField: 'country_code' },
+  ]
+  for (const provider of geoProviders) {
+    try {
+      const res = await fetch(provider.url, { signal })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.json()
+      const countryCode = data[provider.codeField]
+      if (!countryCode) continue
+      const match = dataset.find(c => c.code === countryCode)
+      if (match && !selectedFromCountry.value) {
+        selectedFromCountry.value = match
+        fromQuery.value = match.name
+      }
+      break
+    } catch (e) {
+      if (e.name !== 'AbortError') console.info(`[Auto-detect] ${provider.url} failed:`, e.message)
+    }
+  }
+  detectingCountry.value = false
+}
+
+// ============== COMPUTED ==============
 const colMap = computed(() => {
   const map = {}
   if (colDataRaw && typeof colDataRaw === 'object') {
@@ -672,33 +1004,136 @@ const colMap = computed(() => {
   return map
 })
 
-// ====== EXCHANGE RATES (USD -> local currency) ======
-const exchangeRates = ref(null)
-const ratesLoading = ref(true)
-
-async function fetchExchangeRates() {
-  try {
-    const res = await fetch('https://open.er-api.com/v6/latest/USD', {
-      signal: AbortSignal.timeout(8000)
-    })
-    if (res.ok) {
-      const data = await res.json()
-      exchangeRates.value = data.rates || null
-    }
-  } catch (e) {
-    console.warn('[ExchangeRates]', e)
-  } finally {
-    ratesLoading.value = false
+function countryMatchesQuery(country, q) {
+  if (country.name.toLowerCase().includes(q)) return true
+  if (country.code && country.code.toLowerCase().includes(q)) return true
+  // Check aliases via map
+  const codeFromAlias = aliasMap.get(q)
+  if (codeFromAlias && codeFromAlias === country.code) return true
+  // Check multi-word alias fragments (keep for "st " etc.)
+  for (const [alias, code] of aliasMap.entries()) {
+    if (alias.includes(q) && code === country.code) return true
   }
+  return false
 }
 
-/** Get the first currency code for a country */
-function getCountryCurrency(country) {
-  if (!country?.currencies?.length) return null
-  return country.currencies[0]
-}
+const filteredCountries = computed(() => {
+  if (!query.value) return []
+  const q = query.value.toLowerCase().trim()
+  return dataset.filter(c => countryMatchesQuery(c, q)).slice(0, 15)
+})
 
-/** Computed: local currency version of the monthly cost estimate */
+const fromFiltered = computed(() => {
+  if (!fromQuery.value) return []
+  const q = fromQuery.value.toLowerCase().trim()
+  return dataset.filter(c => countryMatchesQuery(c, q)).slice(0, 10)
+})
+
+const curatedInfo = computed(() =>
+  selectedCountry.value ? curatedInfoMap[selectedCountry.value.code] || null : null
+)
+
+// Safety levels
+const safetyLevel = computed(() => {
+  if (!selectedCountry.value) return {}
+  const ei = selectedCountry.value.ei
+  if (ei === undefined || ei === null) {
+    return {
+      label: 'Unknown', emoji: '❓', title: 'No Data Available',
+      description: "We don't have enough data to assess safety for this country.",
+      cardBg: 'bg-gray-50 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600',
+      titleClass: 'text-gray-800 dark:text-gray-200', textClass: 'text-gray-700 dark:text-gray-300',
+      metaClass: 'text-gray-500 dark:text-gray-400', linkClass: 'text-gray-400 dark:text-gray-500',
+      borderClass: 'border-gray-200 dark:border-gray-600', emergencyLink: false,
+    }
+  }
+  if (ei < 25) {
+    return {
+      label: 'Severe Risk', emoji: '🚨', title: 'DO NOT MOVE TO THIS COUNTRY',
+      description: 'This country has severe legal restrictions against LGBTQ+ people, including criminalization of same-sex activity. Relocating here as an openly trans person is extremely dangerous.',
+      cardBg: 'bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600',
+      titleClass: 'text-red-800 dark:text-red-200', textClass: 'text-red-700 dark:text-red-300',
+      metaClass: 'text-red-600 dark:text-red-400', linkClass: 'text-red-500 dark:text-red-400',
+      borderClass: 'border-red-300 dark:border-red-700', emergencyLink: true,
+    }
+  }
+  if (ei < 40) {
+    return {
+      label: 'High Risk', emoji: '⚠️', title: 'Moving Not Recommended',
+      description: 'This country has significant legal restrictions or social hostility toward LGBTQ+ people. Same-sex activity may be restricted and trans rights are not protected. If you must move here, have a strong support network and legal safeguards in place.',
+      cardBg: 'bg-orange-50 dark:bg-orange-950 border-2 border-orange-400 dark:border-orange-600',
+      titleClass: 'text-orange-800 dark:text-orange-200', textClass: 'text-orange-700 dark:text-orange-300',
+      metaClass: 'text-orange-600 dark:text-orange-400', linkClass: 'text-orange-500 dark:text-orange-400',
+      borderClass: 'border-orange-300 dark:border-orange-700', emergencyLink: true,
+    }
+  }
+  if (ei < 60) {
+    return {
+      label: 'Moderate Risk', emoji: '🟡', title: 'Proceed with Caution',
+      description: 'This country has mixed protections. While same-sex activity is likely legal, trans-specific rights may be limited and social acceptance varies. Research local laws carefully and seek community support before relocating.',
+      cardBg: 'bg-yellow-50 dark:bg-yellow-950 border-2 border-yellow-400 dark:border-yellow-600',
+      titleClass: 'text-yellow-800 dark:text-yellow-200', textClass: 'text-yellow-700 dark:text-yellow-300',
+      metaClass: 'text-yellow-600 dark:text-yellow-400', linkClass: 'text-yellow-500 dark:text-yellow-400',
+      borderClass: 'border-yellow-300 dark:border-yellow-700', emergencyLink: false,
+    }
+  }
+  if (ei < 80) {
+    return {
+      label: 'Low Risk', emoji: '🟢', title: 'Generally Safe',
+      description: 'This country has reasonable legal protections for LGBTQ+ people. Same-sex activity is legal and some trans rights are recognized. Social acceptance varies by region, but overall conditions are favorable.',
+      cardBg: 'bg-green-50 dark:bg-green-950 border-2 border-green-400 dark:border-green-600',
+      titleClass: 'text-green-800 dark:text-green-200', textClass: 'text-green-700 dark:text-green-300',
+      metaClass: 'text-green-600 dark:text-green-400', linkClass: 'text-green-500 dark:text-green-400',
+      borderClass: 'border-green-300 dark:border-green-700', emergencyLink: false,
+    }
+  }
+  return {
+    label: 'Best', emoji: '🏳️‍🌈', title: 'Highly Recommended',
+    description: 'This country has strong legal protections and broad social acceptance for LGBTQ+ people. Trans rights are well-established with legal gender recognition, healthcare access, and anti-discrimination protections.',
+    cardBg: 'bg-emerald-50 dark:bg-emerald-950 border-2 border-emerald-400 dark:border-emerald-600',
+    titleClass: 'text-emerald-800 dark:text-emerald-200', textClass: 'text-emerald-700 dark:text-emerald-300',
+    metaClass: 'text-emerald-600 dark:text-emerald-400', linkClass: 'text-emerald-500 dark:text-emerald-400',
+    borderClass: 'border-emerald-300 dark:border-emerald-700', emergencyLink: false,
+  }
+})
+
+const costInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code.toUpperCase()
+  return colMap.value[code] || whereNextCostIndex.value.find(c => (c.country_code || '').toUpperCase() === code) || null
+})
+
+const relocInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code.toLowerCase()
+  return whereNextRelocIndex.value.find(c => c.country_code === code) || null
+})
+
+const salaryInfo = computed(() => {
+  if (!selectedCountry.value) return null
+  const code = selectedCountry.value.code
+  return whereNextSalaries.value.find(s => s.code === code) || null
+})
+
+const rightsList = computed(() => {
+  const r = curatedInfo.value?.rights
+  if (!r) return []
+  return [
+    { key: 'sameSexMarriage', label: 'Same-sex marriage', value: r.sameSexMarriage },
+    { key: 'adoptionBySameSex', label: 'Same-sex adoption', value: r.adoptionBySameSex },
+    { key: 'conversionTherapyBan', label: 'Conversion therapy banned', value: r.conversionTherapyBan },
+    { key: 'hateCrimeLaws', label: 'Hate crime laws include gender identity', value: r.hateCrimeLaws },
+    { key: 'employmentDiscrimination', label: 'Employment discrimination protections', value: r.employmentDiscrimination },
+    { key: 'housingDiscrimination', label: 'Housing discrimination protections', value: r.housingDiscrimination },
+    { key: 'bloodDonation', label: 'Blood donation allowed', value: r.bloodDonation },
+    { key: 'transMilitary', label: 'Trans people can serve in military', value: r.transMilitary },
+    { key: 'thirdGenderOption', label: 'Third gender / X marker option', value: r.thirdGenderOption },
+  ]
+})
+
+const fromCurrencyCode = computed(() => getCurrencyCode(selectedFromCountry.value))
+const toCurrencyCode = computed(() => getCurrencyCode(selectedCountry.value))
+
 const localCostDisplay = computed(() => {
   if (!costInfo.value?.monthly_estimate_usd) return null
   const currencyCode = getCountryCurrency(selectedCountry.value)
@@ -716,449 +1151,9 @@ const localCostDisplay = computed(() => {
   }
 })
 
-async function fetchWhereNextData() {
-  try {
-    const [costRes, relocRes, salRes] = await Promise.all([
-      fetch(`${WHERENEXT_BASE}/api/data/cost-of-living`),
-      fetch(`${WHERENEXT_BASE}/api/data/relocation-index`),
-      fetch(`${WHERENEXT_BASE}/api/data/median-salaries`).then(r => r.ok ? r.json() : { countries: [] }),
-    ])
-    const costData = await costRes.json()
-    const relocData = await relocRes.json()
-    whereNextCostIndex.value = costData.data || []
-    whereNextRelocIndex.value = relocData.data || []
-    whereNextSalaries.value = (salRes.countries || [])
-  } catch (e) {
-    wnError.value = 'Could not load relocation data'
-    console.warn('[WhereNext]', e)
-  } finally {
-    wnLoading.value = false
-  }
-}
-
-onMounted(async () => {
-  fetchWhereNextData()
-  fetchExchangeRates()
-  await autoDetectUserCountry()
-})
-
-// ====== AUTO-DETECT USER COUNTRY ======
-const detectingCountry = ref(true)
-
-async function autoDetectUserCountry() {
-  // Try multiple geo-IP services
-  const geoProviders = [
-    { url: 'https://ipinfo.io/json', codeField: 'country' },
-    { url: 'https://ipapi.co/json/', codeField: 'country_code' },
-  ]
-  for (const provider of geoProviders) {
-    try {
-      const res = await fetch(provider.url, { signal: AbortSignal.timeout(4000) })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
-      const data = await res.json()
-      const countryCode = data[provider.codeField]
-      if (!countryCode) continue
-      const match = dataset.find(c => c.code === countryCode)
-      if (match && !selectedFromCountry.value) {
-        selectedFromCountry.value = match
-        fromQuery.value = match.name
-      }
-      break
-    } catch (e) {
-      console.info(`[Auto-detect] ${provider.url} failed:`, e.message)
-    }
-  }
-  detectingCountry.value = false
-}
-
-// ====== VISA API STATE ======
-const visaApiData = ref(null)
-const visaLoading = ref(false)
-const visaError = ref('')
-
-// ====== SEARCH STATE ======
-const query = ref('')
-const showDropdown = ref(false)
-const highlightIndex = ref(-1)
-const selectedCountry = ref(null)
-const searchInput = ref(null)
-const lastUpdated = ref('')
-
-// From-country state
-const fromQuery = ref('')
-const showFromDropdown = ref(false)
-const fromHighlightIndex = ref(-1)
-const selectedFromCountry = ref(null)
-
-// ====== CURRENCY DATA ======
-const currencyInfo = {
-  USD: { name: 'US Dollar', symbol: '$' },
-  EUR: { name: 'Euro', symbol: '€' },
-  GBP: { name: 'British Pound Sterling', symbol: '£' },
-  JPY: { name: 'Japanese Yen', symbol: '¥' },
-  AUD: { name: 'Australian Dollar', symbol: 'A$' },
-  CAD: { name: 'Canadian Dollar', symbol: 'C$' },
-  CHF: { name: 'Swiss Franc', symbol: 'Fr' },
-  CNY: { name: 'Chinese Yuan', symbol: '¥' },
-  SEK: { name: 'Swedish Krona', symbol: 'kr' },
-  NOK: { name: 'Norwegian Krone', symbol: 'kr' },
-  DKK: { name: 'Danish Krone', symbol: 'kr' },
-  ISK: { name: 'Icelandic Króna', symbol: 'kr' },
-  NZD: { name: 'New Zealand Dollar', symbol: 'NZ$' },
-  BRL: { name: 'Brazilian Real', symbol: 'R$' },
-  ARS: { name: 'Argentine Peso', symbol: '$' },
-  THB: { name: 'Thai Baht', symbol: '฿' },
-  TWD: { name: 'New Taiwan Dollar', symbol: 'NT$' },
-  KRW: { name: 'South Korean Won', symbol: '₩' },
-  ILS: { name: 'Israeli New Shekel', symbol: '₪' },
-  ZAR: { name: 'South African Rand', symbol: 'R' },
-  MXN: { name: 'Mexican Peso', symbol: 'Mex$' },
-  INR: { name: 'Indian Rupee', symbol: '₹' },
-  SGD: { name: 'Singapore Dollar', symbol: 'S$' },
-  HKD: { name: 'Hong Kong Dollar', symbol: 'HK$' },
-  TRY: { name: 'Turkish Lira', symbol: '₺' },
-  PLN: { name: 'Polish Złoty', symbol: 'zł' },
-  CZK: { name: 'Czech Koruna', symbol: 'Kč' },
-  HUF: { name: 'Hungarian Forint', symbol: 'Ft' },
-  RON: { name: 'Romanian Leu', symbol: 'lei' },
-  BGN: { name: 'Bulgarian Lev', symbol: 'лв' },
-  HRK: { name: 'Croatian Kuna', symbol: 'kn' },
-  UYU: { name: 'Uruguayan Peso', symbol: '$U' },
-  CLP: { name: 'Chilean Peso', symbol: '$' },
-  COP: { name: 'Colombian Peso', symbol: '$' },
-  PEN: { name: 'Peruvian Sol', symbol: 'S/.' },
-  PHP: { name: 'Philippine Peso', symbol: '₱' },
-  MYR: { name: 'Malaysian Ringgit', symbol: 'RM' },
-  IDR: { name: 'Indonesian Rupiah', symbol: 'Rp' },
-  VND: { name: 'Vietnamese Đồng', symbol: '₫' },
-  NGN: { name: 'Nigerian Naira', symbol: '₦' },
-  KES: { name: 'Kenyan Shilling', symbol: 'KSh' },
-  EGP: { name: 'Egyptian Pound', symbol: 'E£' },
-  AED: { name: 'UAE Dirham', symbol: 'د.إ' },
-  SAR: { name: 'Saudi Riyal', symbol: '﷼' },
-}
-
-const exchangeRate = ref(null)
-const exchangeLoading = ref(false)
-const exchangeError = ref('')
-
-function getCurrencyCode(country) {
-  if (!country?.currencies) return null
-  if (Array.isArray(country.currencies)) return country.currencies[0]?.trim() || null
-  if (typeof country.currencies === 'string') return country.currencies.split(',')[0].trim()
-  return null
-}
-
-function formatCurrencyFull(code) {
-  if (!code) return ''
-  const info = currencyInfo[code]
-  return info ? `${info.name} (${info.symbol})` : code
-}
-
-const fromCurrencyCode = computed(() => getCurrencyCode(selectedFromCountry.value))
-const toCurrencyCode = computed(() => getCurrencyCode(selectedCountry.value))
-
-// Fetch exchange rate when both from/to currencies are known
-watch([fromCurrencyCode, toCurrencyCode], async ([fromCur, toCur]) => {
-  exchangeRate.value = null
-  exchangeError.value = ''
-  if (!fromCur || !toCur || fromCur === toCur) return
-  exchangeLoading.value = true
-  try {
-    const res = await fetch(`https://api.frankfurter.app/latest?from=${fromCur}&to=${toCur}`)
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    const data = await res.json()
-    exchangeRate.value = data.rates?.[toCur] || null
-  } catch (e) {
-    exchangeError.value = 'Could not fetch exchange rate'
-    console.warn('[Exchange Rate]', e)
-  } finally {
-    exchangeLoading.value = false
-  }
-})
-
-// Watch both from-country and selected-country to fetch visa data from WhereNext
-watch([selectedFromCountry, selectedCountry], async ([from, to]) => {
-  visaApiData.value = null
-  visaError.value = ''
-  if (!from || !to || from.code === to.code) return
-  visaLoading.value = true
-  try {
-    const res = await fetch(
-      `${WHERENEXT_BASE}/api/answers/visa?passport=${from.code}&destination=${to.code}`
-    )
-    if (!res.ok) throw new Error(`HTTP ${res.status}`)
-    visaApiData.value = await res.json()
-  } catch (e) {
-    visaError.value = 'Could not fetch visa details'
-    console.warn('[Visa API]', e)
-  } finally {
-    visaLoading.value = false
-  }
-})
-
-// ====== COUNTRY ALIASES ======
-// Map common alternative names / abbreviations to ISO2 country codes
-const countryAliases = {
-  'usa': 'US', 'america': 'US', 'united states of america': 'US',
-  'uk': 'GB', 'england': 'GB', 'britain': 'GB', 'great britain': 'GB',
-  'uae': 'AE', 'emirates': 'AE',
-  'drc': 'CD', 'congo': 'CD',
-  'dprk': 'KP',
-  'rok': 'KR',
-  'south korea': 'KR', 'korea': 'KR',
-  'holland': 'NL',
-  'burma': 'MM',
-  'ivory coast': 'CI',
-  "côte d'ivoire": 'CI',
-  'czechia': 'CZ', 'czech': 'CZ',
-  'macedonia': 'MK',
-  'swaziland': 'SZ',
-  'cabo verde': 'CV',
-  'east timor': 'TL',
-  'st ': 'st',  // "St" → "Saint" for St Lucia, St Vincent, etc.
-  'palestine': 'PS',
-  'venezuela': 'VE',
-  'vietnam': 'VN',
-}
-
-// Utility: check if a query matches a country (name, code, or alias)
-function countryMatchesQuery(country, q) {
-  if (country.name.toLowerCase().includes(q)) return true
-  if (country.code && country.code.toLowerCase().includes(q)) return true
-  // Check aliases
-  if (countryAliases[q] && countryAliases[q] === country.code) return true
-  // Check multi-word alias match
-  for (const [alias, code] of Object.entries(countryAliases)) {
-    if (alias.includes(q) && code === country.code) return true
-  }
-  return false
-}
-
-const filteredCountries = computed(() => {
-  if (!query.value) return []
-  const q = query.value.toLowerCase().trim()
-  return dataset
-    .filter(c => countryMatchesQuery(c, q))
-    .slice(0, 15)
-})
-
-const curatedInfo = computed(() => {
-  if (!selectedCountry.value) return null
-  return curatedInfoMap[selectedCountry.value.code] || null
-})
-
-// ====== DANGER WARNING ======
-// Countries with Equaldex score < 25 have severe legal restrictions
-// including criminalization of same-sex activity
-
-/** Safety level tiers based on Equality Index score */
-const safetyLevel = computed(() => {
-  if (!selectedCountry.value) return {}
-  const ei = selectedCountry.value.ei
-  if (ei === undefined || ei === null) return {
-    label: 'Unknown',
-    emoji: '❓',
-    title: 'No Data Available',
-    description: 'We don\'t have enough data to assess safety for this country.',
-    cardBg: 'bg-gray-50 dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600',
-    titleClass: 'text-gray-800 dark:text-gray-200',
-    textClass: 'text-gray-700 dark:text-gray-300',
-    metaClass: 'text-gray-500 dark:text-gray-400',
-    linkClass: 'text-gray-400 dark:text-gray-500',
-    borderClass: 'border-gray-200 dark:border-gray-600',
-    emergencyLink: false,
-  }
-
-  if (ei < 25) {
-    return {
-      label: 'Severe Risk',
-      emoji: '🚨',
-      title: 'DO NOT MOVE TO THIS COUNTRY',
-      description: 'This country has severe legal restrictions against LGBTQ+ people, including criminalization of same-sex activity. Relocating here as an openly trans person is extremely dangerous.',
-      cardBg: 'bg-red-50 dark:bg-red-950 border-2 border-red-400 dark:border-red-600',
-      titleClass: 'text-red-800 dark:text-red-200',
-      textClass: 'text-red-700 dark:text-red-300',
-      metaClass: 'text-red-600 dark:text-red-400',
-      linkClass: 'text-red-500 dark:text-red-400',
-      borderClass: 'border-red-300 dark:border-red-700',
-      emergencyLink: true,
-    }
-  }
-  if (ei < 40) {
-    return {
-      label: 'High Risk',
-      emoji: '⚠️',
-      title: 'Moving Not Recommended',
-      description: 'This country has significant legal restrictions or social hostility toward LGBTQ+ people. Same-sex activity may be restricted and trans rights are not protected. If you must move here, have a strong support network and legal safeguards in place.',
-      cardBg: 'bg-orange-50 dark:bg-orange-950 border-2 border-orange-400 dark:border-orange-600',
-      titleClass: 'text-orange-800 dark:text-orange-200',
-      textClass: 'text-orange-700 dark:text-orange-300',
-      metaClass: 'text-orange-600 dark:text-orange-400',
-      linkClass: 'text-orange-500 dark:text-orange-400',
-      borderClass: 'border-orange-300 dark:border-orange-700',
-      emergencyLink: true,
-    }
-  }
-  if (ei < 60) {
-    return {
-      label: 'Moderate Risk',
-      emoji: '🟡',
-      title: 'Proceed with Caution',
-      description: 'This country has mixed protections. While same-sex activity is likely legal, trans-specific rights may be limited and social acceptance varies. Research local laws carefully and seek community support before relocating.',
-      cardBg: 'bg-yellow-50 dark:bg-yellow-950 border-2 border-yellow-400 dark:border-yellow-600',
-      titleClass: 'text-yellow-800 dark:text-yellow-200',
-      textClass: 'text-yellow-700 dark:text-yellow-300',
-      metaClass: 'text-yellow-600 dark:text-yellow-400',
-      linkClass: 'text-yellow-500 dark:text-yellow-400',
-      borderClass: 'border-yellow-300 dark:border-yellow-700',
-      emergencyLink: false,
-    }
-  }
-  if (ei < 80) {
-    return {
-      label: 'Low Risk',
-      emoji: '🟢',
-      title: 'Generally Safe',
-      description: 'This country has reasonable legal protections for LGBTQ+ people. Same-sex activity is legal and some trans rights are recognized. Social acceptance varies by region, but overall conditions are favorable.',
-      cardBg: 'bg-green-50 dark:bg-green-950 border-2 border-green-400 dark:border-green-600',
-      titleClass: 'text-green-800 dark:text-green-200',
-      textClass: 'text-green-700 dark:text-green-300',
-      metaClass: 'text-green-600 dark:text-green-400',
-      linkClass: 'text-green-500 dark:text-green-400',
-      borderClass: 'border-green-300 dark:border-green-700',
-      emergencyLink: false,
-    }
-  }
-  // ei >= 80
-  return {
-    label: 'Best',
-    emoji: '🏳️‍🌈',
-    title: 'Highly Recommended',
-    description: 'This country has strong legal protections and broad social acceptance for LGBTQ+ people. Trans rights are well-established with legal gender recognition, healthcare access, and anti-discrimination protections.',
-    cardBg: 'bg-emerald-50 dark:bg-emerald-950 border-2 border-emerald-400 dark:border-emerald-600',
-    titleClass: 'text-emerald-800 dark:text-emerald-200',
-    textClass: 'text-emerald-700 dark:text-emerald-300',
-    metaClass: 'text-emerald-600 dark:text-emerald-400',
-    linkClass: 'text-emerald-500 dark:text-emerald-400',
-    borderClass: 'border-emerald-300 dark:border-emerald-700',
-    emergencyLink: false,
-  }
-})
-
-const isDangerous = computed(() => {
-  if (!selectedCountry.value) return false
-  const ei = selectedCountry.value.ei
-  return ei !== undefined && ei !== null && ei < 25
-})
-
-// Countries with moderate restrictions (ei 25-39) — use caution
-const isRestricted = computed(() => {
-  if (!selectedCountry.value || isDangerous.value) return false
-  const ei = selectedCountry.value.ei
-  return ei !== undefined && ei !== null && ei >= 25 && ei < 40
-})
-
-// ====== WHERENEXT COMPUTED ======
-const dimensions = [
-  { key: 'cost', label: 'Cost' },
-  { key: 'safety', label: 'Safety' },
-  { key: 'healthcare', label: 'Health' },
-  { key: 'education', label: 'Education' },
-  { key: 'career', label: 'Career' },
-  { key: 'lifestyle', label: 'Lifestyle' },
-  { key: 'infrastructure', label: 'Infrastructure' },
-]
-
-function dimScoreClass(val, key) {
-  if (key === 'cost') {
-    if (val <= 30) return 'text-green-600 dark:text-green-400'
-    if (val <= 60) return 'text-yellow-600 dark:text-yellow-400'
-    return 'text-red-600 dark:text-red-400'
-  }
-  if (val >= 70) return 'text-green-600 dark:text-green-400'
-  if (val >= 40) return 'text-yellow-600 dark:text-yellow-400'
-  return 'text-red-600 dark:text-red-400'
-}
-
-function dimBarClass(val, key) {
-  if (key === 'cost') {
-    if (val <= 30) return 'bg-green-500'
-    if (val <= 60) return 'bg-yellow-500'
-    return 'bg-red-500'
-  }
-  if (val >= 70) return 'bg-green-500'
-  if (val >= 40) return 'bg-yellow-500'
-  return 'bg-red-500'
-}
-
-function dimDisplayVal(val, key) {
-  if (key === 'cost') return Math.round(100 - val)
-  return val
-}
-
-// For cost breakdown indexes (WhereNext scale: lower = cheaper)
-function indexColor(val, key) {
-  if (key === 'cost') {
-    if (val <= 33) return 'text-green-600 dark:text-green-400'
-    if (val <= 66) return 'text-yellow-600 dark:text-yellow-400'
-    return 'text-red-600 dark:text-red-400'
-  }
-  return 'text-gray-900 dark:text-gray-100'
-}
-
-function costBarClass(val, key) {
-  if (key === 'cost') {
-    if (val <= 33) return 'bg-green-500'
-    if (val <= 66) return 'bg-yellow-500'
-    return 'bg-red-500'
-  }
-  return 'bg-blue-500'
-}
-
-const costInfo = computed(() => {
-  if (!selectedCountry.value) return null
-  const code = selectedCountry.value.code.toUpperCase()
-  // 1. Check generated COL data first (cached, reliable)
-  if (colMap.value[code]) return colMap.value[code]
-  // 2. Fallback to WhereNext direct fetch (case-insensitive)
-  return whereNextCostIndex.value.find(c => (c.country_code || '').toUpperCase() === code) || null
-})
-
-const relocInfo = computed(() => {
-  if (!selectedCountry.value) return null
-  const code = selectedCountry.value.code.toLowerCase()
-  return whereNextRelocIndex.value.find(c => c.country_code === code) || null
-})
-
-const salaryInfo = computed(() => {
-  if (!selectedCountry.value) return null
-  const code = selectedCountry.value.code
-  return whereNextSalaries.value.find(s => s.code === code) || null
-})
-
-// Build a list of { key, label, value } for the rights checklist
-const rightsList = computed(() => {
-  if (!curatedInfo.value) return []
-  const r = curatedInfo.value.rights
-  if (!r) return []
-  return [
-    { key: 'sameSexMarriage', label: 'Same-sex marriage', value: r.sameSexMarriage },
-    { key: 'adoptionBySameSex', label: 'Same-sex adoption', value: r.adoptionBySameSex },
-    { key: 'conversionTherapyBan', label: 'Conversion therapy banned', value: r.conversionTherapyBan },
-    { key: 'hateCrimeLaws', label: 'Hate crime laws include gender identity', value: r.hateCrimeLaws },
-    { key: 'employmentDiscrimination', label: 'Employment discrimination protections', value: r.employmentDiscrimination },
-    { key: 'housingDiscrimination', label: 'Housing discrimination protections', value: r.housingDiscrimination },
-    { key: 'bloodDonation', label: 'Blood donation allowed', value: r.bloodDonation },
-    { key: 'transMilitary', label: 'Trans people can serve in military', value: r.transMilitary },
-    { key: 'thirdGenderOption', label: 'Third gender / X marker option', value: r.thirdGenderOption },
-  ]
-})
-
-// Migration-related computed properties
+// Migration computed
 const visaDifficulty = computed(() => {
-  if (!curatedInfo.value) return ''
-  const visa = curatedInfo.value.digitalNomadVisa || ''
+  const visa = curatedInfo.value?.digitalNomadVisa || ''
   if (visa.toLowerCase().includes('no specific') || visa.toLowerCase().includes('not available')) return 'Moderate'
   if (visa.toLowerCase().includes('digital nomad') || visa.toLowerCase().includes('freelancer') || visa.toLowerCase().includes('remote work')) return 'Easy (DNV available)'
   if (visa.toLowerCase().includes('work visa') || visa.toLowerCase().includes('express entry')) return 'Moderate (points-based)'
@@ -1173,57 +1168,107 @@ const visaDifficultyBadgeClass = computed(() => {
 })
 
 const languageInfo = computed(() => {
-  if (!selectedCountry.value?.languages?.length) return 'See country dataset'
-  const langs = selectedCountry.value.languages
+  const langs = selectedCountry.value?.languages
+  if (!langs?.length) return 'See country dataset'
   if (langs.length <= 2) return langs.join(' / ')
   return langs.slice(0, 2).join(' / ') + ` +${langs.length - 2} more`
 })
 
 const communityInfo = computed(() => {
-  if (!curatedInfo.value) return 'See country guide'
-  const safety = curatedInfo.value.safety || 0
+  const safety = curatedInfo.value?.safety ?? 0
   if (safety >= 4) return 'Strong LGBTQ+ community'
   if (safety >= 3) return 'Moderate community presence'
   if (safety >= 2) return 'Limited community — caution advised'
   return 'Hostile environment — exercise extreme caution'
 })
 
-// ====== HELPERS ======
-function recognitionVariant(val) {
-  if (val === 'self-id') return 'green'
-  if (val === 'medicalized') return 'yellow'
-  if (val === 'banned') return 'red'
-  return 'default'
+const passportSuggestion = computed(() => {
+  if (!selectedFromCountry.value || !selectedCountry.value) return ''
+  const from = selectedFromCountry.value
+  const to = selectedCountry.value
+  if (from.code === to.code) return "That's your current country!"
+  const fromEU = from.continent === 'Europe'
+  const toEU = to.continent === 'Europe'
+  if (fromEU && toEU) return 'As an EU/Schengen area resident, you can move freely between most European countries.'
+  const tips = {
+    US: 'US citizens can visit many countries visa-free for 90 days.',
+    GB: 'UK citizens can visit many countries visa-free for 90 days (post-Brexit).',
+    CA: 'Canadian passport holders have visa-free access to many countries.',
+    AU: 'Australian passport holders have visa-free access to many countries.',
+    NZ: 'New Zealand passport holders have visa-free access to many countries.',
+  }
+  if (tips[from.code]) return tips[from.code]
+  if (fromEU && !toEU) return 'EU passport holders have visa-free or visa-on-arrival access to many countries.'
+  return `Check visa requirements for ${from.name} passport holders traveling to ${to.name}.`
+})
+
+// ============== WATCHERS ==============
+let exchangeAbort = null
+watch([fromCurrencyCode, toCurrencyCode], async ([fromCur, toCur]) => {
+  if (exchangeAbort) exchangeAbort.abort()
+  exchangeRate.value = null
+  exchangeError.value = ''
+  if (!fromCur || !toCur || fromCur === toCur) return
+  exchangeLoading.value = true
+  exchangeAbort = new AbortController()
+  try {
+    const res = await fetch(`https://api.frankfurter.app/latest?from=${fromCur}&to=${toCur}`, {
+      signal: exchangeAbort.signal,
+    })
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    const data = await res.json()
+    exchangeRate.value = data.rates?.[toCur] || null
+  } catch (e) {
+    if (e.name !== 'AbortError') {
+      exchangeError.value = 'Could not fetch exchange rate'
+      console.warn('[Exchange Rate]', e)
+    }
+  } finally {
+    exchangeLoading.value = false
+  }
+})
+
+let visaAbort = null
+watch([selectedFromCountry, selectedCountry], async ([from, to]) => {
+  if (visaAbort) visaAbort.abort()
+  visaApiData.value = null
+  visaError.value = ''
+  if (!from || !to || from.code === to.code) return
+  visaLoading.value = true
+  visaAbort = new AbortController()
+  try {
+    const res = await fetch(
+      `${WHERENEXT_BASE}/api/answers/visa?passport=${from.code}&destination=${to.code}`,
+      { signal: visaAbort.signal }
+    )
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+    visaApiData.value = await res.json()
+  } catch (e) {
+    if (e.name !== 'AbortError') {
+      visaError.value = 'Could not fetch visa details'
+      console.warn('[Visa API]', e)
+    }
+  } finally {
+    visaLoading.value = false
+  }
+})
+
+// ============== HELPERS ==============
+function getCountryCurrency(country) {
+  return country?.currencies?.[0] ?? null
 }
 
-function healthcareVariant(val) {
-  if (!val) return 'default'
-  const v = val.toLowerCase()
-  if (v.includes('informed consent')) return 'green'
-  if (v.includes('gatekeeping')) return 'yellow'
-  if (v.includes('limited') || v.includes('restricted')) return 'red'
-  return 'blue'
+function getCurrencyCode(country) {
+  if (!country?.currencies) return null
+  if (Array.isArray(country.currencies)) return country.currencies[0]?.trim() || null
+  if (typeof country.currencies === 'string') return country.currencies.split(',')[0].trim()
+  return null
 }
 
-function discriminationVariant(val) {
-  if (!val) return 'default'
-  const v = val.toLowerCase()
-  if (v.includes('comprehensive')) return 'green'
-  if (v.includes('partial') || v.includes('limited')) return 'yellow'
-  if (v.includes('none')) return 'red'
-  return 'blue'
-}
-
-function coverageVariant(val) {
-  if (val === 'public') return 'green'
-  if (val === 'private') return 'yellow'
-  return 'red'
-}
-
-function coverageLabel(val) {
-  if (val === 'public') return 'Covered by public healthcare'
-  if (val === 'private') return 'Private insurance only'
-  return 'Not covered'
+function formatCurrencyFull(code) {
+  if (!code) return ''
+  const info = currencyInfo[code]
+  return info ? `${info.name} (${info.symbol})` : code
 }
 
 function formatNumber(n) {
@@ -1240,9 +1285,59 @@ function scoreClass(score) {
   return 'text-red-600 dark:text-red-400'
 }
 
-function onInput() {
+function dimDisplayVal(val, key) {
+  return key === 'cost' ? Math.round(100 - val) : val
+}
+
+// Badge variant helpers
+function recognitionVariant(val) {
+  if (val === 'self-id') return 'green'
+  if (val === 'medicalized') return 'yellow'
+  if (val === 'banned') return 'red'
+  return 'default'
+}
+function healthcareVariant(val) {
+  if (!val) return 'default'
+  const v = val.toLowerCase()
+  if (v.includes('informed consent')) return 'green'
+  if (v.includes('gatekeeping')) return 'yellow'
+  if (v.includes('limited') || v.includes('restricted')) return 'red'
+  return 'blue'
+}
+function discriminationVariant(val) {
+  if (!val) return 'default'
+  const v = val.toLowerCase()
+  if (v.includes('comprehensive')) return 'green'
+  if (v.includes('partial') || v.includes('limited')) return 'yellow'
+  if (v.includes('none')) return 'red'
+  return 'blue'
+}
+function coverageVariant(val) {
+  if (val === 'public') return 'green'
+  if (val === 'private') return 'yellow'
+  return 'red'
+}
+function coverageLabel(val) {
+  if (val === 'public') return 'Covered by public healthcare'
+  if (val === 'private') return 'Private insurance only'
+  return 'Not covered'
+}
+
+function formatDate(date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+}
+
+// ============== SEARCH LOGIC ==============
+const debouncedFilter = useDebounceFn(() => {
+  // No extra action; the computed filteredCountries reacts to query changes automatically.
+  // We use debounce to avoid jank during rapid typing, but we need to show dropdown immediately.
+  // So we handle input by setting showDropdown and using a delayed flag if needed.
   showDropdown.value = true
   highlightIndex.value = -1
+}, 150)
+
+function onInput() {
+  debouncedFilter()
 }
 
 function onBlur() {
@@ -1253,14 +1348,12 @@ function highlightNext() {
   if (!filteredCountries.value.length) return
   highlightIndex.value = (highlightIndex.value + 1) % filteredCountries.value.length
 }
-
 function highlightPrev() {
   if (!filteredCountries.value.length) return
   highlightIndex.value = highlightIndex.value <= 0
     ? filteredCountries.value.length - 1
     : highlightIndex.value - 1
 }
-
 function selectHighlighted() {
   if (highlightIndex.value >= 0 && highlightIndex.value < filteredCountries.value.length) {
     selectCountry(filteredCountries.value[highlightIndex.value])
@@ -1283,42 +1376,29 @@ function clearSearch() {
   searchInput.value?.focus()
 }
 
-// ====== FROM-COUNTRY SEARCH ======
-const fromFiltered = computed(() => {
-  if (!fromQuery.value) return []
-  const q = fromQuery.value.toLowerCase().trim()
-  return dataset
-    .filter(c => countryMatchesQuery(c, q))
-    .slice(0, 10)
-})
-
+// From-country search
 function onFromInput() {
   showFromDropdown.value = true
   fromHighlightIndex.value = -1
 }
-
 function onFromBlur() {
   setTimeout(() => { showFromDropdown.value = false }, 200)
 }
-
 function fromHighlightNext() {
   if (!fromFiltered.value.length) return
   fromHighlightIndex.value = (fromHighlightIndex.value + 1) % fromFiltered.value.length
 }
-
 function fromHighlightPrev() {
   if (!fromFiltered.value.length) return
   fromHighlightIndex.value = fromHighlightIndex.value <= 0
     ? fromFiltered.value.length - 1
     : fromHighlightIndex.value - 1
 }
-
 function selectFromHighlighted() {
   if (fromHighlightIndex.value >= 0 && fromHighlightIndex.value < fromFiltered.value.length) {
     selectFromCountry(fromFiltered.value[fromHighlightIndex.value])
   }
 }
-
 function selectFromCountry(country) {
   selectedFromCountry.value = country
   fromQuery.value = country.name
@@ -1326,28 +1406,20 @@ function selectFromCountry(country) {
   fromHighlightIndex.value = -1
 }
 
-const passportSuggestion = computed(() => {
-  if (!selectedFromCountry.value || !selectedCountry.value) return ''
-  const from = selectedFromCountry.value
-  const to = selectedCountry.value
-  if (from.code === to.code) return "That's your current country!"
-  const sameContinent = from.continent === to.continent
-  const fromEU = from.continent === 'Europe'
-  const toEU = to.continent === 'Europe'
-  if (fromEU && toEU) return 'As an EU/Schengen area resident, you can move freely between most European countries.'
-  const tips = []
-  if (from.code === 'US') tips.push('US citizens can visit many countries visa-free for 90 days.')
-  if (from.code === 'GB') tips.push('UK citizens can visit many countries visa-free for 90 days (post-Brexit).')
-  if (from.code === 'CA') tips.push('Canadian passport holders have visa-free access to many countries.')
-  if (from.code === 'AU') tips.push('Australian passport holders have visa-free access to many countries.')
-  if (from.code === 'NZ') tips.push('New Zealand passport holders have visa-free access to many countries.')
-  if (fromEU && !toEU) tips.push('EU passport holders have visa-free or visa-on-arrival access to many countries.')
-  if (tips.length) return tips.join(' ')
-  return `Check visa requirements for ${from.name} passport holders traveling to ${to.name}.`
+// ============== LIFECYCLE ==============
+onMounted(() => {
+  const signal = abortController.value.signal
+  fetchWhereNextData(signal)
+  fetchExchangeRates(signal)
+  autoDetectUserCountry(signal)
 })
 
-const now = new Date()
-lastUpdated.value = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+onUnmounted(() => {
+  abortController.value.abort()
+  if (exchangeAbort) exchangeAbort.abort()
+  if (visaAbort) visaAbort.abort()
+  clearTimeout(debounceTimer)
+})
 </script>
 
 <style scoped>
@@ -1393,8 +1465,14 @@ html.dark .bento-card:hover {
 
 /* ---- Fade-in animation ---- */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .animate-fade-in {
   animation: fadeIn 0.3s ease-out;

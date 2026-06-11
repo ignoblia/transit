@@ -110,11 +110,41 @@ async function fetchRestCountries() {
   let data = null
   try {
     data = await fetchJSON(REST_COUNTRIES_URL)
-    console.log(`  → ${data.length} countries`)
+    // v3.1 API now returns { success: false } on deprecation; detect non-array
+    if (Array.isArray(data)) {
+      console.log(`  → ${data.length} countries`)
+    } else {
+      throw new Error('API returned non-array response (likely deprecated)')
+    }
   } catch (err) {
     console.error(`  ✗ Error: ${err.message}`)
-    data = readCache(path.join(DATA_DIR, 'rest-countries.json')) || []
-    if (data.length) console.log('  → Using cached data')
+    // Fall back to cache
+    data = readCache(path.join(DATA_DIR, 'rest-countries.json'))
+    if (Array.isArray(data) && data.length) {
+      console.log(`  → Loaded ${data.length} countries from cache`)
+    } else {
+      // Last resort: reconstruct from country-dataset.json (already has all fields)
+      console.log('  → Reconstructing from country-dataset.json...')
+      const datasetPath = path.join(DATA_DIR, 'country-dataset.json')
+      if (fs.existsSync(datasetPath)) {
+        const dataset = JSON.parse(fs.readFileSync(datasetPath, 'utf-8'))
+        if (Array.isArray(dataset)) {
+          data = dataset.map(c => ({
+            name: { common: c.name },
+            cca2: c.code,
+            flags: { png: c.flag, alt: c.flagAlt || '' },
+            capital: c.capital ? [c.capital] : [],
+            region: c.region || '',
+            subregion: c.subregion || '',
+            population: c.population || 0,
+            languages: c.languages ? Object.fromEntries(c.languages.map(l => [l, l])) : {},
+            continents: c.continent ? [c.continent] : [],
+            currencies: c.currencies ? Object.fromEntries(c.currencies.map(cu => [cu, { name: cu }])) : {},
+          }))
+          console.log(`  → Reconstructed ${data.length} countries from dataset`)
+        }
+      }
+    }
   }
   return data
 }

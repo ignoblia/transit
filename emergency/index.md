@@ -16,25 +16,50 @@ This page is for people who do not have months to plan. If you are in immediate 
 
 ### 🆘 Rainbow Railroad — Global Crisis Support
 - **Website:** [rainbowrailroad.org](https://rainbowrailroad.org)
-- **Apply for help:** [rainbowrailroad.org/get-help](https://rainbowrailroad.org/get-help)
+- **Apply for help:** [rainbowrailroad.org/request-help](https://rainbowrailroad.org/request-help)
+- **Phone:** +1 416-583-1557 (general inquiries — crisis intake is handled via online form)
+- **Email:** [help@rainbowrailroad.org](mailto:help@rainbowrailroad.org)
 - **What they do:** Emergency evacuation assistance, relocation support, and direct financial aid for LGBTQ+ people facing persecution. They operate globally and have evacuated individuals from over 40 countries.
-- **Response time:** Typically 1–7 days for initial assessment.
+- **Response time:** Typically 1–7 days for initial assessment (depends on urgency and capacity).
 - **Languages:** English, with interpretation available.
+- **Note:** Intake is primarily through the online request form. They receive thousands of requests and prioritise the most urgent cases.
 
 ### 🆘 ORAM (Organization for Refuge, Asylum & Migration)
 - **Website:** [oramrefugee.org](https://oramrefugee.org)
-- **What they do:** Legal aid, case management, and direct support for LGBTQ+ asylum seekers and refugees, with a focus on the most vulnerable.
-- **Specialisation:** Particularly active in Turkey, Lebanon, Jordan, Kenya, and other transit countries.
+- **Phone:** +1 612-682-5044 (US office)
+- **Email:** [oraminfo@oramrefugee.org](mailto:oraminfo@oramrefugee.org)
+- **What they do:** Legal aid, case management, short-term housing, and direct support for LGBTQ+ asylum seekers and refugees, with a focus on the most vulnerable.
+- **Specialisation:** Particularly active in Turkey, Lebanon, Jordan, Kenya, and other transit countries. Partnered with Airbnb.org for emergency housing.
 
 ### 🆘 Micro Rainbow
 - **Website:** [microrainbow.org](https://microrainbow.org)
-- **What they do:** Emergency housing, asylum support, and community navigation for LGBTQ+ asylum seekers in the UK and Europe.
-- **Services:** Emergency accommodation specifically for LGBTQ+ people fleeing persecution.
+- **Helpline (UK):** **0800 358 5851** — free to call
+  - First-time callers: Mon–Fri, 2pm–5pm
+  - Returning callers: Mon–Fri, 10am–4pm
+- **Afghan helpline:** **0800 358 5852** — Tues–Thurs, 2pm–5pm
+- **Email:** [social@microrainbow.org](mailto:social@microrainbow.org)
+- **What they do:** Emergency housing, asylum support, employability, and community navigation for LGBTQ+ asylum seekers in the UK and Europe.
+- **Services:** Safe houses, social inclusion programmes, moving-on support for newly granted refugees.
 
 ### 🆘 UNHCR Emergency Referral
 - **Website:** [unhcr.org](https://unhcr.org)
+- **Find your local office:** [unhcr.org/contact](https://www.unhcr.org/contact.html)
 - **How it works:** If you are in a refugee camp or transit country, UNHCR can issue an emergency referral to a resettlement country. This is a formal process — you need a UNHCR registration number to start.
-- **To register:** Find your nearest UNHCR office or partner organisation. In many countries, you can self-refer online.
+- **To register:** Find your nearest UNHCR office or partner organisation. In many countries, you can self-refer online at [help.unhcr.org](https://help.unhcr.org).
+
+### 🆘 Trans Lifeline — Peer Crisis Support (US & Canada)
+- **US hotline:** **(877) 565-8860**
+- **Canada hotline:** **(877) 330-6366**
+- **Website:** [translifeline.org](https://translifeline.org)
+- **What they do:** Peer support crisis hotline run by trans people for trans people. All callers are connected to a trained volunteer who shares their lived experience.
+- **Hours:** 10am–4am ET daily (US); 9:30am–4am ET daily (Canada).
+
+### 🆘 The Trevor Project — LGBTQ+ Youth Crisis Support
+- **US hotline:** **(866) 488-7386**
+- **Text/chat:** Text **START** to **678-678** or chat online at [thetrevorproject.org](https://thetrevorproject.org)
+- **Website:** [thetrevorproject.org](https://thetrevorproject.org)
+- **What they do:** Crisis intervention and suicide prevention for LGBTQ+ young people under 25.
+- **Hours:** 24/7.
 
 </div>
 
@@ -152,24 +177,38 @@ If you cannot reach your final destination immediately, these countries may serv
 
 ```
 RAINBOW RAILROAD
-Web: rainbowrailroad.org/get-help
+Web: rainbowrailroad.org/request-help
+Phone: +1 416-583-1557
 Global emergency evacuation support
 Response: 1–7 days
 
 ORAM
 Web: oramrefugee.org
+Phone: +1 612-682-5044
 Legal aid for LGBTQ+ refugees
 Focus: transit countries
 
 MICRO RAINBOW
 Web: microrainbow.org
+Helpline: 0800 358 5851 (UK, free)
 Emergency housing & asylum support
 Focus: UK & Europe
 
 UNHCR
 Web: unhcr.org
+Contact: unhcr.org/contact
 Emergency referral to resettlement
 Requires: UNHCR registration number
+
+TRANS LIFELINE
+US: (877) 565-8860
+Canada: (877) 330-6366
+Peer crisis support by trans people
+
+TREVOR PROJECT
+US: (866) 488-7386
+Text START to 678-678
+LGBTQ+ youth crisis support 24/7
 
 GENDERGP
 Web: gendergp.com
